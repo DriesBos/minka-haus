@@ -1,2 +1,15 @@
 .page
-  background: pink
+  position: relative
+  height: 100vh
+  width: 100%
+  overflow: hidden
+  background: var(--theme-light-bg)
+  color: var(--theme-light-type)
+  main
+  .description
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    right: var(--spacing-sides)
+    padding: 10px
+    border-radius: 5px
