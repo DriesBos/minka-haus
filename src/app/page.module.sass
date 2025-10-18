@@ -7,9 +7,14 @@
   color: var(--theme-light-type)
   main
   .description
+    opacity: 0
     position: absolute
     top: 50%
     transform: translateY(-50%)
     right: var(--spacing-sides)
     padding: 10px
     border-radius: 5px
+    transition: opacity 1s ease-in-out
+    
+    &.fadeIn
+      opacity: 1
