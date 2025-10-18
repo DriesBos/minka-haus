@@ -28,10 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <StoryblokProvider>
+    <StoryblokProvider>
+      <html lang="en">
         <body className={`${av.variable}`}>{children}</body>
-      </StoryblokProvider>
-    </html>
+      </html>
+    </StoryblokProvider>
   );
 }

@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   const slug = searchParams.get('slug');
 
   // Check if the secret matches
-  if (secret !== process.env.NEXT_PREVIEW_STORYBLOK_CONTENT_API_ACCESS_TOKEN) {
+  if (secret !== process.env.STORYBLOK_DELIVERY_API_TOKEN) {
     return NextResponse.json({ message: 'Invalid token' }, { status: 401 });
   }
 
