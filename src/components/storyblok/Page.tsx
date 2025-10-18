@@ -17,9 +17,9 @@ export default function Page({ blok }: PageProps) {
   return (
     <main>
       <h1>PAGE GENERAL</h1>
-      {/* {blok.body?.map((nestedBlok: StoryblokBlok) => (
+      {blok.body?.map((nestedBlok: StoryblokBlok) => (
         <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
-      ))} */}
+      ))}
     </main>
   );
 }

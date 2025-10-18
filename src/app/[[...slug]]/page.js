@@ -1,5 +1,5 @@
-import { StoryblokStory } from '@storyblok/react/rsc';
 import { fetchStory } from '@/utils/fetchStory';
+import ClientStoryRenderer from '@/components/ClientStoryRenderer';
 
 export default async function Page({ params }) {
   const { slug } = await params;
@@ -7,7 +7,7 @@ export default async function Page({ params }) {
   try {
     // Use 'published' version since that's what works with your current setup
     const data = await fetchStory('published', slug);
-    return <StoryblokStory story={data.story} />;
+    return <ClientStoryRenderer story={data.story} />;
   } catch (error) {
     console.error('Error loading page:', error);
     return (
