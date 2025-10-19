@@ -53,8 +53,8 @@ export default function WeatherBlok() {
     const fetchWeather = async () => {
       try {
         const params = {
-          latitude: 35.0211,
-          longitude: 135.7538,
+          latitude: 35.1134,
+          longitude: 135.7254,
           models: 'jma_seamless',
           current: ['temperature_2m', 'relative_humidity_2m', 'weather_code'],
           forecast_days: 3,
