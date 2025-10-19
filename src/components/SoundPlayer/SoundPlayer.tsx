@@ -63,7 +63,7 @@ export default function SoundPlayer({ audioSrc }: SoundPlayerProps) {
   };
 
   return (
-    <div className={styles.player}>
+    <div className={styles.player} data-playing={isPlaying}>
       <audio ref={audioRef} src={audioSrc} loop />
 
       <div className={styles.controls}>
