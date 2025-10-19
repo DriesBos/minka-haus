@@ -32,6 +32,7 @@ export default function PageHome({ blok }: PageHomeProps) {
       <DataBlok label="Temp" value="28°" />
       <DataBlok label="Conditions" value="Light Rainfall" />
       <DataBlok label="Local Time" value="01:00:58" />
+      <DataBlok label="Humidity" value="65%" />
     </div>
   );
 }
