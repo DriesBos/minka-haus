@@ -15,7 +15,18 @@ const av = localFont({
       style: 'normal',
     },
   ],
-  variable: '--font-helvetica',
+  variable: '--av-font',
+});
+
+const ss = localFont({
+  src: [
+    {
+      path: './../fonts/ss.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+  variable: '--ss-font',
 });
 
 export const metadata: Metadata = {
@@ -30,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${av.variable}`}>
+      <body className={`${av.variable} ${ss.variable}`}>
         <BackgroundStoreProvider>
           <StoryblokProvider>{children}</StoryblokProvider>
         </BackgroundStoreProvider>

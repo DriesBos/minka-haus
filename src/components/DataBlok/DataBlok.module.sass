@@ -1,0 +1,32 @@
+.dataBlok
+  position: absolute
+  display: flex
+  gap: 4px
+  color: white
+  mix-blend-mode: difference
+  transform: translate(-50%, -50%)
+  z-index: +1
+
+.icon
+  width: 6px
+  height: 9px
+  background: var(--color-type-secondary)
+  margin-top: 5px
+  animation: cursor-blink 2s step-end infinite
+
+@keyframes cursor-blink
+  0%, 50%
+    opacity: 1
+  50.01%, 100%
+    opacity: 0
+
+.content
+  display: flex
+  flex-direction: column
+  font-size: var(--type-size-data)
+  line-height: 1
+  font-family: var(--ss-font)
+
+.label
+  text-transform: uppercase
+  color: var(--color-type-secondary)
