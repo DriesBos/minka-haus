@@ -62,13 +62,6 @@ export default function SoundPlayer({ audioSrc }: SoundPlayerProps) {
     setVolume(vol);
   };
 
-  const formatTime = (time: number) => {
-    if (isNaN(time)) return '0:00';
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-  };
-
   return (
     <div className={styles.player}>
       <audio ref={audioRef} src={audioSrc} loop />
