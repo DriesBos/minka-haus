@@ -12,7 +12,6 @@
   height: 9px
   background: var(--color-type-secondary)
   margin-top: 5px
-  animation: cursor-blink 2s step-end infinite
 
 @keyframes cursor-blink
   0%, 50%
@@ -30,3 +29,18 @@
 .label
   text-transform: uppercase
   color: var(--color-type-secondary)
+
+.value
+  opacity: 1
+  transition: opacity 0.66s ease-out
+
+.dataBlok
+  &[data-loading="true"]
+    .value
+      opacity: 0
+
+  &[data-loading="false"]
+    .value
+      opacity: 1
+    .icon
+      animation: cursor-blink 2s step-end infinite 1s

@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import { fetchWeatherApi } from 'openmeteo';
 import DataBlok from './DataBlok';
 
+// Set to true to test loading state with 1 second delay
+const TEST_LOADING_DELAY = false;
+
 interface WeatherData {
   temperature: number;
   humidity: number;
@@ -18,7 +21,7 @@ const getWeatherCondition = (code: number): string => {
     2: 'Partly Cloudy',
     3: 'Overcast',
     45: 'Fog',
-    48: 'Depositing Rime Fog',
+    48: 'Rime Fog',
     51: 'Light Drizzle',
     53: 'Moderate Drizzle',
     55: 'Dense Drizzle',
@@ -73,6 +76,11 @@ export default function WeatherBlok() {
           weatherCode: current.variables(2)!.value(),
         };
 
+        // Add delay for testing loading state
+        if (TEST_LOADING_DELAY) {
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
+
         setWeather(weatherData);
       } catch (error) {
         console.error('Error fetching weather:', error);
@@ -93,16 +101,19 @@ export default function WeatherBlok() {
       <DataBlok
         label="Temp"
         value={weather ? `${weather.temperature}°` : '--°'}
+        loading={!weather}
       />
       <DataBlok
         label="Humidity"
         value={weather ? `${weather.humidity}%` : '--%'}
+        loading={!weather}
       />
       <DataBlok
         label="Conditions"
         value={
           weather ? getWeatherCondition(weather.weatherCode) : 'Loading...'
         }
+        loading={!weather}
       />
     </>
   );

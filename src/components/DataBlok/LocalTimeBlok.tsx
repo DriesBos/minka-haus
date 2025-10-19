@@ -3,6 +3,9 @@
 import { useEffect, useState } from 'react';
 import DataBlok from './DataBlok';
 
+// Set to true to test loading state with 1 second delay
+const TEST_LOADING_DELAY = false;
+
 export default function LocalTimeBlok() {
   const [time, setTime] = useState('');
 
@@ -18,8 +21,12 @@ export default function LocalTimeBlok() {
       setTime(japanTime);
     };
 
-    // Set initial time
-    updateTime();
+    // Add delay for testing loading state
+    if (TEST_LOADING_DELAY) {
+      setTimeout(updateTime, 1000);
+    } else {
+      updateTime();
+    }
 
     // Update every second
     const interval = setInterval(updateTime, 1000);
@@ -27,5 +34,7 @@ export default function LocalTimeBlok() {
     return () => clearInterval(interval);
   }, []);
 
-  return <DataBlok label="Local Time" value={time || '00:00:00'} />;
+  return (
+    <DataBlok label="Local Time" value={time || '00:00:00'} loading={!time} />
+  );
 }
