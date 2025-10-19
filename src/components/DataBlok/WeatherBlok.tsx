@@ -1,5 +1,6 @@
 'use client';
 
+// API Docs: https://open-meteo.com/en/docs/weather-api
 import { useEffect, useState } from 'react';
 import { fetchWeatherApi } from 'openmeteo';
 import DataBlok from './DataBlok';

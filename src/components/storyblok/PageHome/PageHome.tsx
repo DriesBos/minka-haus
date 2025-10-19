@@ -3,6 +3,7 @@ import styles from './PageHome.module.sass';
 import DataBlok from '@/components/DataBlok/DataBlok';
 import LocalTimeBlok from '@/components/DataBlok/LocalTimeBlok';
 import WeatherBlok from '@/components/DataBlok/WeatherBlok';
+import SoundPlayer from '@/components/SoundPlayer/SoundPlayer';
 
 interface StoryblokBlok {
   _uid: string;
@@ -33,6 +34,7 @@ export default function PageHome({ blok }: PageHomeProps) {
       <DataBlok label="Location" value="Kita-ku, Kyoto" />
       <WeatherBlok />
       <LocalTimeBlok />
+      <SoundPlayer audioSrc="/audio/vetiverol.mp3" />
     </div>
   );
 }

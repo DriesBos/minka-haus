@@ -10,6 +10,7 @@ interface TheBackgroundProps {
 export default function TheBackground({ image }: TheBackgroundProps) {
   return (
     <div className={styles.background}>
+      <div className={styles.overlay} />
       {image && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
