@@ -7,9 +7,9 @@ interface SoundPlayerProps {
 export default function SoundPlayer({ audioSrc }: SoundPlayerProps) {
   return (
     <div className={styles.player}>
-      <span>play</span>
+      <span>audio</span>
 
-      <audio controls src={audioSrc} className={styles.audio} />
+      <audio src={audioSrc} className={styles.audio} loop />
     </div>
   );
 }
