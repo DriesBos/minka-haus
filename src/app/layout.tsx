@@ -5,6 +5,7 @@ import '@/styles/vars.sass';
 import '@/styles/typography.sass';
 import '@/styles/globals.sass';
 import StoryblokProvider from '@/providers/StoryblokProvider';
+import BackgroundStoreProvider from '@/providers/BackgroundStoreProvider';
 
 const av = localFont({
   src: [
@@ -30,7 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${av.variable}`}>
-        <StoryblokProvider>{children}</StoryblokProvider>
+        <BackgroundStoreProvider>
+          <StoryblokProvider>{children}</StoryblokProvider>
+        </BackgroundStoreProvider>
       </body>
     </html>
   );

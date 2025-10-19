@@ -1,3 +1,4 @@
+import { use } from 'react';
 import styles from './page-home.module.sass';
 
 interface StoryblokBlok {
