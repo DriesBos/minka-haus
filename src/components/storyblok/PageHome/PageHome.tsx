@@ -1,5 +1,4 @@
-import { use } from 'react';
-import styles from './page-home.module.sass';
+import styles from './PageHome.module.sass';
 
 interface StoryblokBlok {
   _uid: string;
