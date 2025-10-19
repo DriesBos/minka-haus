@@ -2,6 +2,7 @@ import TheBackground from '@/components/the-background/the-background';
 import styles from './PageHome.module.sass';
 import DataBlok from '@/components/DataBlok/DataBlok';
 import LocalTimeBlok from '@/components/DataBlok/LocalTimeBlok';
+import WeatherBlok from '@/components/DataBlok/WeatherBlok';
 
 interface StoryblokBlok {
   _uid: string;
@@ -30,10 +31,8 @@ export default function PageHome({ blok }: PageHomeProps) {
         Design and research lab. <span>Enter.</span>
       </div>
       <DataBlok label="Location" value="Kita-ku, Kyoto" />
-      <DataBlok label="Temp" value="28°" />
-      <DataBlok label="Conditions" value="Light Rainfall" />
+      <WeatherBlok />
       <LocalTimeBlok />
-      <DataBlok label="Humidity" value="65%" />
     </div>
   );
 }
