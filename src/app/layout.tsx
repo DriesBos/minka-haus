@@ -6,7 +6,6 @@ import '@/styles/typography.sass';
 import '@/styles/globals.sass';
 import StoryblokProvider from '@/providers/StoryblokProvider';
 import BackgroundStoreProvider from '@/providers/BackgroundStoreProvider';
-import TheFooter from '@/components/TheFooter/TheFooter';
 
 const av = localFont({
   src: [
