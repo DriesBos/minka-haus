@@ -6,6 +6,18 @@
   mix-blend-mode: difference
   transform: translate(-50%, -50%)
   z-index: +1
+  opacity: 0
+  transition: opacity 0.33s ease-out
+  &[data-loading="true"]
+    opacity: 0
+  &[data-loading="false"]
+    opacity: 1
+    .icon
+      animation: cursor-blink 2s step-end infinite 1s
+  &[data-active="true"]
+    opacity: 1
+  &[data-active="false"]
+    opacity: 0
 
 .icon
   width: 6px
@@ -29,18 +41,3 @@
 .label
   text-transform: uppercase
   color: var(--color-type-secondary)
-
-.value
-  opacity: 1
-  transition: opacity 0.66s ease-out
-
-.dataBlok
-  &[data-loading="true"]
-    .value
-      opacity: 0
-
-  &[data-loading="false"]
-    .value
-      opacity: 1
-    .icon
-      animation: cursor-blink 2s step-end infinite 1s

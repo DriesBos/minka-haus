@@ -1,15 +1,16 @@
 import styles from './the-background.module.sass';
 
 interface TheBackgroundProps {
+  active?: boolean;
   image?: {
     filename: string;
     alt?: string;
   };
 }
 
-export default function TheBackground({ image }: TheBackgroundProps) {
+export default function TheBackground({ image, active }: TheBackgroundProps) {
   return (
-    <div className={styles.background}>
+    <div className={styles.background} data-active={active ? 'true' : 'false'}>
       <div className={styles.overlay} />
       {image && (
         // eslint-disable-next-line @next/next/no-img-element

@@ -5,9 +5,10 @@ import styles from './SoundPlayer.module.sass';
 
 interface SoundPlayerProps {
   audioSrc: string;
+  active?: boolean;
 }
 
-export default function SoundPlayer({ audioSrc }: SoundPlayerProps) {
+export default function SoundPlayer({ audioSrc, active }: SoundPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -31,6 +32,42 @@ export default function SoundPlayer({ audioSrc }: SoundPlayerProps) {
       audio.removeEventListener('ended', () => setIsPlaying(false));
     };
   }, []);
+
+  // Handle active prop to control playback with fade-in
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (active) {
+      // Start at volume 0 and play immediately
+      audio.volume = 0;
+      audio.play();
+      setIsPlaying(true);
+
+      // Fade in over 12 seconds
+      const fadeDuration = 12000;
+      const steps = 240; // 240 steps for smooth fade
+      const volumeIncrement = 1 / steps;
+      const stepDuration = fadeDuration / steps;
+      let currentStep = 0;
+
+      const fadeInterval = setInterval(() => {
+        currentStep++;
+        const newVolume = Math.min(currentStep * volumeIncrement, 1);
+        audio.volume = newVolume;
+        setVolume(newVolume);
+
+        if (currentStep >= steps) {
+          clearInterval(fadeInterval);
+        }
+      }, stepDuration);
+
+      return () => clearInterval(fadeInterval);
+    } else {
+      audio.pause();
+      setIsPlaying(false);
+    }
+  }, [active]);
 
   const togglePlay = () => {
     const audio = audioRef.current;

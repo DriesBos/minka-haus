@@ -1,3 +1,4 @@
+import React from 'react';
 import TheBackground from '@/components/the-background/the-background';
 import styles from './PageHome.module.sass';
 import DataBlok from '@/components/DataBlok/DataBlok';
@@ -24,17 +25,26 @@ interface PageHomeProps {
 }
 
 export default function PageHome({ blok }: PageHomeProps) {
-  console.log('Rendering PageHome with blok:', blok);
+  const [hasEntered, setHasEntered] = React.useState(false);
+
+  console.log('hasEntered', hasEntered);
+
   return (
-    <div>
-      {blok.background_image && <TheBackground image={blok.background_image} />}
-      <div className={styles.entryText}>
-        Design and research lab. <span>Enter.</span>
+    <div className={styles.pageHome} data-entered={hasEntered}>
+      {blok.background_image && (
+        <TheBackground image={blok.background_image} active={hasEntered} />
+      )}
+      <div
+        className={styles.entryText}
+        onClick={() => setHasEntered(true)}
+        data-active={!hasEntered}
+      >
+        Enter
       </div>
-      <DataBlok label="Location" value="Kita-ku, Kyoto" />
-      <WeatherBlok />
-      <LocalTimeBlok />
-      <SoundPlayer audioSrc="/audio/vetiverol.mp3" />
+      <DataBlok label="Location" value="Kita-ku, Kyoto" active={hasEntered} />
+      <WeatherBlok active={hasEntered} />
+      <LocalTimeBlok active={hasEntered} />
+      <SoundPlayer audioSrc="/audio/vetiverol.mp3" active={hasEntered} />
     </div>
   );
 }

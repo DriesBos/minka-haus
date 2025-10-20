@@ -3,10 +3,14 @@
 import { useEffect, useState } from 'react';
 import DataBlok from './DataBlok';
 
+interface LocalTimeBlokProps {
+  active?: boolean;
+}
+
 // Set to true to test loading state with 1 second delay
 const TEST_LOADING_DELAY = false;
 
-export default function LocalTimeBlok() {
+export default function LocalTimeBlok({ active }: LocalTimeBlokProps) {
   const [time, setTime] = useState('');
 
   useEffect(() => {
@@ -35,6 +39,11 @@ export default function LocalTimeBlok() {
   }, []);
 
   return (
-    <DataBlok label="Local Time" value={time || '00:00:00'} loading={!time} />
+    <DataBlok
+      label="Local Time"
+      value={time || '00:00:00'}
+      loading={!time}
+      active={active}
+    />
   );
 }

@@ -50,7 +50,11 @@ const getWeatherCondition = (code: number): string => {
   return weatherConditions[code] || 'Unknown';
 };
 
-export default function WeatherBlok() {
+interface WeatherBlokProps {
+  active?: boolean;
+}
+
+export default function WeatherBlok({ active }: WeatherBlokProps) {
   const [weather, setWeather] = useState<WeatherData | null>(null);
 
   useEffect(() => {
@@ -103,11 +107,13 @@ export default function WeatherBlok() {
         label="Temp"
         value={weather ? `${weather.temperature}°` : '--°'}
         loading={!weather}
+        active={active}
       />
       <DataBlok
         label="Humidity"
         value={weather ? `${weather.humidity}%` : '--%'}
         loading={!weather}
+        active={active}
       />
       <DataBlok
         label="Conditions"
@@ -115,6 +121,7 @@ export default function WeatherBlok() {
           weather ? getWeatherCondition(weather.weatherCode) : 'Loading...'
         }
         loading={!weather}
+        active={active}
       />
     </>
   );

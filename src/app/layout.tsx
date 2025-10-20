@@ -6,6 +6,7 @@ import '@/styles/typography.sass';
 import '@/styles/globals.sass';
 import StoryblokProvider from '@/providers/StoryblokProvider';
 import BackgroundStoreProvider from '@/providers/BackgroundStoreProvider';
+import TheFooter from '@/components/TheFooter/TheFooter';
 
 const av = localFont({
   src: [
@@ -43,7 +44,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${av.variable} ${ss.variable}`}>
         <BackgroundStoreProvider>
-          <StoryblokProvider>{children}</StoryblokProvider>
+          <StoryblokProvider>
+            <main>
+              {children} <TheFooter />
+            </main>
+          </StoryblokProvider>
         </BackgroundStoreProvider>
       </body>
     </html>
