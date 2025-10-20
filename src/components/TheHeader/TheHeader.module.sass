@@ -10,6 +10,9 @@
   display: flex
   align-items: flex-start
   justify-content: space-between
+  @media screen and (max-width: 850px) 
+    flex-direction: column
+    gap: 2rem
 
   .headerSequence
     opacity: 0
@@ -21,8 +24,10 @@
 
   .brand
     display: flex
-    flex-direction: row
     gap: 4rem
+    @media screen and (max-width: 850px) 
+      flex-direction: column
+      gap: 1rem
   .logo
     text-transform: uppercase
   .description
@@ -30,6 +35,8 @@
     span
       opacity: 0 !important
       margin-bottom: .33rem
+      @media screen and (max-width: 850px) 
+        display: none
 
   .links
     display: flex
@@ -45,6 +52,6 @@
       gap: 0.165rem
       a, p
         color: var(--color-type-secondary)
-    .link
-      &:hover
-        text-decoration: underline
+        transition: color .5s ease-out
+      a:hover
+        color: currentColor

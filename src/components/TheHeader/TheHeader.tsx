@@ -55,8 +55,10 @@ export default function TheHeader({ active }: TheHeaderProps) {
         <div
           className={`${styles.bottom} ${styles.description} ${styles.headerSequence}  headerSequence`}
         >
-          <span>Connect</span>
-          <br />
+          <span>
+            Connect
+            <br />
+          </span>
           Deep in the mountains of Kyoto.
           <br />
           Is calmness to rethink ourselves.
