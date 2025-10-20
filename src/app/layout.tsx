@@ -45,9 +45,7 @@ export default function RootLayout({
       <body className={`${av.variable} ${ss.variable}`}>
         <BackgroundStoreProvider>
           <StoryblokProvider>
-            <main>
-              {children} <TheFooter />
-            </main>
+            <main>{children}</main>
           </StoryblokProvider>
         </BackgroundStoreProvider>
       </body>

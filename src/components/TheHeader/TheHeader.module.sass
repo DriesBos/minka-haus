@@ -1,0 +1,42 @@
+.theHeader
+  z-index: +1
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  padding: 2rem var(--spacing-sides)
+  color: white
+  display: flex
+  align-items: flex-start
+  justify-content: space-between
+
+  .headerSequence
+    opacity: 0
+
+  & > div
+    display: flex
+    flex-direction: row
+  .bottom
+    display: flex
+    flex-direction: column
+    gap: 0.165rem
+    a, p
+      color: var(--color-type-secondary)
+      font-size: var(--type-size-base)
+
+  .brand
+    display: flex
+    flex-direction: row
+    gap: 6rem
+  .logo
+    text-transform: uppercase
+  .description
+    color: var(--color-type-secondary)
+
+  .links
+    display: flex
+    flex-direction: row
+    gap: 10rem
+    .link
+      &:hover
+        text-decoration: underline

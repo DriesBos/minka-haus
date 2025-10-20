@@ -9,6 +9,7 @@ import DataBlok from '@/components/DataBlok/DataBlok';
 import LocalTimeBlok from '@/components/DataBlok/LocalTimeBlok';
 import WeatherBlok from '@/components/DataBlok/WeatherBlok';
 import SoundPlayer from '@/components/SoundPlayer/SoundPlayer';
+import TheHeader from '@/components/TheHeader/TheHeader';
 
 // Register GSAP plugin
 gsap.registerPlugin(useGSAP);
@@ -53,7 +54,7 @@ export default function PageHome({ blok }: PageHomeProps) {
           opacity: 1,
           y: 0,
           duration: 0.66,
-          stagger: 0.33, // 150ms delay between each element
+          stagger: 0.33,
           ease: 'power2.out',
         });
       }
@@ -83,6 +84,7 @@ export default function PageHome({ blok }: PageHomeProps) {
       <WeatherBlok active={hasEntered} />
       <LocalTimeBlok active={hasEntered} />
       <SoundPlayer audioSrc="/audio/vetiverol.mp3" active={hasEntered} />
+      <TheHeader active={hasEntered} />
     </div>
   );
 }
