@@ -48,11 +48,12 @@ export default function PageHome({ blok }: PageHomeProps) {
         });
 
         // Animate in sequentially with stagger
+        // 5 * 0.33 = 1.65 + 0.66 = 2.31s total
         gsap.to(dataBloks, {
           opacity: 1,
           y: 0,
-          duration: 0.6,
-          stagger: 0.15, // 150ms delay between each element
+          duration: 0.66,
+          stagger: 0.33, // 150ms delay between each element
           ease: 'power2.out',
         });
       }
@@ -71,6 +72,13 @@ export default function PageHome({ blok }: PageHomeProps) {
       {blok.background_image && (
         <TheBackground image={blok.background_image} active={hasEntered} />
       )}
+      <div
+        className={styles.testText}
+        onClick={() => setHasEntered(true)}
+        data-active={!hasEntered}
+      >
+        TestText
+      </div>
       <div
         className={styles.entryText}
         onClick={() => setHasEntered(true)}
