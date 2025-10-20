@@ -73,13 +73,6 @@ export default function PageHome({ blok }: PageHomeProps) {
         <TheBackground image={blok.background_image} active={hasEntered} />
       )}
       <div
-        className={styles.testText}
-        onClick={() => setHasEntered(true)}
-        data-active={!hasEntered}
-      >
-        TestText
-      </div>
-      <div
         className={styles.entryText}
         onClick={() => setHasEntered(true)}
         data-active={!hasEntered}
