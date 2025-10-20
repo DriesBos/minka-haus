@@ -13,14 +13,14 @@
   @media screen and (max-width: 850px) 
     flex-direction: column
     gap: 2rem
+    padding-right: var(--spacing-sides)
 
   .headerSequence
     opacity: 0
 
   & > div
     display: flex
-    flex-direction: row
-    gap: .33rem
+    width: 100%
 
   .brand
     display: flex
@@ -42,14 +42,23 @@
     display: flex
     flex-direction: row
     gap: 8rem
-    .connect, .enquiries
+    justify-content: flex-end
+    @media screen and (max-width: 850px) 
+      gap: 0
+      justify-content: flex-start
+    .connect, .enquire
       display: flex
       flex-direction: column
       gap: 0.33rem
+      @media screen and (max-width: 850px) 
+        flex-grow: 1
+        gap: 1rem
     .bottom
       display: flex
       flex-direction: column
       gap: 0.165rem
+      @media screen and (max-width: 850px) 
+        gap: 0
       a, p
         color: var(--color-type-secondary)
         transition: color .5s ease-out

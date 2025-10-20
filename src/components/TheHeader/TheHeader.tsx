@@ -31,7 +31,7 @@ export default function TheHeader({ active }: TheHeaderProps) {
           opacity: 1,
           y: 0,
           duration: 1.5,
-          stagger: 0.33,
+          stagger: 0.25,
           ease: 'power2.out',
           delay: 4,
         });
@@ -88,11 +88,11 @@ export default function TheHeader({ active }: TheHeaderProps) {
             <a href="https://www.storyblok.com/">newsletter</a>
           </div>
         </div>
-        <div className={styles.enquiries}>
+        <div className={styles.enquire}>
           <div
             className={`${styles.top} ${styles.headerSequence} headerSequence`}
           >
-            Enquiries
+            Enquire
           </div>
           <div
             className={`${styles.bottom} ${styles.headerSequence} headerSequence`}
