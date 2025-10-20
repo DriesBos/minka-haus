@@ -32,6 +32,10 @@ const ss = localFont({
 export const metadata: Metadata = {
   title: 'Minka Haus',
   description: 'A place for downtime, creation and connection',
+  appleWebApp: {
+    title: 'Minka Haus',
+    statusBarStyle: 'black-translucent',
+  },
 };
 
 export default function RootLayout({
