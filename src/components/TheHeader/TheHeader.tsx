@@ -55,9 +55,15 @@ export default function TheHeader({ active }: TheHeaderProps) {
         <div
           className={`${styles.bottom} ${styles.description} ${styles.headerSequence}  headerSequence`}
         >
-          Minka Haus is a design residency in Kyoto.
+          <span>Connect</span>
           <br />
-          Fusing Kyoto crafts with modern living.
+          Deep in the mountains of Kyoto.
+          <br />
+          Is calmness to rethink ourselves.
+          <br />
+          Under influence of mingei — Japanese traditional crafts.
+          {/* Minka Haus is a design residency in Kyoto. */}
+          {/* Fusing Kyoto crafts with modern living. */}
         </div>
       </div>
       <div className={styles.links}>
@@ -70,7 +76,13 @@ export default function TheHeader({ active }: TheHeaderProps) {
           <div
             className={`${styles.bottom} ${styles.headerSequence} headerSequence`}
           >
-            <a href="https://www.instagram.com/minka_haus/">instagram</a>
+            <a
+              href="https://www.instagram.com/minkahaus/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              instagram
+            </a>
             <a href="https://www.storyblok.com/">newsletter</a>
           </div>
         </div>
@@ -83,7 +95,13 @@ export default function TheHeader({ active }: TheHeaderProps) {
           <div
             className={`${styles.bottom} ${styles.headerSequence} headerSequence`}
           >
-            <a href="mailto:info@minka-haus.org">hi@minkahaus.com</a>
+            <a
+              href="mailto:hello@minkahaus.com"
+              rel="noreferrer"
+              target="_blank"
+            >
+              hello@minkahaus.com
+            </a>
           </div>
         </div>
       </div>

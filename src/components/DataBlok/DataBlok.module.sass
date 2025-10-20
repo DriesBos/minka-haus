@@ -21,25 +21,26 @@
     color: black
 
 .icon
-  width: 6px
-  height: 9px
-  background-color: var(--color-type-secondary)
-  margin-top: 5px
+  width: 5px
+  height: 8px
+  background-color: currentColor
+  margin-top: 0.08rem
+
+.content
+  display: flex
+  flex-direction: column
+  gap: 0.33rem
+  span
+    font-family: var(--ss-font)
+    font-size: var(--type-size-data)
+    line-height: 1
+    color: currentColor
+  .label
+    text-transform: uppercase
+    color: var(--color-type-secondary)
 
 @keyframes cursor-blink
   0%, 50%
     opacity: 1
   50.01%, 100%
     opacity: 0
-
-.content
-  display: flex
-  flex-direction: column
-  font-size: var(--type-size-data)
-  line-height: 1
-  font-family: var(--ss-font)
-  color: inherit
-
-.label
-  text-transform: uppercase
-  color: var(--color-type-secondary)

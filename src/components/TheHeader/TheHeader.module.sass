@@ -5,6 +5,7 @@
   left: 0
   width: 100%
   padding: 2rem var(--spacing-sides)
+  padding-right: calc(var(--spacing-sides) * 2)
   color: white
   display: flex
   align-items: flex-start
@@ -16,27 +17,34 @@
   & > div
     display: flex
     flex-direction: row
-  .bottom
-    display: flex
-    flex-direction: column
-    gap: 0.165rem
-    a, p
-      color: var(--color-type-secondary)
-      font-size: var(--type-size-base)
+    gap: .33rem
 
   .brand
     display: flex
     flex-direction: row
-    gap: 6rem
+    gap: 4rem
   .logo
     text-transform: uppercase
   .description
     color: var(--color-type-secondary)
+    span
+      opacity: 0 !important
+      margin-bottom: .33rem
 
   .links
     display: flex
     flex-direction: row
-    gap: 10rem
+    gap: 8rem
+    .connect, .enquiries
+      display: flex
+      flex-direction: column
+      gap: 0.33rem
+    .bottom
+      display: flex
+      flex-direction: column
+      gap: 0.165rem
+      a, p
+        color: var(--color-type-secondary)
     .link
       &:hover
         text-decoration: underline
