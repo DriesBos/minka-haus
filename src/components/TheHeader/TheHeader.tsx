@@ -12,6 +12,8 @@ interface TheHeaderProps {
 
 export default function TheHeader({ active }: TheHeaderProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const [showWhere, setShowWhere] = React.useState(false);
+  const [showWhat, setShowWhat] = React.useState(false);
 
   // Animate DataBlok components sequentially when active becomes true
   useGSAP(
@@ -46,66 +48,68 @@ export default function TheHeader({ active }: TheHeaderProps) {
       data-active={active}
       ref={containerRef}
     >
-      <div className={styles.brand}>
+      <div className={styles.first}>
         <div
-          className={`${styles.top} ${styles.logo} ${styles.headerSequence} headerSequence`}
+          className={`${styles.logo} ${styles.headerSequence} headerSequence`}
         >
           Minka Haus
         </div>
-        <div
-          className={`${styles.bottom} ${styles.description} ${styles.headerSequence}  headerSequence`}
+        {/* <div
+          className={`${styles.nav} ${styles.headerSequence}  headerSequence`}
         >
-          <span>
-            Connect
-            <br />
-          </span>
-          Deep in the mountains of Kyoto.
-          <br />
-          Is calmness to rethink ourselves.
-          <br />
-          Under influence of mingei — Japanese traditional crafts.
-          {/* Minka Haus is a design residency in Kyoto. */}
-          {/* Fusing Kyoto crafts with modern living. */}
-        </div>
+          <div>
+            <div>Where</div>
+            {showWhere && (
+              <div>
+                Deep in the mountains of Kyoto.
+                <br />
+                Is calmness to rethink ourselves.
+                <br />
+                Under influence of mingei — Japanese traditional crafts.
+              </div>
+            )}
+          </div>
+          <div>
+            <div>What</div>
+            {showWhat && (
+              <div>
+                Deep in the mountains of Kyoto.
+                <br />
+                Is calmness to rethink ourselves.
+                <br />
+                Under influence of mingei — Japanese traditional crafts.
+              </div>
+            )}
+          </div>
+        </div> */}
       </div>
-      <div className={styles.links}>
-        <div className={styles.connect}>
-          <div
-            className={`${styles.top} ${styles.headerSequence} headerSequence`}
-          >
-            Connect
-          </div>
-          <div
-            className={`${styles.bottom} ${styles.headerSequence} headerSequence`}
-          >
-            <a
-              href="https://www.instagram.com/minkahaus/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              instagram
-            </a>
-            <a href="https://www.storyblok.com/">newsletter</a>
-          </div>
-        </div>
-        <div className={styles.enquire}>
-          <div
-            className={`${styles.top} ${styles.headerSequence} headerSequence`}
-          >
-            Enquire
-          </div>
-          <div
-            className={`${styles.bottom} ${styles.headerSequence} headerSequence`}
-          >
-            <a
-              href="mailto:hello@minkahaus.com"
-              rel="noreferrer"
-              target="_blank"
-            >
-              hello@minkahaus.com
-            </a>
-          </div>
-        </div>
+
+      <div className={styles.second}>
+        <a
+          href="https://www.instagram.com/minkahaus/"
+          rel="noreferrer"
+          target="_blank"
+          className={`${styles.headerSequence} headerSequence`}
+        >
+          Instagram
+        </a>
+        {/* <a
+          href="https://www.storyblok.com/"
+          className={`${styles.headerSequence} headerSequence`}
+        >
+          Newsletter
+        </a>
+
+        <a
+          href="mailto:hello@minkahaus.com"
+          rel="noreferrer"
+          target="_blank"
+          className={`${styles.headerSequence} headerSequence`}
+        >
+          Hello@minkahaus.com
+        </a>
+        <div className={`${styles.headerSequence} headerSequence`}>Sound</div>
+        <div className={`${styles.headerSequence} headerSequence`}>Theme</div> */}
       </div>
     </header>
   );

@@ -6,6 +6,7 @@ import '@/styles/typography.sass';
 import '@/styles/globals.sass';
 import StoryblokProvider from '@/providers/StoryblokProvider';
 import BackgroundStoreProvider from '@/providers/BackgroundStoreProvider';
+import ThemeProvider from '@/providers/ThemeProvider';
 
 const maru = localFont({
   src: [
@@ -69,11 +70,13 @@ export default function RootLayout({
       <body
         className={`${maru.variable} ${searchsystem.variable} ${soehne.variable}`}
       >
-        <BackgroundStoreProvider>
-          <StoryblokProvider>
-            <main>{children}</main>
-          </StoryblokProvider>
-        </BackgroundStoreProvider>
+        <ThemeProvider>
+          <BackgroundStoreProvider>
+            <StoryblokProvider>
+              <main>{children}</main>
+            </StoryblokProvider>
+          </BackgroundStoreProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
