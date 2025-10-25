@@ -7,18 +7,28 @@ import '@/styles/globals.sass';
 import StoryblokProvider from '@/providers/StoryblokProvider';
 import BackgroundStoreProvider from '@/providers/BackgroundStoreProvider';
 
-const av = localFont({
+const maru = localFont({
   src: [
     {
-      path: './../fonts/av.woff2',
+      path: './../fonts/m-reg.woff2',
       weight: '400',
       style: 'normal',
     },
+    {
+      path: './../fonts/m-med.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: './../fonts/m-bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
   ],
-  variable: '--av-font',
+  variable: '--maru-font',
 });
 
-const ss = localFont({
+const searchsystem = localFont({
   src: [
     {
       path: './../fonts/ss.woff2',
@@ -26,7 +36,18 @@ const ss = localFont({
       style: 'normal',
     },
   ],
-  variable: '--ss-font',
+  variable: '--searchsystem-font',
+});
+
+const soehne = localFont({
+  src: [
+    {
+      path: './../fonts/soehne-web-buch.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+  variable: '--soehne-font',
 });
 
 export const metadata: Metadata = {
@@ -45,7 +66,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${av.variable} ${ss.variable}`}>
+      <body
+        className={`${maru.variable} ${searchsystem.variable} ${soehne.variable}`}
+      >
         <BackgroundStoreProvider>
           <StoryblokProvider>
             <main>{children}</main>
