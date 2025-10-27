@@ -1,17 +1,19 @@
 $height-header: calc(18px + 2rem + 5rem + (3rem * 1.45) + 2rem + 1rem)
 
-  
 .theSlider
   position: absolute
   bottom: 1rem
   right: 50%
   transform: translateX(50%)
   height: calc(100% - $height-header)
-  background-color: #E6E7E3
   width: calc((100vh - var(--spacing-sides) * 2 - $height-header) * 0.8) // Aspect Ratio 4 / 5
-  transition: all 1s ease-in
+  transition: background-color var(--transition-theme), width var(--transition-slider-width)
   &[data-active="true"]
     width: calc( 100vw - var(--spacing-sides) * 2)
+  &[data-theme="dark"]
+    background-color: var(--theme-dark-bg-secondary)
+  &[data-theme="light"]
+    background-color: var(--theme-light-bg-secondary)
 
 .enterBtn
   position: absolute
@@ -43,7 +45,7 @@ $height-header: calc(18px + 2rem + 5rem + (3rem * 1.45) + 2rem + 1rem)
     object-fit: cover
     object-position: center
   &[data-active="true"]
-    opacity: 0
+    opacity: 1
 
 .imageCraft
   opacity: 0
@@ -61,4 +63,4 @@ $height-header: calc(18px + 2rem + 5rem + (3rem * 1.45) + 2rem + 1rem)
     object-fit: cover
     object-position: center
   &[data-active="true"]
-    opacity: 1
+    opacity: 0

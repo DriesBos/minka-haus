@@ -1,4 +1,8 @@
+'use client';
+
 import styles from './TheSlider.module.sass';
+import { useThemeStore } from '@/store/useThemeStore';
+import { useEffect, useState } from 'react';
 
 interface TheSliderProps {
   active?: boolean;
@@ -19,8 +23,21 @@ export default function TheSlider({
   craft_image,
   onEnter,
 }: TheSliderProps) {
+  const theme = useThemeStore((state) => state.theme);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  console.log('TheSlider theme:', theme);
+
   return (
-    <div className={`${styles.theSlider} theSlider`} data-active={active}>
+    <div
+      className={`${styles.theSlider} theSlider`}
+      data-active={active}
+      data-theme={mounted ? theme : 'light'}
+    >
       {landscape_image && (
         <div className={styles.imageLandscape} data-active={active}>
           <img
