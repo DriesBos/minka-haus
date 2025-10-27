@@ -7,6 +7,7 @@ import '@/styles/globals.sass';
 import StoryblokProvider from '@/providers/StoryblokProvider';
 import BackgroundStoreProvider from '@/providers/BackgroundStoreProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
+import FaviconSwitcher from '@/components/FaviconSwitcher';
 
 const maru = localFont({
   src: [
@@ -67,10 +68,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon-light.ico" media="(prefers-color-scheme: light)" />
+        <link rel="icon" href="/favicon-dark.ico" media="(prefers-color-scheme: dark)" />
+      </head>
       <body
         className={`${maru.variable} ${searchsystem.variable} ${soehne.variable}`}
       >
         <ThemeProvider>
+          <FaviconSwitcher />
           <BackgroundStoreProvider>
             <StoryblokProvider>
               <main>{children}</main>

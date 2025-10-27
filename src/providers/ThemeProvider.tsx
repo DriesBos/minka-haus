@@ -11,15 +11,10 @@ export default function ThemeProvider({
   const theme = useThemeStore((state) => state.theme);
   const setTheme = useThemeStore((state) => state.setTheme);
 
-  // Detect user's system theme preference on mount
+  // Listen for system theme changes
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const userPrefersDark = mediaQuery.matches;
 
-    // Set initial theme based on system preference
-    setTheme(userPrefersDark ? 'dark' : 'light');
-
-    // Listen for system theme changes
     const handleChange = (e: MediaQueryListEvent) => {
       setTheme(e.matches ? 'dark' : 'light');
     };
