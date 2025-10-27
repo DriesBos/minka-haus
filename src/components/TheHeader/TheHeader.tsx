@@ -82,42 +82,19 @@ export default function TheHeader({
             </>
           )}
         </div>
-        {/* <div
-          className={`${styles.nav} ${styles.headerSequence}  headerSequence`}
-        >
-          <div>
-            <div>Where</div>
-            {showWhere && (
-              <div>
-                Deep in the mountains of Kyoto.
-                <br />
-                Is calmness to rethink ourselves.
-                <br />
-                Under influence of mingei — Japanese traditional crafts.
-              </div>
-            )}
-          </div>
-          <div>
-            <div>What</div>
-            {showWhat && (
-              <div>
-                Deep in the mountains of Kyoto.
-                <br />
-                Is calmness to rethink ourselves.
-                <br />
-                Under influence of mingei — Japanese traditional crafts.
-              </div>
-            )}
-          </div>
-        </div> */}
       </div>
 
       <div className={styles.nav}>
         <div className={styles.top}>
-          <div className={styles.left}>
-            <span>Menu</span>
+          <div
+            className={`${styles.left} ${styles.headerSequence} headerSequence`}
+          >
+            <div>Location</div>
+            <div>Purpose</div>
           </div>
-          <div className={styles.icons}>
+          <div
+            className={`${styles.icons} ${styles.headerSequence} headerSequence`}
+          >
             {soundPlaying ? (
               <div
                 className={styles.button}
@@ -140,7 +117,9 @@ export default function TheHeader({
             </div>
           </div>
         </div>
-        <div className={styles.bottom}>
+        <div
+          className={`${styles.bottom} ${styles.headerSequence} headerSequence`}
+        >
           <p>
             An ever-growing collection of references and tools for designers.
             Curated by Julien Van Havere, founder of DesignPractice™ and

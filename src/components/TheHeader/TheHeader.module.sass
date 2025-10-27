@@ -16,7 +16,6 @@
 
   .headerSequence
     opacity: 0
-    opacity: 1
 
   & > div
     flex: 1
@@ -41,7 +40,6 @@
         white-space: nowrap
         letter-spacing: 0.05em
 
-
   .nav
     display: flex
     flex-direction: column
@@ -50,22 +48,30 @@
       display: flex
       justify-content: space-between
       align-items: flex-start
-      .left
-        padding: 1rem
-        padding-left: 0
-      .icons
+      & > div
         display: flex
-      .button
-        cursor: pointer
-        padding: 1rem 0.5rem
-        flex: 1
-        &:first-child
-          padding-left: 1rem
-        &:last-child
-          padding-right: 1rem
-    .bottom
-      p
-        max-width: 40em
+        & > div
+          padding: 1rem 0.5rem
+          flex: 1
+          cursor: pointer
+
+.left
+  & > div
+    &:first-child
+      padding-left: 0 !important
+    &:last-child
+      padding-right: 1rem !important
+
+.icons 
+  & > div
+    &:first-child
+      padding-left: 1rem !important
+    &:last-child
+      padding-right: 1rem !important
+
+.bottom
+  p
+    max-width: 40em
 
   // .description
   //   color: var(--color-type-secondary)
