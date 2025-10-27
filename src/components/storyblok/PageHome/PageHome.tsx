@@ -39,8 +39,7 @@ interface PageHomeProps {
 export default function PageHome({ blok }: PageHomeProps) {
   const [hasEntered, setHasEntered] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const [soundPlaying, setSoundPlaying] = React.useState(false);
-  console.log('blok', blok);
+  const [soundPlaying, setSoundPlaying] = React.useState(true);
 
   // Animate DataBlok components sequentially when hasEntered becomes true
   useGSAP(
@@ -67,8 +66,6 @@ export default function PageHome({ blok }: PageHomeProps) {
     },
     { scope: containerRef, dependencies: [hasEntered] }
   );
-
-  console.log('hasEntered', hasEntered);
 
   return (
     <div
