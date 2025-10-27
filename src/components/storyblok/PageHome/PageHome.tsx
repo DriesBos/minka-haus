@@ -3,13 +3,13 @@
 import React from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import TheBackground from '@/components/the-background/the-background';
 import styles from './PageHome.module.sass';
 import DataBlok from '@/components/DataBlok/DataBlok';
 import LocalTimeBlok from '@/components/DataBlok/LocalTimeBlok';
 import WeatherBlok from '@/components/DataBlok/WeatherBlok';
 import SoundPlayer from '@/components/SoundPlayer/SoundPlayer';
 import TheHeader from '@/components/TheHeader/TheHeader';
+import TheSlider from '@/components/TheSlider/TheSlider';
 
 // Register GSAP plugin
 gsap.registerPlugin(useGSAP);
@@ -24,7 +24,11 @@ interface PageHomeProps {
   blok: {
     body?: StoryblokBlok[];
     [key: string]: unknown;
-    background_image?: {
+    landscape_image?: {
+      filename: string;
+      alt?: string;
+    };
+    craft_image?: {
       filename: string;
       alt?: string;
     };
@@ -35,6 +39,7 @@ interface PageHomeProps {
 export default function PageHome({ blok }: PageHomeProps) {
   const [hasEntered, setHasEntered] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  console.log('blok', blok);
 
   // Animate DataBlok components sequentially when hasEntered becomes true
   useGSAP(
@@ -70,16 +75,15 @@ export default function PageHome({ blok }: PageHomeProps) {
       data-entered={hasEntered}
       ref={containerRef}
     >
-      {blok.background_image && (
-        <TheBackground image={blok.background_image} active={hasEntered} />
+      {blok.landscape_image && (
+        <TheSlider
+          landscape_image={blok.landscape_image}
+          craft_image={blok.craft_image}
+          active={hasEntered}
+          onEnter={() => setHasEntered(true)}
+        />
       )}
-      <div
-        className={styles.entryText}
-        onClick={() => setHasEntered(true)}
-        data-active={!hasEntered}
-      >
-        Enter
-      </div>
+
       <DataBlok label="Location" value="Kita-ku, Kyoto" active={hasEntered} />
       <WeatherBlok active={hasEntered} />
       <LocalTimeBlok active={hasEntered} />
