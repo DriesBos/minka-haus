@@ -1,7 +1,13 @@
+'use client';
+
 import styles from './TheHeader.module.sass';
 import React from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import IconCircle from '../icons/IconCircle';
+import IconStop from '../icons/IconStop';
+import IconPlay from '../icons/IconPlay';
+import { useThemeStore } from '@/store/useThemeStore';
 
 // Register GSAP plugin
 gsap.registerPlugin(useGSAP);
@@ -14,6 +20,8 @@ export default function TheHeader({ active }: TheHeaderProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [showWhere, setShowWhere] = React.useState(false);
   const [showWhat, setShowWhat] = React.useState(false);
+  const [soundPlaying, setSoundPlaying] = React.useState(false);
+  const toggleTheme = useThemeStore((state) => state.toggleTheme);
 
   // Animate DataBlok components sequentially when active becomes true
   useGSAP(
@@ -48,7 +56,7 @@ export default function TheHeader({ active }: TheHeaderProps) {
       data-active={active}
       ref={containerRef}
     >
-      <div className={styles.first}>
+      <div className={styles.brand}>
         <div
           className={`${styles.logo} ${styles.headerSequence} headerSequence`}
         >
@@ -84,15 +92,31 @@ export default function TheHeader({ active }: TheHeaderProps) {
         </div> */}
       </div>
 
-      <div className={styles.second}>
-        <a
+      <div className={styles.nav}>
+        <div className={styles.top}>
+          <div className={styles.left}>
+            <span>Menu</span>
+          </div>
+          <div className={styles.icons}>
+            {soundPlaying ? <IconStop /> : <IconPlay />}
+            <IconCircle onClick={toggleTheme} />
+          </div>
+        </div>
+        <div className={styles.bottom}>
+          <p>
+            An ever-growing collection of references and tools for designers.
+            Curated by Julien Van Havere, founder of DesignPractice™ and
+            TypeFoundry™.
+          </p>
+        </div>
+        {/* <a
           href="https://www.instagram.com/minkahaus/"
           rel="noreferrer"
           target="_blank"
           className={`${styles.headerSequence} headerSequence`}
         >
           Instagram
-        </a>
+        </a> */}
         {/* <a
           href="https://www.storyblok.com/"
           className={`${styles.headerSequence} headerSequence`}

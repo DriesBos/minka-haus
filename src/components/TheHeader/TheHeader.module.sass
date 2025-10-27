@@ -4,40 +4,49 @@
   top: 0
   left: 0
   width: 100%
-  padding: 1rem var(--spacing-sides)
-  padding-right: calc(var(--spacing-sides) * 2)
-  color: white
+  padding: 1rem
+  color: currentColor
   display: flex
   align-items: flex-start
-  justify-content: space-between
-  @media screen and (max-width: 850px) 
-    flex-direction: column
-    gap: 2rem
-    padding-right: var(--spacing-sides)
+  flex: 1
+  text-transform: uppercase
+  // @media screen and (max-width: 850px) 
+  //   flex-direction: column
+  //   gap: 2rem
+  //   padding-right: var(--spacing-sides)
 
   .headerSequence
     opacity: 0
+    opacity: 1
 
   & > div
-    display: flex
-    width: 100%
-    display: flex
-    flex-direction: row
-    gap: 2rem
+    flex: 1
+
+  .brand
+    .logo
+      text-transform: uppercase
+      font-family: var(--maru-font)
+      font-weight: 500
+      font-size: 1.618rem
+      line-height: 1
+      white-space: nowrap
+      letter-spacing: 0.05em
 
   .nav
     display: flex
-    gap: 2rem
+    flex-direction: column
+    gap: 5rem
+    .top
+      display: flex
+      justify-content: space-between
+      align-items: flex-start
+      .icons
+        display: flex
+        gap: 1rem
+    .bottom
+      p
+        max-width: 34em
 
-
-  .logo
-    text-transform: uppercase
-    font-family: var(--maru-font)
-    font-weight: 500
-    font-size: 1.618rem
-    line-height: 1
-    white-space: nowrap
-    letter-spacing: 0.05em
   // .description
   //   color: var(--color-type-secondary)
   //   span
@@ -46,26 +55,3 @@
   //     @media screen and (max-width: 850px) 
   //       display: none
 
-  .second
-    justify-content: flex-end
-    @media screen and (max-width: 850px) 
-      gap: 0
-      justify-content: flex-start
-    .connect, .enquire
-      display: flex
-      flex-direction: column
-      gap: 0.33rem
-      @media screen and (max-width: 850px) 
-        flex-grow: 1
-        gap: 1rem
-    .bottom
-      display: flex
-      flex-direction: column
-      gap: 0.165rem
-      @media screen and (max-width: 850px) 
-        gap: 0
-      a, p
-        color: var(--color-type-secondary)
-        transition: color .5s ease-out
-      a:hover
-        color: currentColor
