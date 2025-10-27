@@ -69,8 +69,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon-light.ico" media="(prefers-color-scheme: light)" />
-        <link rel="icon" href="/favicon-dark.ico" media="(prefers-color-scheme: dark)" />
+        <link
+          rel="icon"
+          href="/favicon-light.ico"
+          media="(prefers-color-scheme: light)"
+        />
+        <link
+          rel="icon"
+          href="/favicon-dark.ico"
+          media="(prefers-color-scheme: dark)"
+        />
       </head>
       <body
         className={`${maru.variable} ${searchsystem.variable} ${soehne.variable}`}
