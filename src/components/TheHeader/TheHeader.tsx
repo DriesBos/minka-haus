@@ -177,7 +177,10 @@ export default function TheHeader({
         <div
           className={`${styles.bottom} ${styles.headerSequence} headerSequence`}
         >
-          <p ref={typingTextRef}></p>
+          <p className={styles.textVisible} ref={typingTextRef}></p>
+          <p aria-hidden="true" className={styles.textHidden}>
+            {fullText}
+          </p>
         </div>
         {/* <a
           href="https://www.instagram.com/minkahaus/"
