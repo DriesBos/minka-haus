@@ -4,13 +4,14 @@ import styles from './TheHeader.module.sass';
 import React from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { TextPlugin } from 'gsap/TextPlugin';
 import IconCircle from '../icons/IconCircle';
 import IconStop from '../icons/IconStop';
 import IconPlay from '../icons/IconPlay';
 import { useThemeStore } from '@/store/useThemeStore';
 
-// Register GSAP plugin
-gsap.registerPlugin(useGSAP);
+// Register GSAP plugins
+gsap.registerPlugin(useGSAP, TextPlugin);
 
 interface TheHeaderProps {
   active?: boolean;
@@ -24,10 +25,14 @@ export default function TheHeader({
   onToggleSound,
 }: TheHeaderProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const typingTextRef = React.useRef<HTMLParagraphElement>(null);
   const [showWhere, setShowWhere] = React.useState(false);
   const [showWhat, setShowWhat] = React.useState(false);
   const [isJapanese, setIsJapanese] = React.useState(false);
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
+
+  const fullText =
+    'An ever-growing collection of references and tools for designers. Curated by Julien Van Havere, founder of DesignPractice™ and TypeFoundry™.';
 
   // Detect user language on mount
   React.useEffect(() => {
@@ -56,6 +61,27 @@ export default function TheHeader({
           stagger: 0.25,
           ease: 'power2.out',
           delay: 4,
+        });
+      }
+    },
+    { scope: containerRef, dependencies: [active] }
+  );
+
+  // Typing animation for the bottom text
+  useGSAP(
+    () => {
+      if (active && typingTextRef.current) {
+        // Set initial empty text
+        gsap.set(typingTextRef.current, {
+          text: '',
+        });
+
+        // Animate typing effect
+        gsap.to(typingTextRef.current, {
+          duration: 3,
+          text: fullText,
+          ease: 'none',
+          delay: 5.5, // Start after header elements appear (4s + 1.5s animation)
         });
       }
     },
@@ -120,11 +146,7 @@ export default function TheHeader({
         <div
           className={`${styles.bottom} ${styles.headerSequence} headerSequence`}
         >
-          <p>
-            An ever-growing collection of references and tools for designers.
-            Curated by Julien Van Havere, founder of DesignPractice™ and
-            TypeFoundry™.
-          </p>
+          <p ref={typingTextRef}></p>
         </div>
         {/* <a
           href="https://www.instagram.com/minkahaus/"
