@@ -21,6 +21,10 @@ $height-header: calc(18px + 2rem + 5rem + (3rem * 1.45) + 2rem + 1rem)
   color: currentColor
   cursor: pointer
   padding: 1rem 2rem
+  opacity: 1
+  transition: opacity var(--transition-exit-text)
+  &[data-active="true"]
+    opacity: 0
 
 .imageLandscape
   opacity: 0

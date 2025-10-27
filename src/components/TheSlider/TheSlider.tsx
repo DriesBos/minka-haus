@@ -39,7 +39,7 @@ export default function TheSlider({
           />
         </div>
       )}
-      <div className={styles.enterBtn} onClick={onEnter}>
+      <div className={styles.enterBtn} onClick={onEnter} data-active={active}>
         Enter
       </div>
     </div>
