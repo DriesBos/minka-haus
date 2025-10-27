@@ -21,7 +21,14 @@ export default function TheHeader({ active }: TheHeaderProps) {
   const [showWhere, setShowWhere] = React.useState(false);
   const [showWhat, setShowWhat] = React.useState(false);
   const [soundPlaying, setSoundPlaying] = React.useState(false);
+  const [isJapanese, setIsJapanese] = React.useState(false);
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
+
+  // Detect user language on mount
+  React.useEffect(() => {
+    const userLanguage = navigator.language || navigator.languages?.[0];
+    setIsJapanese(userLanguage?.toLowerCase().startsWith('ja'));
+  }, []);
 
   // Animate DataBlok components sequentially when active becomes true
   useGSAP(
@@ -60,7 +67,15 @@ export default function TheHeader({ active }: TheHeaderProps) {
         <div
           className={`${styles.logo} ${styles.headerSequence} headerSequence`}
         >
-          Minka Haus
+          {isJapanese ? (
+            <>
+              <span>Minka</span>haus
+            </>
+          ) : (
+            <>
+              Minka<span>haus</span>
+            </>
+          )}
         </div>
         {/* <div
           className={`${styles.nav} ${styles.headerSequence}  headerSequence`}
