@@ -62,7 +62,7 @@ export default function TheHeader({
           duration: 1.5,
           stagger: 0.25,
           ease: 'power2.out',
-          delay: 4,
+          delay: 2,
         });
       }
     },
@@ -83,7 +83,7 @@ export default function TheHeader({
           duration: 0.5,
           text: 'Location',
           ease: 'none',
-          delay: 4, // Start slightly after menu container fades in
+          delay: 2, // Start slightly after menu container fades in
         });
 
         // Animate typing for Purpose after Location finishes
@@ -91,7 +91,7 @@ export default function TheHeader({
           duration: 0.5,
           text: 'Purpose',
           ease: 'none',
-          delay: 4.5, // Start after Location finishes (4.25 + 0.33)
+          delay: 2.5, // Start after Location finishes (4.25 + 0.33)
         });
       }
     },
@@ -112,7 +112,7 @@ export default function TheHeader({
           duration: 2,
           text: fullText,
           ease: 'none',
-          delay: 4, // Start after header elements appear (4s + 1.5s animation)
+          delay: 2.5, // Start after header elements appear (4s + 1.5s animation)
         });
       }
     },

@@ -1,4 +1,4 @@
-$height-header: calc(18px + 2rem + 5rem + (3rem * 1.45) + 2rem + 1rem)
+$height-header: calc(18px + 2rem + 6rem + (3rem * 1) + 2rem + 1rem)
 
 .theSlider
   position: absolute
@@ -25,9 +25,10 @@ $height-header: calc(18px + 2rem + 5rem + (3rem * 1.45) + 2rem + 1rem)
   cursor: pointer
   padding: 1rem 2rem
   opacity: 1
-  transition: opacity var(--transition-exit-text)
+  transition: opacity var(--transition-exit-text), transform var(--transition-exit-text)
   &[data-active="true"]
     opacity: 0
+    transform: translate(-50%, calc(-50% + 0.5rem))
 
 .imageLandscape
   opacity: 0
