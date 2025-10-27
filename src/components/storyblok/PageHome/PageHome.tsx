@@ -39,6 +39,7 @@ interface PageHomeProps {
 export default function PageHome({ blok }: PageHomeProps) {
   const [hasEntered, setHasEntered] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const [soundPlaying, setSoundPlaying] = React.useState(false);
   console.log('blok', blok);
 
   // Animate DataBlok components sequentially when hasEntered becomes true
@@ -87,8 +88,16 @@ export default function PageHome({ blok }: PageHomeProps) {
       <DataBlok label="Location" value="Kita-ku, Kyoto" active={hasEntered} />
       <WeatherBlok active={hasEntered} />
       <LocalTimeBlok active={hasEntered} />
-      <SoundPlayer audioSrc="/audio/vetiverol.mp3" active={hasEntered} />
-      <TheHeader active={hasEntered} />
+      <SoundPlayer
+        audioSrc="/audio/vetiverol.mp3"
+        active={hasEntered && soundPlaying}
+        onActive={setSoundPlaying}
+      />
+      <TheHeader
+        active={hasEntered}
+        soundPlaying={soundPlaying}
+        onToggleSound={() => setSoundPlaying(!soundPlaying)}
+      />
     </div>
   );
 }

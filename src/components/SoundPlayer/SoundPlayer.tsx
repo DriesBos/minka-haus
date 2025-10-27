@@ -6,9 +6,14 @@ import styles from './SoundPlayer.module.sass';
 interface SoundPlayerProps {
   audioSrc: string;
   active?: boolean;
+  onActive?: (playing: boolean) => void;
 }
 
-export default function SoundPlayer({ audioSrc, active }: SoundPlayerProps) {
+export default function SoundPlayer({
+  audioSrc,
+  active,
+  onActive,
+}: SoundPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);

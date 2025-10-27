@@ -14,13 +14,18 @@ gsap.registerPlugin(useGSAP);
 
 interface TheHeaderProps {
   active?: boolean;
+  soundPlaying?: boolean;
+  onToggleSound?: () => void;
 }
 
-export default function TheHeader({ active }: TheHeaderProps) {
+export default function TheHeader({
+  active,
+  soundPlaying = false,
+  onToggleSound,
+}: TheHeaderProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [showWhere, setShowWhere] = React.useState(false);
   const [showWhat, setShowWhat] = React.useState(false);
-  const [soundPlaying, setSoundPlaying] = React.useState(false);
   const [isJapanese, setIsJapanese] = React.useState(false);
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
 
@@ -113,8 +118,26 @@ export default function TheHeader({ active }: TheHeaderProps) {
             <span>Menu</span>
           </div>
           <div className={styles.icons}>
-            {soundPlaying ? <IconStop /> : <IconPlay />}
-            <IconCircle onClick={toggleTheme} />
+            {soundPlaying ? (
+              <div
+                className={styles.button}
+                title="sound stop"
+                onClick={onToggleSound}
+              >
+                <IconStop />{' '}
+              </div>
+            ) : (
+              <div
+                className={styles.button}
+                title="sound play"
+                onClick={onToggleSound}
+              >
+                <IconPlay />
+              </div>
+            )}
+            <div onClick={toggleTheme} title="theme" className={styles.button}>
+              <IconCircle />
+            </div>
           </div>
         </div>
         <div className={styles.bottom}>
