@@ -73,6 +73,11 @@ export default function PageHome({ blok }: PageHomeProps) {
       data-entered={hasEntered}
       ref={containerRef}
     >
+      <TheHeader
+        active={hasEntered}
+        soundPlaying={soundPlaying}
+        onToggleSound={() => setSoundPlaying(!soundPlaying)}
+      />
       {blok.landscape_image && (
         <TheSlider
           landscape_image={blok.landscape_image}
@@ -89,11 +94,6 @@ export default function PageHome({ blok }: PageHomeProps) {
         audioSrc="/audio/vetiverol.mp3"
         active={hasEntered && soundPlaying}
         onActive={setSoundPlaying}
-      />
-      <TheHeader
-        active={hasEntered}
-        soundPlaying={soundPlaying}
-        onToggleSound={() => setSoundPlaying(!soundPlaying)}
       />
     </div>
   );

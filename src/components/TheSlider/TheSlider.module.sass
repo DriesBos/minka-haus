@@ -1,12 +1,16 @@
-$height-header: calc(18px + 2rem + 6rem + (3rem * 1) + 2rem + 1rem)
+.theSliderWrapper
+  position: relative
+  width: 100%
+  flex-grow: 1
 
 .theSlider
   position: absolute
   bottom: 1rem
   right: 50%
   transform: translateX(50%)
-  height: calc(100% - $height-header)
-  width: calc((100vh - var(--spacing-sides) * 2 - $height-header) * 0.8) // Aspect Ratio 4 / 5
+  height: calc(100% - 2rem)
+  width: 100%
+  aspect-ratio: 4 / 5
   transition: background-color var(--transition-theme), width var(--transition-slider-width)
   &[data-active="true"]
     width: calc( 100vw - var(--spacing-sides) * 2)
