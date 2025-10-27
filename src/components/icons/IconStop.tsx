@@ -13,7 +13,7 @@ export default function IconStop({ className, size = 11 }: IconStopProps) {
       width={size}
       height={size}
     >
-      <path stroke="currentColor" d="M1.5 1.5h8v8h-8z" />
+      <path stroke="currentColor" d="M.5.5h10v10H.5z" />
     </svg>
   );
 }

@@ -13,7 +13,7 @@ export default function IconPlay({ className, size = 11 }: IconPlayProps) {
       width={size}
       height={size}
     >
-      <path stroke="currentColor" d="M9.013 5.513 2.263 9.41V1.615z" />
+      <path stroke="currentColor" d="m9.465 5.5-7.988 4.612V.889z" />
     </svg>
   );
 }

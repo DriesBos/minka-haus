@@ -20,7 +20,7 @@ export default function IconCircle({
       onClick={onClick}
       style={onClick ? { cursor: 'pointer' } : undefined}
     >
-      <circle cx="5.5" cy="5.5" r="4" stroke="currentColor" />
+      <circle cx="5.5" cy="5.5" r="5" stroke="currentColor" />
     </svg>
   );
 }
