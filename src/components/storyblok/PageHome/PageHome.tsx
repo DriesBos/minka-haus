@@ -10,6 +10,7 @@ import WeatherBlok from '@/components/DataBlok/WeatherBlok';
 import SoundPlayer from '@/components/SoundPlayer/SoundPlayer';
 import TheHeader from '@/components/TheHeader/TheHeader';
 import TheSlider from '@/components/TheSlider/TheSlider';
+import { useThemeStore } from '@/store/useThemeStore';
 
 // Register GSAP plugin
 gsap.registerPlugin(useGSAP);
@@ -37,9 +38,15 @@ interface PageHomeProps {
 }
 
 export default function PageHome({ blok }: PageHomeProps) {
-  const [hasEntered, setHasEntered] = React.useState(true);
+  const [hasEntered, setHasEntered] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [soundPlaying, setSoundPlaying] = React.useState(true);
+  const theme = useThemeStore((state) => state.theme);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Animate DataBlok components sequentially when hasEntered becomes true
   useGSAP(
@@ -73,23 +80,35 @@ export default function PageHome({ blok }: PageHomeProps) {
       data-entered={hasEntered}
       ref={containerRef}
     >
+      <div
+        className={styles.middleBlokAnimation}
+        data-active={hasEntered}
+        data-theme={mounted ? theme : 'light'}
+      />
       <TheHeader
         active={hasEntered}
         soundPlaying={soundPlaying}
         onToggleSound={() => setSoundPlaying(!soundPlaying)}
       />
+
       {blok.landscape_image && (
-        <TheSlider
-          landscape_image={blok.landscape_image}
-          craft_image={blok.craft_image}
-          active={hasEntered}
-          onEnter={() => setHasEntered(true)}
-        />
+        <div className={styles.theSliderWrapper}>
+          <TheSlider
+            landscape_image={blok.landscape_image}
+            craft_image={blok.craft_image}
+            active={hasEntered}
+            onEnter={() => setHasEntered(true)}
+          />
+          <DataBlok
+            label="Location"
+            value="Kita-ku, Kyoto"
+            active={hasEntered}
+          />
+          <WeatherBlok active={hasEntered} />
+          <LocalTimeBlok active={hasEntered} />
+        </div>
       )}
 
-      <DataBlok label="Location" value="Kita-ku, Kyoto" active={hasEntered} />
-      <WeatherBlok active={hasEntered} />
-      <LocalTimeBlok active={hasEntered} />
       <SoundPlayer
         audioSrc="/audio/vetiverol.mp3"
         active={hasEntered && soundPlaying}

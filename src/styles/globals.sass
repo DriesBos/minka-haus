@@ -13,37 +13,54 @@ img
 
 .dataBlok
   &:nth-child(1)
+    // border: 1px solid pink 
     top: 40%
-    right: 20%
-  &:nth-child(2)
-    bottom: 10%
-    right: 60%
-  &:nth-child(3) // LOCATION
+    left: 20%
+  &:nth-child(2) // LOCATION
+    // border: 1px solid purple 
+    top: 10%
+    left: 60%
+    @media screen and (max-width: 850px) 
+      top: 15%
+      left: 15%
+  &:nth-child(3) // TEMP
+    // border: 1px solid red 
     top: 42%
     right: 10%
+    @media screen and (max-width: 850px) 
+      top: 50%
+      right: 20%
     .icon
       animation-delay: random(1000) / 1000 + 1 + s
-  &:nth-child(4) // TEMP
+  &:nth-child(4) // HUMIDITY
+    // border: 1px solid blue 
     top: 30%
     right: 3%
     @media screen and (max-width: 850px) 
-      top: 70%
+      top: 60%
+      right: 5%
     .icon
       animation-delay: random(1000) / 1000 + 1 + s
-  &:nth-child(5) // HUMIDITY
+  &:nth-child(5) // CONDITIONS
+    // border: 1px solid green 
     top: 80%
-    right: 60%
+    left: 60%
+    @media screen and (max-width: 850px) 
+      top: 25%
+      left: 30%
     .icon
       animation-delay: random(1000) / 1000 + 1 + s
-  &:nth-child(6) // CONDITIONS
+  &:nth-child(6) // TIME
+    // border: 1px solid yellow 
     top: 90%
-    right: 18%
+    left: 15%
     @media screen and (max-width: 850px) 
-      right: auto
-      left: 20%
+      top: 85%
+      left: 15%
     .icon
       animation-delay: random(1000) / 1000 + 1 + s
   &:nth-child(7) // TIME
+    // border: 1px solid orange 
     top: 60%
     right: 24%
     .icon

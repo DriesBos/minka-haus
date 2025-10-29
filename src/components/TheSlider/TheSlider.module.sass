@@ -1,25 +1,24 @@
-.theSliderWrapper
-  position: relative
-  width: 100%
-  flex-grow: 1
+
 
 .theSlider
   position: absolute
-  bottom: 1rem
-  right: 50%
-  transform: translateX(50%)
-  height: calc(100% - 2rem)
+  left: 50%
+  bottom: 2rem
+  transform: translateX(-50%)
   max-width: 100%
-  width: 66vh
-  transition: background-color var(--transition-theme), width var(--transition-slider-width)
+  width: 33vw
+  height: 33vh
+  transition: background-color var(--transition-theme), width var(--transition-slider-width), height var(--transition-slider-width)
   &[data-active="true"]
+    bottom: 1rem
     width: calc( 100vw - var(--spacing-sides) * 2)
+    height: calc(100% - 2rem)
   &[data-theme="dark"]
-    background-color: var(--theme-dark-bg-secondary)
+    background-color: var(--theme-dark-bg-slider)
   &[data-theme="light"]
-    background-color: var(--theme-light-bg-secondary)
-  @media screen and (max-width: 850px) 
-    width: calc( 100vw - var(--spacing-sides) * 2)
+    background-color: var(--theme-light-bg-slider)
+  // @media screen and (max-width: 850px) 
+  //   width: calc( 100vw - var(--spacing-sides) * 2)
 
 .enterBtn
   position: absolute
