@@ -13,7 +13,7 @@
   &[data-loading="false"]
     opacity: 1
     .icon
-      animation: cursor-blink 2s step-end infinite 1s
+      animation: blink 2s step-end infinite 1s
   &[data-active="true"]
     opacity: 1
     color: white !important
@@ -40,7 +40,7 @@
     text-transform: uppercase
     color: var(--color-type-secondary)
 
-@keyframes cursor-blink
+@keyframes blink
   0%, 50%
     opacity: 1
   50.01%, 100%

@@ -9,6 +9,7 @@ import IconCircle from '../icons/IconCircle';
 import IconStop from '../icons/IconStop';
 import IconPlay from '../icons/IconPlay';
 import { useThemeStore } from '@/store/useThemeStore';
+import IconPause from '../icons/IconPause';
 
 // Register GSAP plugins
 gsap.registerPlugin(useGSAP, TextPlugin);
@@ -32,6 +33,7 @@ export default function TheHeader({
   const [showWhat, setShowWhat] = React.useState(false);
   const [isJapanese, setIsJapanese] = React.useState(false);
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
+  const iconSize = 12;
 
   const fullText =
     'An ever-growing collection of references and tools for designers. Curated by Julien Van Havere, founder of DesignPractice™ and TypeFoundry™.';
@@ -128,16 +130,11 @@ export default function TheHeader({
       <div className={styles.brand}>
         <div
           className={`${styles.logo} ${styles.headerSequence} headerSequence`}
+          data-japanese={isJapanese}
         >
-          {isJapanese ? (
-            <>
-              <span>Minka</span>haus
-            </>
-          ) : (
-            <>
-              Minka<span>haus</span>
-            </>
-          )}
+          <span>Minka</span>
+          <br />
+          <span>haus</span>
         </div>
       </div>
 
@@ -154,23 +151,23 @@ export default function TheHeader({
           >
             {soundPlaying ? (
               <div
-                className={styles.button}
-                title="sound stop"
+                className={`${styles.button} ${styles.playButton}`}
+                title="sound"
                 onClick={onToggleSound}
               >
-                <IconStop />{' '}
+                <IconPause size={iconSize} />{' '}
               </div>
             ) : (
               <div
-                className={styles.button}
-                title="sound play"
+                className={`${styles.button}`}
+                title="sound"
                 onClick={onToggleSound}
               >
-                <IconPlay />
+                <IconPlay size={iconSize} />
               </div>
             )}
             <div onClick={toggleTheme} title="theme" className={styles.button}>
-              <IconCircle />
+              <IconCircle size={iconSize} />
             </div>
           </div>
         </div>
