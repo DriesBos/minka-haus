@@ -15,58 +15,86 @@
   & > div
     flex: 1
 
-  .brand
-    .logo
-      span
-        text-transform: uppercase
-        font-family: var(--maru-font)
-        font-weight: 500
-        font-size: 1.618rem
-        line-height: 1
-        white-space: nowrap
-        letter-spacing: 0.05em
-      padding: 1rem
-      &[data-japanese="true"]
-        span
-          &:last-child
-            color: var(--color-type-secondary)
-      &[data-japanese="false"]
-        span
-          &:first-child
-            color: var(--color-type-secondary)
-
-  .nav
-    display: flex
-    flex-direction: column
-    gap: 6rem
+.logo
+  padding: 1rem
+  span
+    display: block
+    text-transform: uppercase
+    font-family: var(--maru-font)
+    font-weight: 500
+    font-size: 1.618rem
+    line-height: 1
+    white-space: nowrap
+    letter-spacing: 0.05em
     @media screen and (max-width: 850px) 
-      padding: 0 1rem
-    .top
-      display: flex
-      justify-content: space-between
-      align-items: flex-start
-      @media screen and (max-width: 850px) 
-        display: none
-      & > div
-        display: flex
-        & > div
-          padding: 1rem 0.5rem
-          flex: 1
-          cursor: pointer
+      display: inline-block
+  &[data-japanese="true"]
+    span
+      &:last-child
+        color: var(--color-type-secondary)
+  &[data-japanese="false"]
+    span
+      &:first-child
+        color: var(--color-type-secondary)
 
-.menu
-  & > div
-    &:first-child
-      padding-left: 0 !important
-    &:last-child
-      padding-right: 1rem !important
+.description
+  position: relative
+  display: flex
+  justify-content: flex-start
+  align-items: flex-end
+  padding-right: 1rem
+  padding-bottom: 1rem
+  @media screen and (max-width: 850px) 
+    padding-left: 1rem
+  @media screen and (min-width: 850px) 
+    padding-top: 100px
+  &Inner
+    position: relative
+    max-width: 40em
+  .textHidden
+    opacity: 0
+    pointer-events: none
+  .textVisible
+    position: absolute
+    top: 0
+    left: 0
+  p
+    width: 100%
 
-.icons 
+.controls
+  position: absolute
+  top: 0
+  right: 0
+  display: flex
   & > div
+    padding: 1rem 0.5rem
+    flex: 1
+    cursor: pointer
     &:first-child
       padding-left: 1rem !important
     &:last-child
       padding-right: 1rem !important
+
+  // .nav
+  //   display: flex
+  //   flex-direction: column
+  //   gap: 6rem
+  //   @media screen and (max-width: 850px) 
+  //     padding: 0 1rem
+  //   .top
+  //     display: flex
+  //     justify-content: space-between
+  //     align-items: flex-start
+  //     @media screen and (max-width: 850px) 
+  //       display: none
+  //     & > div
+  //       display: flex
+  //       & > div
+  //         padding: 1rem 0.5rem
+  //         flex: 1
+  //         cursor: pointer
+
+
 
 .bottom
   position: relative

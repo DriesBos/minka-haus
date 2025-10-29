@@ -6,7 +6,6 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { TextPlugin } from 'gsap/TextPlugin';
 import IconCircle from '../icons/IconCircle';
-import IconStop from '../icons/IconStop';
 import IconPlay from '../icons/IconPlay';
 import { useThemeStore } from '@/store/useThemeStore';
 import IconPause from '../icons/IconPause';
@@ -127,83 +126,46 @@ export default function TheHeader({
       data-active={active}
       ref={containerRef}
     >
-      <div className={styles.brand}>
-        <div
-          className={`${styles.logo} ${styles.headerSequence} headerSequence`}
-          data-japanese={isJapanese}
-        >
-          <span>Minka</span>
-          <br />
-          <span>haus</span>
-        </div>
+      <div
+        className={`${styles.column}  ${styles.logo}`}
+        data-japanese={isJapanese}
+      >
+        <span className={`${styles.headerSequence} headerSequence`}>Minka</span>
+        <span className={`${styles.headerSequence} headerSequence`}>haus</span>
       </div>
 
-      <div className={styles.nav}>
-        <div className={styles.top}>
-          <div
-            className={`${styles.menu} ${styles.headerSequence} headerSequence`}
-          >
-            <div className={styles.menuItem} ref={locationRef}></div>
-            <div className={styles.menuItem} ref={purposeRef}></div>
-          </div>
-          <div
-            className={`${styles.icons} ${styles.headerSequence} headerSequence`}
-          >
-            {soundPlaying ? (
-              <div
-                className={`${styles.button} ${styles.playButton}`}
-                title="sound"
-                onClick={onToggleSound}
-              >
-                <IconPause size={iconSize} />{' '}
-              </div>
-            ) : (
-              <div
-                className={`${styles.button}`}
-                title="sound"
-                onClick={onToggleSound}
-              >
-                <IconPlay size={iconSize} />
-              </div>
-            )}
-            <div onClick={toggleTheme} title="theme" className={styles.button}>
-              <IconCircle size={iconSize} />
-            </div>
-          </div>
-        </div>
-        <div
-          className={`${styles.bottom} ${styles.headerSequence} headerSequence`}
-        >
+      <div className={`${styles.column} ${styles.description} headerSequence`}>
+        <div className={styles.descriptionInner}>
           <p className={styles.textVisible} ref={typingTextRef}></p>
           <p aria-hidden="true" className={styles.textHidden}>
             {fullText}
           </p>
         </div>
-        {/* <a
-          href="https://www.instagram.com/minkahaus/"
-          rel="noreferrer"
-          target="_blank"
-          className={`${styles.headerSequence} headerSequence`}
-        >
-          Instagram
-        </a> */}
-        {/* <a
-          href="https://www.storyblok.com/"
-          className={`${styles.headerSequence} headerSequence`}
-        >
-          Newsletter
-        </a>
+      </div>
 
-        <a
-          href="mailto:hello@minkahaus.com"
-          rel="noreferrer"
-          target="_blank"
-          className={`${styles.headerSequence} headerSequence`}
-        >
-          Hello@minkahaus.com
-        </a>
-        <div className={`${styles.headerSequence} headerSequence`}>Sound</div>
-        <div className={`${styles.headerSequence} headerSequence`}>Theme</div> */}
+      <div
+        className={`${styles.controls} ${styles.headerSequence} headerSequence`}
+      >
+        {soundPlaying ? (
+          <div
+            className={`${styles.button} ${styles.playButton}`}
+            title="sound"
+            onClick={onToggleSound}
+          >
+            <IconPause size={iconSize} />{' '}
+          </div>
+        ) : (
+          <div
+            className={`${styles.button}`}
+            title="sound"
+            onClick={onToggleSound}
+          >
+            <IconPlay size={iconSize} />
+          </div>
+        )}
+        <div onClick={toggleTheme} title="theme" className={styles.button}>
+          <IconCircle size={iconSize} />
+        </div>
       </div>
     </header>
   );
