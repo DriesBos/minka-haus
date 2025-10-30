@@ -38,7 +38,7 @@ interface PageHomeProps {
 }
 
 export default function PageHome({ blok }: PageHomeProps) {
-  const [hasEntered, setHasEntered] = React.useState(false);
+  const [hasEntered, setHasEntered] = React.useState(true);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [soundPlaying, setSoundPlaying] = React.useState(true);
   const theme = useThemeStore((state) => state.theme);
