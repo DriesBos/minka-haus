@@ -1,8 +1,7 @@
 .dataBlok
   position: absolute
   display: flex
-  gap: 4px
-  mix-blend-mode: difference
+  gap: 5px
   z-index: +1
   opacity: 0
   transition: opacity 0.33s ease-out
@@ -12,7 +11,7 @@
   &[data-loading="false"]
     opacity: 1
     .icon
-      animation: blink 4s step-end infinite 
+      animation: blink 4s infinite 
   &[data-active="true"]
     opacity: 1
     color: white !important
@@ -21,15 +20,15 @@
     color: black !important
 
 .icon
-  width: 5px
+  width: 8px
   height: 8px
   background-color: currentColor
-  margin-top: 0.08rem
+  margin-top: 2px
 
 .content
   display: flex
   flex-direction: column
-  gap: 0.33rem
+  gap: 4px
   span
     font-family: var(--searchsystem-font)
     font-size: var(--type-size-data)
@@ -38,6 +37,8 @@
   .label
     text-transform: uppercase
     color: var(--color-type-secondary)
+  .value
+    font-size: calc(var(--type-size-data) * 1.1)
 
 @keyframes blink
   0%, 80%
