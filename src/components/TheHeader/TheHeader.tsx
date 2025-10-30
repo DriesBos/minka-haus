@@ -28,11 +28,8 @@ export default function TheHeader({
   const typingTextRef = React.useRef<HTMLParagraphElement>(null);
   const locationRef = React.useRef<HTMLDivElement>(null);
   const purposeRef = React.useRef<HTMLDivElement>(null);
-  const [showWhere, setShowWhere] = React.useState(false);
-  const [showWhat, setShowWhat] = React.useState(false);
   const [isJapanese, setIsJapanese] = React.useState(false);
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
-  const iconSize = 12;
 
   const fullText =
     'Minkahaus is a renovation project on mountain and forest land north of Kyoto. Building a space for research, cultural exchange and stays that explore mingei, Japanese craft.';
@@ -70,35 +67,6 @@ export default function TheHeader({
     { scope: containerRef, dependencies: [active] }
   );
 
-  // Typing animation for menu items
-  useGSAP(
-    () => {
-      if (active && locationRef.current && purposeRef.current) {
-        // Set initial empty text
-        gsap.set([locationRef.current, purposeRef.current], {
-          text: '',
-        });
-
-        // Animate typing for Location first
-        gsap.to(locationRef.current, {
-          duration: 0.5,
-          text: 'Location',
-          ease: 'none',
-          delay: 2, // Start slightly after menu container fades in
-        });
-
-        // Animate typing for Purpose after Location finishes
-        gsap.to(purposeRef.current, {
-          duration: 0.5,
-          text: 'Purpose',
-          ease: 'none',
-          delay: 2.5, // Start after Location finishes (4.25 + 0.33)
-        });
-      }
-    },
-    { scope: containerRef, dependencies: [active] }
-  );
-
   // Typing animation for the bottom text
   useGSAP(
     () => {
@@ -110,10 +78,10 @@ export default function TheHeader({
 
         // Animate typing effect
         gsap.to(typingTextRef.current, {
-          duration: 2,
+          duration: 1.66,
           text: fullText,
           ease: 'none',
-          delay: 2.5, // Start after header elements appear (4s + 1.5s animation)
+          delay: 2, // Start after header elements appear (4s + 1.5s animation)
         });
       }
     },
