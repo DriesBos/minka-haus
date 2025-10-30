@@ -35,7 +35,7 @@ export default function TheHeader({
   const iconSize = 12;
 
   const fullText =
-    'Minkahaus is a renovation and cultural exchange project in the mountains of North Kyoto. To foster creative exchange around Japanese crafts and its adaptation to 21st century needs. By renovation of an historical ‘kominka’ house, reintroducing biodiversity, cultural events, artist residencies and more. Follow this our site, instagram or newsletter for a slow, nurtering release of images, objects and data.';
+    'Minkahaus is a renovation project on mountain and forest land, north of Kyoto. Building a space for creative research, events and stays that explore mingei, Japanese craft.';
 
   // Detect user language on mount
   React.useEffect(() => {
