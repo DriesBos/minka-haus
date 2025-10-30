@@ -38,7 +38,11 @@ interface PageHomeProps {
 }
 
 export default function PageHome({ blok }: PageHomeProps) {
-  const [hasEntered, setHasEntered] = React.useState(false);
+  const isProduction = process.env.NODE_ENV === 'production';
+  // Production env always activates intro page
+  const [hasEntered, setHasEntered] = React.useState(
+    isProduction ? false : true
+  );
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [soundPlaying, setSoundPlaying] = React.useState(true);
   const theme = useThemeStore((state) => state.theme);
