@@ -41,9 +41,10 @@ export default function PageHome({ blok }: PageHomeProps) {
   const isProduction = process.env.NODE_ENV === 'production';
   // Production env always activates intro page
   const [hasEntered, setHasEntered] = React.useState(
-    isProduction ? false : true
+    isProduction ? false : false
   );
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const middleBlokRef = React.useRef<HTMLDivElement>(null);
   const [soundPlaying, setSoundPlaying] = React.useState(true);
   const theme = useThemeStore((state) => state.theme);
   const [mounted, setMounted] = React.useState(false);
@@ -51,6 +52,22 @@ export default function PageHome({ blok }: PageHomeProps) {
   React.useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Animate middleBlokAnimation container when hasEntered becomes true
+  useGSAP(
+    () => {
+      if (hasEntered && middleBlokRef.current) {
+        gsap.to(middleBlokRef.current, {
+          width: '100%',
+          height: '100%',
+          bottom: 0,
+          duration: 1.5,
+          ease: 'power2.inOut',
+        });
+      }
+    },
+    { scope: containerRef, dependencies: [hasEntered] }
+  );
 
   // Animate DataBlok components sequentially when hasEntered becomes true
   useGSAP(
@@ -85,6 +102,7 @@ export default function PageHome({ blok }: PageHomeProps) {
       ref={containerRef}
     >
       <div
+        ref={middleBlokRef}
         className={styles.middleBlokAnimation}
         data-active={hasEntered}
         data-theme={mounted ? theme : 'light'}

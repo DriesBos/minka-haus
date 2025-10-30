@@ -8,11 +8,7 @@
   max-width: 100%
   width: 33vw
   height: 33vh
-  transition: background-color var(--transition-theme), width var(--transition-slider-width), height var(--transition-slider-width)
-  &[data-active="true"]
-    bottom: 1rem
-    width: calc( 100vw - var(--spacing-sides) * 2)
-    height: calc(100% - 2rem)
+  transition: background-color var(--transition-theme)
   &[data-theme="dark"]
     background-color: var(--theme-dark-bg-slider)
   &[data-theme="light"]
