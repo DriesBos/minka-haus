@@ -61,28 +61,28 @@ export default function TheSlider({
         data-active={active}
         data-theme={mounted ? theme : 'light'}
       >
-      {landscape_image && (
-        <div className={styles.imageLandscape} data-active={active}>
-          <img
-            src={landscape_image.filename}
-            alt={landscape_image.alt}
-            className={styles.image}
-          />
+        {landscape_image && (
+          <div className={styles.imageLandscape} data-active={active}>
+            <img
+              src={landscape_image.filename}
+              alt={landscape_image.alt}
+              className={styles.image}
+            />
+          </div>
+        )}
+        {craft_image && (
+          <div className={styles.imageCraft} data-active={active}>
+            <img
+              src={craft_image.filename}
+              alt={craft_image.alt}
+              className={styles.image}
+            />
+          </div>
+        )}
+        <div className={styles.enterBtn} onClick={onEnter} data-active={active}>
+          Enter
         </div>
-      )}
-      {craft_image && (
-        <div className={styles.imageCraft} data-active={active}>
-          <img
-            src={craft_image.filename}
-            alt={craft_image.alt}
-            className={styles.image}
-          />
-        </div>
-      )}
-      <div className={styles.enterBtn} onClick={onEnter} data-active={active}>
-        Enter
       </div>
-    </div>
     </div>
   );
 }
