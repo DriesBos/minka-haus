@@ -35,7 +35,7 @@ export default function TheHeader({
   const iconSize = 12;
 
   const fullText =
-    'Minkahaus is a renovation project on mountain and forest land north of Kyoto. Building a space for research, exchange and stays that explore mingei, Japanese craft.';
+    'Minkahaus is a renovation project on mountain and forest land north of Kyoto. Building a space for research, cultural exchange and stays that explore mingei, Japanese craft.';
 
   // Detect user language on mount
   React.useEffect(() => {
