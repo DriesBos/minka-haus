@@ -1,22 +1,15 @@
 interface IconCircleProps {
   className?: string;
-  size?: number;
   onClick?: () => void;
 }
 
-export default function IconCircle({
-  className,
-  size = 11,
-  onClick,
-}: IconCircleProps) {
+export default function IconCircle({ className, onClick }: IconCircleProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 11 11"
       className={className}
-      width={size}
-      height={size}
       onClick={onClick}
       style={onClick ? { cursor: 'pointer' } : undefined}
     >

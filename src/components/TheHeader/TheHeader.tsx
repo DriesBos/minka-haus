@@ -152,7 +152,7 @@ export default function TheHeader({
             title="sound"
             onClick={onToggleSound}
           >
-            <IconPause size={iconSize} />{' '}
+            <IconPause className={styles.icon} />{' '}
           </div>
         ) : (
           <div
@@ -160,11 +160,11 @@ export default function TheHeader({
             title="sound"
             onClick={onToggleSound}
           >
-            <IconPlay size={iconSize} />
+            <IconPlay className={styles.icon} />
           </div>
         )}
         <div onClick={toggleTheme} title="theme" className={styles.button}>
-          <IconCircle size={iconSize} />
+          <IconCircle className={styles.icon} />
         </div>
       </div>
     </header>

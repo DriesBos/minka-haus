@@ -70,11 +70,23 @@
     padding: 1rem 0.5rem
     flex: 1
     cursor: pointer
+    @media screen and (max-width: 850px)
+      padding: 1rem
+      padding-top: calc(1rem + 2px)
     &:first-child
       padding-left: 1rem !important
     &:last-child
       padding-right: 1rem !important
+      @media screen and (max-width: 850px)
+        padding-right: 1.5rem !important
 
+.icon
+  width: 1rem
+  height: 1rem
+  @media screen and (max-width: 850px)
+    width: 1.25rem
+    height: 1.25rem
+ß
 .playButton
   opacity: 1
   animation-name: playing
