@@ -10,8 +10,9 @@
     transition: color var(--transition-entered-data)
   &[data-loading="false"]
     opacity: 1
+  &[data-dynamic="true"][data-loading="false"]
     .icon
-      animation: blink 4s infinite 
+      animation: blink 4s infinite
   &[data-active="true"]
     opacity: 1
     color: white !important

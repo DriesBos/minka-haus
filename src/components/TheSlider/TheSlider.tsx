@@ -46,7 +46,8 @@ export default function TheSlider({
           height: 'calc(100% - 2rem)',
           bottom: '1rem',
           duration: 1.5,
-          ease: 'power2.inOut',
+          ease: 'expo.inOut',
+          delay: 0.033,
         });
       }
     },

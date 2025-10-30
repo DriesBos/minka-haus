@@ -62,7 +62,7 @@ export default function PageHome({ blok }: PageHomeProps) {
           height: '100%',
           bottom: 0,
           duration: 1.5,
-          ease: 'power2.inOut',
+          ease: 'expo.inOut',
         });
       }
     },
@@ -89,6 +89,7 @@ export default function PageHome({ blok }: PageHomeProps) {
           duration: 0.66,
           stagger: 0.33,
           ease: 'power2.out',
+          delay: 1,
         });
       }
     },

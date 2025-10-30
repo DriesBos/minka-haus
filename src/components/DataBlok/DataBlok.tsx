@@ -7,17 +7,18 @@ interface DataBlokProps {
   active?: boolean;
 }
 
-export default function DataBlok({
-  label,
-  value,
-  loading = false,
-  active = false,
-}: DataBlokProps) {
+export default function DataBlok(props: DataBlokProps) {
+  const { label, value, loading = false, active = false } = props;
+
+  // Check if loading prop is explicitly passed (for dynamic data sources)
+  const isDynamic = 'loading' in props;
+
   return (
     <div
       className={`${styles.dataBlok} dataBlok`}
       data-loading={loading}
       data-active={active}
+      data-dynamic={isDynamic}
     >
       <div className={`${styles.icon} icon`}></div>
       <div className={styles.content}>
