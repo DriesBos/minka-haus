@@ -83,11 +83,19 @@ export default function PageHome({ blok }: PageHomeProps) {
 
   // Prevent scrolling until hasEntered is true, then enable after 1 second
   React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  React.useEffect(() => {
     if (!hasEntered) {
-      // Disable scrolling
-      document.body.style.overflow = 'hidden';
+      // Ensure scroll to top happens first
+      window.scrollTo(0, 0);
+
+      // Disable scroll in next frame to ensure scrollTo completes
+      requestAnimationFrame(() => {
+        document.body.style.overflow = 'hidden';
+      });
     } else {
-      // Enable scrolling after 1 second delay
       const timer = setTimeout(() => {
         document.body.style.overflow = 'auto';
       }, 1000);
@@ -95,11 +103,30 @@ export default function PageHome({ blok }: PageHomeProps) {
       return () => clearTimeout(timer);
     }
 
-    // Cleanup on unmount
     return () => {
       document.body.style.overflow = 'auto';
     };
   }, [hasEntered]);
+
+  // OLD
+  // React.useEffect(() => {
+  //   if (!hasEntered) {
+  //     // Disable scrolling
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     // Enable scrolling after 1 second delay
+  //     const timer = setTimeout(() => {
+  //       document.body.style.overflow = 'auto';
+  //     }, 1000);
+
+  //     return () => clearTimeout(timer);
+  //   }
+
+  //   // Cleanup on unmount
+  //   return () => {
+  //     document.body.style.overflow = 'auto';
+  //   };
+  // }, [hasEntered]);
 
   // Animate middleBlokAnimation container when hasEntered becomes true
   useGSAP(

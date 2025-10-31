@@ -3,10 +3,13 @@
   width: 100%
   display: flex
   justify-content: space-between
+  opacity: 0
   &[data-theme="dark"]
     background-color: var(--theme-dark-bg-page)
   &[data-theme="light"]
     background-color: var(--theme-light-bg-page)
+  &[data-active="true"]
+    opacity: 1
 
 .column
   display: flex
