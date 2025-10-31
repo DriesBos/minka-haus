@@ -3,18 +3,22 @@
   width: 100%
   display: flex
   justify-content: space-between
-  border: 1px solid green
+  &[data-theme="dark"]
+    background-color: var(--theme-dark-bg-page)
+  &[data-theme="light"]
+    background-color: var(--theme-light-bg-page)
 
 .column
   display: flex
-  gap: 1rem
-  border: 1px solid red
 
   & > div
     padding: 1rem
-    border: 1px solid blue
 
 .linkItem
+  opacity: 0
+  display: inline-flex
+  align-items: flex-start
+  gap: 2px
   text-transform: uppercase
   &.inactive
     opacity: 0.5
