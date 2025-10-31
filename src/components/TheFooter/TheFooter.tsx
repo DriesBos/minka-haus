@@ -59,7 +59,7 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
       <div className={styles.column}>
         <div className={`${styles.linkItem} linkItem`}>
           <a
-            href="https://www.instagram.com/minka_haus/"
+            href="https://www.instagram.com/minkahaus/"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -73,7 +73,7 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
       </div>
       <div className={styles.column}>
         <div className={`${styles.linkItem} ${styles.inactive} linkItem`}>
-          <a href="mailto:info@minkahaus.com">info@minkahaus.com</a>
+          <a href="mailto:hello@minkahaus.com">hello@minkahaus.com</a>
         </div>
       </div>
     </footer>
