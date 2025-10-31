@@ -4,7 +4,7 @@
   position: absolute
   left: 50%
   bottom: 2rem
-  transform: translateX(-50%)
+  transform: translateX(-50%) !important
   max-width: 100%
   width: 24.75vmin
   height: 33vmin
@@ -28,7 +28,7 @@
   opacity: 1
   transition: opacity var(--transition-exit-text), transform var(--transition-exit-text)
   &[data-active="true"]
-    opacity: 0
+    opacity: 0 !important
     transform: translate(-50%, calc(-50% + 0.5rem))
 
 .imageLandscape
