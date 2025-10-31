@@ -5,6 +5,7 @@ import { useThemeStore } from '@/store/useThemeStore';
 import { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import Image from 'next/image';
 
 // Register GSAP plugin
 gsap.registerPlugin(useGSAP);
@@ -15,17 +16,12 @@ interface TheSliderProps {
     filename: string;
     alt?: string;
   };
-  craft_image?: {
-    filename: string;
-    alt?: string;
-  };
   onEnter?: () => void;
 }
 
 export default function TheSlider({
   active = false,
   landscape_image,
-  craft_image,
   onEnter,
 }: TheSliderProps) {
   const theme = useThemeStore((state) => state.theme);
@@ -64,19 +60,15 @@ export default function TheSlider({
       >
         {landscape_image && (
           <div className={styles.imageLandscape} data-active={active}>
-            <img
+            <Image
               src={landscape_image.filename}
-              alt={landscape_image.alt}
+              alt={landscape_image.alt || 'Minkahaus landscape image'}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+              priority
+              quality={90}
               className={styles.image}
-            />
-          </div>
-        )}
-        {craft_image && (
-          <div className={styles.imageCraft} data-active={active}>
-            <img
-              src={craft_image.filename}
-              alt={craft_image.alt}
-              className={styles.image}
+              style={{ objectFit: 'cover' }}
             />
           </div>
         )}
