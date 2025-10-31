@@ -36,9 +36,9 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
           opacity: 1,
           y: 0,
           duration: 1.33,
-          stagger: 0.33,
+          stagger: 0.165,
           ease: 'power2.out',
-          delay: 0.33,
+          delay: 0.165,
           scrollTrigger: {
             trigger: containerRef.current,
             start: 'top bottom',
@@ -73,8 +73,9 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
         </div>
       </div>
       <div className={styles.column}>
-        <div className={`${styles.linkItem} ${styles.inactive} footerSequence`}>
+        <div className={`${styles.linkItem} footerSequence`}>
           <a href="mailto:hello@minkahaus.com">hello@minkahaus.com</a>
+          <IconExit />
         </div>
       </div>
     </footer>
