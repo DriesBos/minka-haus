@@ -75,7 +75,9 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
       </div>
       <div className={styles.column}>
         <div className={`${styles.linkItem} footerSequence`}>
-          <a href="mailto:hello@minkahaus.com">hello@minkahaus.com</a>
+          <a href="mailto:hello@minkahaus.com?subject=Hello%20Minka%20Haus">
+            hello@minkahaus.com
+          </a>
           <IconExit />
         </div>
       </div>
