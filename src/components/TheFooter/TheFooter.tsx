@@ -35,8 +35,8 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
         gsap.to(linkItems, {
           opacity: 1,
           y: 0,
-          duration: 1.5,
-          stagger: 0.25,
+          duration: 1.33,
+          stagger: 0.33,
           ease: 'power2.out',
           delay: 0.33,
           scrollTrigger: {
