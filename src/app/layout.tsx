@@ -9,6 +9,7 @@ import BackgroundStoreProvider from '@/providers/BackgroundStoreProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
 import FaviconSwitcher from '@/components/FaviconSwitcher';
 import ScrollToTop from '@/components/ScrollToTop';
+import type { Viewport } from 'next';
 
 const maru = localFont({
   src: [
@@ -60,6 +61,19 @@ export const metadata: Metadata = {
     title: 'Minka Haus',
     statusBarStyle: 'black-translucent',
   },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
