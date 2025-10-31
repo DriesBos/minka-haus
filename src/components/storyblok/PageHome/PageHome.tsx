@@ -108,26 +108,6 @@ export default function PageHome({ blok }: PageHomeProps) {
     };
   }, [hasEntered]);
 
-  // OLD
-  // React.useEffect(() => {
-  //   if (!hasEntered) {
-  //     // Disable scrolling
-  //     document.body.style.overflow = 'hidden';
-  //   } else {
-  //     // Enable scrolling after 1 second delay
-  //     const timer = setTimeout(() => {
-  //       document.body.style.overflow = 'auto';
-  //     }, 1000);
-
-  //     return () => clearTimeout(timer);
-  //   }
-
-  //   // Cleanup on unmount
-  //   return () => {
-  //     document.body.style.overflow = 'auto';
-  //   };
-  // }, [hasEntered]);
-
   // Animate middleBlokAnimation container when hasEntered becomes true
   useGSAP(
     () => {
