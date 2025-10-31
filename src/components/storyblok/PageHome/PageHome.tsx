@@ -160,7 +160,7 @@ export default function PageHome({ blok }: PageHomeProps) {
           onActive={setSoundPlaying}
         />
       </div>
-      <TheFooter data-theme={mounted ? theme : 'light'} active={hasEntered} />
+      <TheFooter theme={mounted ? theme : 'light'} active={hasEntered} />
     </div>
   );
 }

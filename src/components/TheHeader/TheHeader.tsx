@@ -26,8 +26,6 @@ export default function TheHeader({
 }: TheHeaderProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const typingTextRef = React.useRef<HTMLParagraphElement>(null);
-  const locationRef = React.useRef<HTMLDivElement>(null);
-  const purposeRef = React.useRef<HTMLDivElement>(null);
   const [isJapanese, setIsJapanese] = React.useState(false);
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
 

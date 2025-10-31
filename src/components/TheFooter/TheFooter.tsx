@@ -1,15 +1,63 @@
+'use client';
+
+import React from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import IconExit from '../icons/IconExit';
 import styles from './TheFooter.module.sass';
 
+// Register GSAP plugins
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
 interface TheFooterProps {
   active?: boolean;
+  theme?: 'light' | 'dark';
 }
 
-export default function TheFooter({ active }: TheFooterProps) {
+export default function TheFooter({ active, theme }: TheFooterProps) {
+  const containerRef = React.useRef<HTMLElement>(null);
+
+  // Animate link items when active and footer scrolls into view
+  useGSAP(
+    () => {
+      if (active && containerRef.current) {
+        const linkItems = containerRef.current.querySelectorAll('.linkItem');
+
+        // Set initial state (hidden and slightly offset)
+        gsap.set(linkItems, {
+          opacity: 0,
+          y: 0,
+        });
+
+        // Animate in sequentially with stagger when scrolled into view
+        gsap.to(linkItems, {
+          opacity: 1,
+          y: 0,
+          duration: 1.5,
+          stagger: 0.25,
+          ease: 'power2.out',
+          delay: 0.33,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top bottom',
+            toggleActions: 'play none none none',
+          },
+        });
+      }
+    },
+    { scope: containerRef, dependencies: [active] }
+  );
+
   return (
-    <footer className={styles.footer} data-active={active}>
+    <footer
+      ref={containerRef}
+      className={styles.footer}
+      data-active={active}
+      data-theme={theme}
+    >
       <div className={styles.column}>
-        <div className={styles.linkItem}>
+        <div className={`${styles.linkItem} linkItem`}>
           <a
             href="https://www.instagram.com/minka_haus/"
             target="_blank"
@@ -19,12 +67,12 @@ export default function TheFooter({ active }: TheFooterProps) {
           </a>
           <IconExit />
         </div>
-        <div className={`${styles.linkItem} ${styles.inactive}`}>
+        <div className={`${styles.linkItem} ${styles.inactive} linkItem`}>
           <a href="https://www.instagram.com/minkahaus/">Newsletter</a>
         </div>
       </div>
       <div className={styles.column}>
-        <div className={`${styles.linkItem} ${styles.inactive}`}>
+        <div className={`${styles.linkItem} ${styles.inactive} linkItem`}>
           <a href="mailto:info@minkahaus.com">info@minkahaus.com</a>
         </div>
       </div>
