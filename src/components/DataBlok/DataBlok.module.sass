@@ -5,19 +5,13 @@
   z-index: +1
   opacity: 0
   transition: opacity 0.33s ease-out, color var(--transition-entered-data)
-  &[data-loading="true"]
+  &[data-active="false"]
     opacity: 0
-  &[data-loading="false"]
-    opacity: 1
   &[data-dynamic="true"][data-loading="false"]
     .icon
       animation: blink 4s infinite
-  &[data-active="true"]
-    opacity: 1
-    color: white !important
-  &[data-active="false"]
-    opacity: 0
-    // color: black !important
+  &[data-theme="light"][data-active="true"]
+    color: white
 
 .icon
   width: 8px
