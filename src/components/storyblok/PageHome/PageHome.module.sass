@@ -24,6 +24,9 @@
   width: 49.5vmin
   height: 66vmin
   transition: background-color var(--transition-theme)
+  @media screen and (max-width: 850px) 
+    width: 75vw
+    height: 66vh
   &[data-theme="dark"]
     background-color: var(--theme-dark-bg-page)
   &[data-theme="light"]
