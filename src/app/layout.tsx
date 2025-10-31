@@ -57,7 +57,8 @@ const soehne = localFont({
 
 export const metadata: Metadata = {
   title: 'Minka Haus',
-  description: 'A place for downtime, creation and connection',
+  description:
+    'Minkahaus is a renovation project on mountain and forest land north of Kyoto. Building a space for research, cultural exchange and stays that explore mingei, Japanese craft.',
   appleWebApp: {
     title: 'Minka Haus',
     statusBarStyle: 'black-translucent',
@@ -79,14 +80,58 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* SVG favicon for modern browsers */}
         <link
           rel="icon"
+          type="image/svg+xml"
+          href="/favicon-light.svg"
+          media="(prefers-color-scheme: light)"
+        />
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href="/favicon-dark.svg"
+          media="(prefers-color-scheme: dark)"
+        />
+        {/* PNG favicon for better compatibility */}
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href="/favicon-light-96x96.png"
+          media="(prefers-color-scheme: light)"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href="/favicon-dark-96x96.png"
+          media="(prefers-color-scheme: dark)"
+        />
+        {/* ICO fallback for older browsers */}
+        <link
+          rel="icon"
+          type="image/x-icon"
           href="/favicon-light.ico"
           media="(prefers-color-scheme: light)"
         />
         <link
           rel="icon"
+          type="image/x-icon"
           href="/favicon-dark.ico"
+          media="(prefers-color-scheme: dark)"
+        />
+        {/* Apple touch icon */}
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/favicon-light-96x96.png"
+          media="(prefers-color-scheme: light)"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/favicon-dark-96x96.png"
           media="(prefers-color-scheme: dark)"
         />
       </head>
