@@ -58,7 +58,7 @@ export default function TheSlider({
     <div ref={containerRef}>
       <div
         ref={sliderRef}
-        className={`${styles.theSlider} theSlider`}
+        className={`${styles.theSlider} theSlider initSequence`}
         data-active={active}
         data-theme={mounted ? theme : 'light'}
       >
@@ -80,7 +80,11 @@ export default function TheSlider({
             />
           </div>
         )}
-        <div className={styles.enterBtn} onClick={onEnter} data-active={active}>
+        <div
+          className={`${styles.enterBtn} initSequence`}
+          onClick={onEnter}
+          data-active={active}
+        >
           Enter
         </div>
       </div>

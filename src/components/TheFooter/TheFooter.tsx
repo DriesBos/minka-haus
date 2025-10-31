@@ -22,7 +22,8 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
   useGSAP(
     () => {
       if (active && containerRef.current) {
-        const linkItems = containerRef.current.querySelectorAll('.linkItem');
+        const linkItems =
+          containerRef.current.querySelectorAll('.footerSequence');
 
         // Set initial state (hidden and slightly offset)
         gsap.set(linkItems, {
@@ -57,7 +58,7 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
       data-theme={theme}
     >
       <div className={styles.column}>
-        <div className={`${styles.linkItem} linkItem`}>
+        <div className={`${styles.linkItem} footerSequence`}>
           <a
             href="https://www.instagram.com/minkahaus/"
             target="_blank"
@@ -67,12 +68,12 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
           </a>
           <IconExit />
         </div>
-        <div className={`${styles.linkItem} ${styles.inactive} linkItem`}>
+        <div className={`${styles.linkItem} ${styles.inactive} footerSequence`}>
           <a href="https://www.instagram.com/minkahaus/">Newsletter</a>
         </div>
       </div>
       <div className={styles.column}>
-        <div className={`${styles.linkItem} ${styles.inactive} linkItem`}>
+        <div className={`${styles.linkItem} ${styles.inactive} footerSequence`}>
           <a href="mailto:hello@minkahaus.com">hello@minkahaus.com</a>
         </div>
       </div>

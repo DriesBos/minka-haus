@@ -54,6 +54,33 @@ export default function PageHome({ blok }: PageHomeProps) {
     setMounted(true);
   }, []);
 
+  // Initial fade-in animation for elements with 'initSequence' class
+  useGSAP(
+    () => {
+      if (containerRef.current) {
+        const initElements =
+          containerRef.current.querySelectorAll('.initSequence');
+
+        // Set initial state (hidden)
+        gsap.set(initElements, {
+          opacity: 0,
+          scale: 0.9,
+        });
+
+        // Fade in sequentially with stagger
+        gsap.to(initElements, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.66,
+          stagger: 0.165,
+          ease: 'power2.out',
+          delay: 0.165,
+        });
+      }
+    },
+    { scope: containerRef }
+  );
+
   // Prevent scrolling until hasEntered is true, then enable after 1 second
   React.useEffect(() => {
     if (!hasEntered) {
@@ -126,7 +153,7 @@ export default function PageHome({ blok }: PageHomeProps) {
       <div className={styles.topScrollWrapper}>
         <div
           ref={middleBlokRef}
-          className={styles.middleBlokAnimation}
+          className={`${styles.middleBlokAnimation} initSequence`}
           data-active={hasEntered}
           data-theme={mounted ? theme : 'light'}
         />
