@@ -1,4 +1,14 @@
+// Hide scrollbars globally across all browsers
+html
+  // Firefox
+  scrollbar-width: none
+  
 body
+  // Webkit browsers (Chrome, Safari, Edge)
+  &::-webkit-scrollbar
+    display: none
+  // IE and Edge legacy
+  -ms-overflow-style: none
   transition: background-color var(--transition-theme), color var(--transition-theme)
   &[data-theme="light"]
     color: var(--theme-light-type)
