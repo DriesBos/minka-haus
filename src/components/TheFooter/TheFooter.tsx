@@ -43,6 +43,7 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
             trigger: containerRef.current,
             start: 'top bottom',
             toggleActions: 'play none none none',
+            once: true,
           },
         });
       }
