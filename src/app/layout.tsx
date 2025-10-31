@@ -8,6 +8,7 @@ import StoryblokProvider from '@/providers/StoryblokProvider';
 import BackgroundStoreProvider from '@/providers/BackgroundStoreProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
 import FaviconSwitcher from '@/components/FaviconSwitcher';
+import ThemeColorSwitcher from '@/components/ThemeColorSwitcher';
 import ScrollToTop from '@/components/ScrollToTop';
 import type { Viewport } from 'next';
 
@@ -95,6 +96,7 @@ export default function RootLayout({
         <ThemeProvider>
           <ScrollToTop />
           <FaviconSwitcher />
+          <ThemeColorSwitcher />
           <BackgroundStoreProvider>
             <StoryblokProvider>
               <main>{children}</main>
