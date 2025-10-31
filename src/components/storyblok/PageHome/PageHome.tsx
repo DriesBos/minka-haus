@@ -175,6 +175,7 @@ export default function PageHome({ blok }: PageHomeProps) {
     <div
       className={styles.pageHome}
       data-entered={hasEntered}
+      data-theme={mounted ? theme : 'light'}
       ref={containerRef}
     >
       <div className={styles.topScrollWrapper}>
