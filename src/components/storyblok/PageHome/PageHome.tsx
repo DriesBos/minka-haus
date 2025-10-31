@@ -30,10 +30,6 @@ interface PageHomeProps {
       filename: string;
       alt?: string;
     };
-    craft_image?: {
-      filename: string;
-      alt?: string;
-    };
     entry_text?: string;
   };
 }
@@ -175,7 +171,6 @@ export default function PageHome({ blok }: PageHomeProps) {
           <div className={styles.theSliderWrapper}>
             <TheSlider
               landscape_image={blok.landscape_image}
-              craft_image={blok.craft_image}
               active={hasEntered}
               onEnter={() => setHasEntered(true)}
             />
