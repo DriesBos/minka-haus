@@ -8,16 +8,17 @@ export default function TheFooter({ loading = false }: TheFooterProps) {
   return (
     <footer className={styles.footer}>
       <div className={styles.column}>
-        <p>
-          The image above will slowly zoom-out, and reveal Minka Haus
-          <br />a creative residency and research centre.
-          <br />
-        </p>
+        <div className={styles.linkItem}>
+          <a href="https://www.instagram.com/minka_haus/">Instagram</a>
+        </div>
+        <div className={`${styles.linkItem} ${styles.inactive}`}>
+          <a href="https://www.instagram.com/minka_haus/">Newsletter</a>
+        </div>
       </div>
       <div className={styles.column}>
-        <a href="mailto:info@minka-haus.org">info@minka-haus.org</a>
-        <a href="https://www.instagram.com/minka_haus/">instagram</a>
-        <a href="https://www.storyblok.com/">newsletter</a>
+        <div className={`${styles.linkItem} ${styles.inactive}`}>
+          <a href="mailto:info@minka-haus.org">info@minka-haus.org</a>
+        </div>
       </div>
     </footer>
   );

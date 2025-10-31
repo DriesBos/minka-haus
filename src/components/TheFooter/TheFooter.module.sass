@@ -1,20 +1,21 @@
 .footer
-  display: fixed
-  bottom: 0
+  position: relative
   width: 100%
-  padding: 2rem var(--spacing-sides)
   display: flex
-  &:nth-child(1)
-    flex-grow: 1
-  &:nth-child(2)
-    flex-shrink: 1
-    
+  justify-content: space-between
+  border: 1px solid green
 
 .column
-  width: 100%
-  max-width: 33em
   display: flex
-  flex-direction: column
-  gap: .25rem
-  &:first-child
-    border: 1px solid red
+  gap: 1rem
+  border: 1px solid red
+
+  & > div
+    padding: 1rem
+    border: 1px solid blue
+
+.linkItem
+  text-transform: uppercase
+  &.inactive
+    opacity: 0.5
+    pointer-events: none
