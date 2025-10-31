@@ -3,13 +3,14 @@
 .theSlider
   position: absolute
   left: 50%
-  bottom: 2rem
+  bottom: 12.375vmin
   transform: translateX(-50%) !important
   max-width: 100%
   width: 24.75vmin
   height: 33vmin
   transition: background-color var(--transition-theme)
   @media screen and (max-width: 850px) 
+    bottom: 25vw
     width: 50vw
     height: 33vh
   &[data-theme="dark"]
