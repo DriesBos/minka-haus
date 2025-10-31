@@ -11,7 +11,7 @@ export default function IconExit({ className }: IconExitProps) {
       fill="none"
       className={className}
     >
-      <g stroke="currentColor" clip-path="url(#a)">
+      <g stroke="currentColor" clipPath="url(#a)">
         <path d="M6.5 1v4.5M2 .5h5M7 0 2 5" />
       </g>
       <defs>
