@@ -8,7 +8,6 @@ import StoryblokProvider from '@/providers/StoryblokProvider';
 import BackgroundStoreProvider from '@/providers/BackgroundStoreProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
 import FaviconSwitcher from '@/components/FaviconSwitcher';
-import TheFooter from '@/components/TheFooter/TheFooter';
 import ScrollToTop from '@/components/ScrollToTop';
 
 const maru = localFont({
@@ -91,7 +90,6 @@ export default function RootLayout({
           <BackgroundStoreProvider>
             <StoryblokProvider>
               <main>{children}</main>
-              <TheFooter />
             </StoryblokProvider>
           </BackgroundStoreProvider>
         </ThemeProvider>

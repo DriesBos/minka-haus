@@ -11,6 +11,7 @@ import SoundPlayer from '@/components/SoundPlayer/SoundPlayer';
 import TheHeader from '@/components/TheHeader/TheHeader';
 import TheSlider from '@/components/TheSlider/TheSlider';
 import { useThemeStore } from '@/store/useThemeStore';
+import TheFooter from '@/components/TheFooter/TheFooter';
 
 // Register GSAP plugin
 gsap.registerPlugin(useGSAP);
@@ -52,6 +53,26 @@ export default function PageHome({ blok }: PageHomeProps) {
   React.useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Prevent scrolling until hasEntered is true, then enable after 1 second
+  React.useEffect(() => {
+    if (!hasEntered) {
+      // Disable scrolling
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Enable scrolling after 1 second delay
+      const timer = setTimeout(() => {
+        document.body.style.overflow = 'auto';
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [hasEntered]);
 
   // Animate middleBlokAnimation container when hasEntered becomes true
   useGSAP(
@@ -102,41 +123,44 @@ export default function PageHome({ blok }: PageHomeProps) {
       data-entered={hasEntered}
       ref={containerRef}
     >
-      <div
-        ref={middleBlokRef}
-        className={styles.middleBlokAnimation}
-        data-active={hasEntered}
-        data-theme={mounted ? theme : 'light'}
-      />
-      <TheHeader
-        active={hasEntered}
-        soundPlaying={soundPlaying}
-        onToggleSound={() => setSoundPlaying(!soundPlaying)}
-      />
+      <div className={styles.topScrollWrapper}>
+        <div
+          ref={middleBlokRef}
+          className={styles.middleBlokAnimation}
+          data-active={hasEntered}
+          data-theme={mounted ? theme : 'light'}
+        />
+        <TheHeader
+          active={hasEntered}
+          soundPlaying={soundPlaying}
+          onToggleSound={() => setSoundPlaying(!soundPlaying)}
+        />
 
-      {blok.landscape_image && (
-        <div className={styles.theSliderWrapper}>
-          <TheSlider
-            landscape_image={blok.landscape_image}
-            craft_image={blok.craft_image}
-            active={hasEntered}
-            onEnter={() => setHasEntered(true)}
-          />
-          <DataBlok
-            label="Location"
-            value="Kita-ku, Kyoto"
-            active={hasEntered}
-          />
-          <WeatherBlok active={hasEntered} />
-          <LocalTimeBlok active={hasEntered} />
-        </div>
-      )}
+        {blok.landscape_image && (
+          <div className={styles.theSliderWrapper}>
+            <TheSlider
+              landscape_image={blok.landscape_image}
+              craft_image={blok.craft_image}
+              active={hasEntered}
+              onEnter={() => setHasEntered(true)}
+            />
+            <DataBlok
+              label="Location"
+              value="Kita-ku, Kyoto"
+              active={hasEntered}
+            />
+            <WeatherBlok active={hasEntered} />
+            <LocalTimeBlok active={hasEntered} />
+          </div>
+        )}
 
-      <SoundPlayer
-        audioSrc="/audio/vetiverol.mp3"
-        active={hasEntered && soundPlaying}
-        onActive={setSoundPlaying}
-      />
+        <SoundPlayer
+          audioSrc="/audio/vetiverol.mp3"
+          active={hasEntered && soundPlaying}
+          onActive={setSoundPlaying}
+        />
+      </div>
+      <TheFooter data-theme={mounted ? theme : 'light'} active={hasEntered} />
     </div>
   );
 }
