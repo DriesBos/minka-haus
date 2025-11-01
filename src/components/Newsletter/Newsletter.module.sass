@@ -1,0 +1,43 @@
+.newsletter
+  width: 100%
+
+.form
+  display: flex
+  flex-direction: column
+  gap: 0.5rem
+
+.input
+  padding: 0.5rem
+  border: 1px solid currentColor
+  background: transparent
+  color: currentColor
+  font-size: 1rem
+  font-family: var(--soehne-font)
+  outline: none
+  transition: opacity 0.2s ease
+  &:disabled
+    opacity: 0.5
+    cursor: not-allowed
+  &::placeholder
+    color: currentColor
+    opacity: 0.5
+
+.button
+  padding: 0.5rem 1rem
+  border: 1px solid currentColor
+  background: transparent
+  color: currentColor
+  font-size: 1rem
+  font-family: var(--soehne-font)
+  cursor: pointer
+  transition: opacity 0.2s ease, background-color 0.2s ease
+  &:hover:not(:disabled)
+    background: currentColor
+    color: var(--bg-color)
+  &:disabled
+    opacity: 0.5
+    cursor: not-allowed
+
+.message
+  font-size: 1rem
+  text-align: center

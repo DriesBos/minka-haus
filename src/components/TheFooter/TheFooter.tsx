@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import IconExit from '../icons/IconExit';
+import Newsletter from '../Newsletter/Newsletter';
 import styles from './TheFooter.module.sass';
 
 // Register GSAP plugins
@@ -75,8 +76,8 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
           </a>
           <IconExit className={styles.icon} />
         </div>
-        {/* <div className={`${styles.linkItem} ${styles.inactive} footerSequence`}>
-          <a href="https://www.instagram.com/minkahaus/">Newsletter</a>
+        {/* <div className={`${styles.newsletterWrapper} footerSequence`}>
+          <Newsletter />
         </div> */}
       </div>
       <div className={styles.column}>
@@ -84,9 +85,6 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
           <div className={`${styles.icon} icon`}></div>
           <span>Livedata: active</span>
         </div>
-        {/* <div className={`${styles.linkItem} footerSequence`}>
-          <span>static data</span>
-        </div> */}
       </div>
     </footer>
   );
