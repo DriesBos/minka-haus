@@ -76,9 +76,9 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
           </a>
           <IconExit className={styles.icon} />
         </div>
-        {/* <div className={`${styles.newsletterWrapper} footerSequence`}>
+        <div className={`footerSequence`}>
           <Newsletter />
-        </div> */}
+        </div>
       </div>
       <div className={styles.column}>
         <div className={`${styles.dataItem} footerSequence`}>

@@ -51,6 +51,8 @@ export default function PageHome({ blok }: PageHomeProps) {
     // Initialize hasEntered based on production env
     if (isProduction) {
       setHasEntered(false);
+    } else {
+      setHasEntered(true);
     }
   }, [isProduction, setHasEntered]);
 

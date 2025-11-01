@@ -1,43 +1,43 @@
 .newsletter
-  width: 100%
+  padding-top: 1px
 
 .form
   display: flex
-  flex-direction: column
-  gap: 0.5rem
+  gap: 2px
+  width: 0px
+  transition: width 1s ease-out
+  &[data-active="true"]
+    width: auto
+
+.inputWrapper
+  position: relative
+  &::after
+    content: ''
+    position: absolute
+    bottom: -2px
+    left: 0
+    width: 100%
+    height: 1px
+    background: currentColor
 
 .input
-  padding: 0.5rem
-  border: 1px solid currentColor
-  background: transparent
-  color: currentColor
-  font-size: 1rem
-  font-family: var(--soehne-font)
+  all: unset
   outline: none
-  transition: opacity 0.2s ease
-  &:disabled
-    opacity: 0.5
-    cursor: not-allowed
+  padding-bottom: 2px
   &::placeholder
     color: currentColor
     opacity: 0.5
 
 .button
-  padding: 0.5rem 1rem
-  border: 1px solid currentColor
-  background: transparent
-  color: currentColor
-  font-size: 1rem
-  font-family: var(--soehne-font)
+  all: unset
   cursor: pointer
-  transition: opacity 0.2s ease, background-color 0.2s ease
-  &:hover:not(:disabled)
-    background: currentColor
-    color: var(--bg-color)
-  &:disabled
-    opacity: 0.5
-    cursor: not-allowed
+  text-transform: uppercase
+
+.activateButton
+  all: unset
+  cursor: pointer
+  text-transform: uppercase
 
 .message
-  font-size: 1rem
-  text-align: center
+  pointer-events: none
+  text-transform: uppercase
