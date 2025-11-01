@@ -80,6 +80,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* prevent AI indexing - together with robots txt */}
+        <meta name="robots" content="noai, noimageai" />
         {/* Viewport fit for notch displays */}
         <meta
           name="viewport"
