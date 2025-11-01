@@ -75,9 +75,9 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
           </a>
           <IconExit />
         </div>
-        <div className={`${styles.linkItem} ${styles.inactive} footerSequence`}>
+        {/* <div className={`${styles.linkItem} ${styles.inactive} footerSequence`}>
           <a href="https://www.instagram.com/minkahaus/">Newsletter</a>
-        </div>
+        </div> */}
       </div>
       <div className={styles.column}>
         <div className={`${styles.dataItem} footerSequence`}>
