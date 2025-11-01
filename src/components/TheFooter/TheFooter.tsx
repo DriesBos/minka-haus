@@ -67,13 +67,13 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
           >
             Instagram
           </a>
-          <IconExit />
+          <IconExit className={styles.icon} />
         </div>
         <div className={`${styles.linkItem} footerSequence`}>
           <a href="mailto:hello@minkahaus.com?subject=Hello%20Minka%20Haus">
             hello@minkahaus.com
           </a>
-          <IconExit />
+          <IconExit className={styles.icon} />
         </div>
         {/* <div className={`${styles.linkItem} ${styles.inactive} footerSequence`}>
           <a href="https://www.instagram.com/minkahaus/">Newsletter</a>
