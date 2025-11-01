@@ -69,17 +69,24 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
           </a>
           <IconExit />
         </div>
-        <div className={`${styles.linkItem} ${styles.inactive} footerSequence`}>
-          <a href="https://www.instagram.com/minkahaus/">Newsletter</a>
-        </div>
-      </div>
-      <div className={styles.column}>
         <div className={`${styles.linkItem} footerSequence`}>
           <a href="mailto:hello@minkahaus.com?subject=Hello%20Minka%20Haus">
             hello@minkahaus.com
           </a>
           <IconExit />
         </div>
+        <div className={`${styles.linkItem} ${styles.inactive} footerSequence`}>
+          <a href="https://www.instagram.com/minkahaus/">Newsletter</a>
+        </div>
+      </div>
+      <div className={styles.column}>
+        <div className={`${styles.dataItem} footerSequence`}>
+          <div className={`${styles.icon} icon`}></div>
+          <span>Live data</span>
+        </div>
+        {/* <div className={`${styles.linkItem} footerSequence`}>
+          <span>static data</span>
+        </div> */}
       </div>
     </footer>
   );

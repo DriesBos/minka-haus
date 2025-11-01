@@ -2,8 +2,11 @@
   position: relative
   width: 100%
   display: flex
+  flex-direction: row
   justify-content: space-between
   opacity: 0
+  @media screen and (max-width: 850px) 
+    flex-direction: column
   &[data-theme="dark"]
     background-color: var(--theme-dark-bg-page)
   &[data-theme="light"]
@@ -13,6 +16,8 @@
 
 .column
   display: flex
+  @media screen and (max-width: 850px) 
+    width: 100%
 
   & > div
     padding: 1rem
@@ -25,3 +30,20 @@
   &.inactive
     pointer-events: none
     opacity: 0 !important
+
+.dataItem
+  display: flex
+  gap: 5px
+  text-transform: uppercase
+  .icon
+    width: 8px
+    height: 8px
+    background-color: currentColor
+    animation: blink 4s infinite
+    transform: translateY(2px)
+
+@keyframes blink
+  0%, 80%
+    opacity: 1
+  80.01%, 100%
+    opacity: 0
