@@ -11,6 +11,7 @@ import SoundPlayer from '@/components/SoundPlayer/SoundPlayer';
 import TheHeader from '@/components/TheHeader/TheHeader';
 import TheSlider from '@/components/TheSlider/TheSlider';
 import { useThemeStore } from '@/store/useThemeStore';
+import { useEnteredStore } from '@/store/useEnteredStore';
 import TheFooter from '@/components/TheFooter/TheFooter';
 
 // Register GSAP plugin
@@ -37,9 +38,8 @@ interface PageHomeProps {
 export default function PageHome({ blok }: PageHomeProps) {
   const isProduction = process.env.NODE_ENV === 'production';
   // Production env always activates intro page
-  const [hasEntered, setHasEntered] = React.useState(
-    isProduction ? false : false
-  );
+  const hasEntered = useEnteredStore((state) => state.hasEntered);
+  const setHasEntered = useEnteredStore((state) => state.setHasEntered);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const middleBlokRef = React.useRef<HTMLDivElement>(null);
   const [soundPlaying, setSoundPlaying] = React.useState(true);
@@ -48,7 +48,11 @@ export default function PageHome({ blok }: PageHomeProps) {
 
   React.useEffect(() => {
     setMounted(true);
-  }, []);
+    // Initialize hasEntered based on production env
+    if (isProduction) {
+      setHasEntered(false);
+    }
+  }, [isProduction, setHasEntered]);
 
   // Initial fade-in animation for elements with 'initSequence' class
   useGSAP(
