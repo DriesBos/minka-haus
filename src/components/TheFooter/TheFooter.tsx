@@ -82,7 +82,7 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
       <div className={styles.column}>
         <div className={`${styles.dataItem} footerSequence`}>
           <div className={`${styles.icon} icon`}></div>
-          <span>Live data</span>
+          <span>Livedata: active</span>
         </div>
         {/* <div className={`${styles.linkItem} footerSequence`}>
           <span>static data</span>
