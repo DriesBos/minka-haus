@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128"><svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="128" height="128" fill="#D9DAD3"></rect>
+<rect width="128" height="128" fill="#E0E1DB"></rect>
 <rect x="16" y="16" width="96" height="96" fill="#D4D5CD"></rect>
-<rect x="32" y="32" width="64" height="64" fill="#CFD0C8"></rect>
+<rect x="32" y="32" width="64" height="64" fill="#C8CABF"></rect>
 </svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
 @media (prefers-color-scheme: dark) { :root { filter: none; } }
 </style></svg>
