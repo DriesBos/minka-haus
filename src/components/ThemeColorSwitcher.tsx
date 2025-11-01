@@ -14,7 +14,7 @@ export default function ThemeColorSwitcher() {
     if (hasEntered) {
       const timer = setTimeout(() => {
         setDelayedEntered(true);
-      }, 1500);
+      }, 1250);
 
       return () => clearTimeout(timer);
     } else {
