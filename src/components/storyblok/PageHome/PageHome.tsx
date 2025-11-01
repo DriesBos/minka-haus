@@ -52,7 +52,7 @@ export default function PageHome({ blok }: PageHomeProps) {
     if (isProduction) {
       setHasEntered(false);
     } else {
-      setHasEntered(true);
+      setHasEntered(false);
     }
   }, [isProduction, setHasEntered]);
 
