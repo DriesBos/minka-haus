@@ -1,14 +1,111 @@
 'use client';
 
 import { FormEvent, useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { TextPlugin } from 'gsap/TextPlugin';
 import styles from './Newsletter.module.sass';
+
+gsap.registerPlugin(useGSAP, TextPlugin);
 
 export default function Newsletter() {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [isActive, setIsActive] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const [buttonText, setButtonText] = useState('Newsletter');
   const inputRef = useRef<HTMLInputElement>(null);
+  const buttonTextRef = useRef<HTMLSpanElement>(null);
+  const messageRef = useRef<HTMLParagraphElement>(null);
+
+  // Playful scramble animation with random characters
+  useGSAP(
+    () => {
+      if (buttonTextRef.current) {
+        const targetText = buttonText;
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const iterations = 8; // Number of scramble iterations per character
+
+        let iteration = 0;
+        const interval = setInterval(() => {
+          if (buttonTextRef.current) {
+            buttonTextRef.current.textContent = targetText
+              .split('')
+              .map((char, index) => {
+                if (char === ' ') return ' ';
+                if (index < (iteration / iterations) * targetText.length) {
+                  return targetText[index];
+                }
+                return chars[Math.floor(Math.random() * chars.length)];
+              })
+              .join('');
+          }
+
+          iteration++;
+
+          if (iteration > targetText.length * iterations) {
+            clearInterval(interval);
+            if (buttonTextRef.current) {
+              buttonTextRef.current.textContent = targetText;
+            }
+          }
+        }, 30); // Speed of scramble (30ms per frame)
+
+        return () => clearInterval(interval);
+      }
+    },
+    { dependencies: [buttonText] }
+  );
+
+  // Playful scramble animation for message text
+  useGSAP(
+    () => {
+      if (messageRef.current && message) {
+        const targetText = message;
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const iterations = 8;
+
+        let iteration = 0;
+        const interval = setInterval(() => {
+          if (messageRef.current) {
+            messageRef.current.textContent = targetText
+              .split('')
+              .map((char, index) => {
+                if (char === ' ' || char === '!' || char === '.') return char;
+                if (index < (iteration / iterations) * targetText.length) {
+                  return targetText[index];
+                }
+                return chars[Math.floor(Math.random() * chars.length)];
+              })
+              .join('');
+          }
+
+          iteration++;
+
+          if (iteration > targetText.length * iterations) {
+            clearInterval(interval);
+            if (messageRef.current) {
+              messageRef.current.textContent = targetText;
+            }
+          }
+        }, 30);
+
+        return () => clearInterval(interval);
+      }
+    },
+    { dependencies: [message] }
+  );
+
+  // Update button text based on state
+  useEffect(() => {
+    if (!isActive && !isLoading) {
+      setButtonText('Newsletter');
+    } else if (isLoading) {
+      setButtonText('Submitting..');
+    } else {
+      setButtonText('Submit');
+    }
+  }, [isActive, isLoading]);
 
   // Focus input when active becomes true
   useEffect(() => {
@@ -108,7 +205,9 @@ export default function Newsletter() {
         </div>
       </form>
       {message ? (
-        <p className={styles.message}>{message}</p>
+        <p ref={messageRef} className={styles.message}>
+          {message}
+        </p>
       ) : (
         <button
           onClick={handleButtonClick}
@@ -117,11 +216,7 @@ export default function Newsletter() {
           className={styles.button}
           disabled={isLoading}
         >
-          {!isActive && !isLoading
-            ? 'Newsletter'
-            : isLoading
-            ? 'Submitting..'
-            : 'Submit'}
+          <span ref={buttonTextRef}>{buttonText}</span>
         </button>
       )}
     </div>
