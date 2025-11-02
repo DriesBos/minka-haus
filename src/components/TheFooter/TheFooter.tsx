@@ -38,7 +38,7 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
           y: 0,
           duration: 1.33,
           stagger: 0.165,
-          ease: 'power2.out',
+          ease: 'power1.out',
           delay: 0.165,
           scrollTrigger: {
             trigger: containerRef.current,

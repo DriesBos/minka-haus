@@ -2,14 +2,14 @@
   // padding-top: 1px
   display: flex
   gap: 2px
+  @media screen and (max-width: 850px) 
+    width: 100%
 
 .form
   display: flex
-  // gap: 2px
-  // width: 0px
   transition: width 1s ease-out
-  &[data-active="true"]
-    width: auto
+
+
 
 .inputWrapper
   position: relative
@@ -28,20 +28,18 @@
   padding-bottom: 2px
   width: 100%
   max-width: 0
-  transition: max-width 0.66s ease-out
+  transition: max-width 0.5s ease-out
   &::placeholder
     padding-left: 2px
     color: currentColor
     opacity: 0
-    transition: opacity 0.66s ease-in
+    transition: opacity 0.5s ease-in
   &:disabled
     pointer-events: none
   &[data-active="true"]
-    max-width: 300px
+    max-width: 333px
     &::placeholder
       opacity: 0.66
-    @media screen and (max-width: 850px) 
-      width: 100%
 
 .button
   all: unset
