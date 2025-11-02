@@ -7,6 +7,7 @@ export default function Newsletter() {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [isActive, setIsActive] = useState(false);
+  const [inputValue, setInputValue] = useState('');
 
   // Reset to initial state after 5 seconds when message appears
   useEffect(() => {
@@ -19,6 +20,17 @@ export default function Newsletter() {
       return () => clearTimeout(timer);
     }
   }, [message]);
+
+  // Reset to initial state if active but no input for 5 seconds
+  useEffect(() => {
+    if (isActive && !inputValue && !message) {
+      const timer = setTimeout(() => {
+        setIsActive(false);
+      }, 10000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isActive, inputValue, message]);
 
   const subscribeUser = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,8 +59,9 @@ export default function Newsletter() {
 
     setMessage('Thank you!');
     setIsLoading(false);
-    // Reset form
+    // Reset form and input value
     e.currentTarget.reset();
+    setInputValue('');
     return data;
   };
 
@@ -72,6 +85,8 @@ export default function Newsletter() {
               type="email"
               placeholder="Enter your email"
               className={styles.input}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
               required
               disabled={isLoading}
             />
