@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useState, useEffect } from 'react';
+import { FormEvent, useState, useEffect, useRef } from 'react';
 import styles from './Newsletter.module.sass';
 
 export default function Newsletter() {
@@ -8,6 +8,14 @@ export default function Newsletter() {
   const [message, setMessage] = useState('');
   const [isActive, setIsActive] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Focus input when active becomes true
+  useEffect(() => {
+    if (isActive && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isActive]);
 
   // Reset to initial state after 5 seconds when message appears
   useEffect(() => {
@@ -81,6 +89,7 @@ export default function Newsletter() {
         <form onSubmit={subscribeUser} className={styles.form}>
           <div className={styles.inputWrapper}>
             <input
+              ref={inputRef}
               name="email"
               type="email"
               placeholder="Enter your email"
