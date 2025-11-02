@@ -12,12 +12,12 @@ export async function POST(request: NextRequest) {
   const { email } = body;
 
   if (!email) {
-    return NextResponse.json({ error: 'Email is required.' }, { status: 400 });
+    return NextResponse.json({ error: 'Email is required' }, { status: 400 });
   }
 
   const audienceId = process.env.MAILCHIMP_AUDIENCE_ID;
   if (!audienceId) {
-    return NextResponse.json({ error: 'Audience required.' }, { status: 400 });
+    return NextResponse.json({ error: 'Audience required' }, { status: 400 });
   }
 
   try {
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
 
     if (isEmailExisting) {
       return NextResponse.json(
-        { error: 'Email already subscribed.' },
+        { error: "You're already subscribed!" },
         { status: 400 }
       );
     }
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
     }
     console.error(errorMessage);
     return NextResponse.json(
-      { error: 'Something went wrong.' },
+      { error: 'Error, please try again' },
       { status: 500 }
     );
   }

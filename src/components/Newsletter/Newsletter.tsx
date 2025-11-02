@@ -44,6 +44,8 @@ export default function Newsletter() {
     e.preventDefault();
     setIsLoading(true);
     setMessage('');
+    setIsActive(false);
+    setInputValue('');
 
     const formData = new FormData(e.currentTarget);
     const email = formData.get('email');
@@ -64,6 +66,7 @@ export default function Newsletter() {
       setMessage(error);
       e.currentTarget.reset();
       setInputValue('');
+      setIsActive(false);
       return;
     }
 
@@ -72,6 +75,7 @@ export default function Newsletter() {
     // Reset form and input value
     e.currentTarget.reset();
     setInputValue('');
+    setIsActive(false);
     return data;
   };
 
@@ -113,7 +117,11 @@ export default function Newsletter() {
           className={styles.button}
           disabled={isLoading}
         >
-          {!isActive ? 'Newsletter' : isLoading ? 'Submitting' : 'Submit'}
+          {!isActive && !isLoading
+            ? 'Newsletter'
+            : isLoading
+            ? 'Submitting..'
+            : 'Submit'}
         </button>
       )}
     </div>
