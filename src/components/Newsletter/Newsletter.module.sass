@@ -1,10 +1,12 @@
 .newsletter
-  padding-top: 1px
+  // padding-top: 1px
+  display: flex
+  gap: 2px
 
 .form
   display: flex
-  gap: 2px
-  width: 0px
+  // gap: 2px
+  // width: 0px
   transition: width 1s ease-out
   &[data-active="true"]
     width: auto
@@ -24,9 +26,22 @@
   all: unset
   outline: none
   padding-bottom: 2px
+  width: 100%
+  max-width: 0
+  transition: max-width 0.66s ease-out
   &::placeholder
+    padding-left: 2px
     color: currentColor
-    opacity: 0.5
+    opacity: 0
+    transition: opacity 0.66s ease-in
+  &:disabled
+    pointer-events: none
+  &[data-active="true"]
+    max-width: 300px
+    &::placeholder
+      opacity: 0.66
+    @media screen and (max-width: 850px) 
+      width: 100%
 
 .button
   all: unset

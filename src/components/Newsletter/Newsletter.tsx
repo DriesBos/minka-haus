@@ -29,7 +29,7 @@ export default function Newsletter() {
     }
   }, [message]);
 
-  // Reset to initial state if active but no input for 5 seconds
+  // Reset to initial state if active and no message for 5 seconds
   useEffect(() => {
     if (isActive && !inputValue && !message) {
       const timer = setTimeout(() => {
@@ -62,6 +62,8 @@ export default function Newsletter() {
     if (error) {
       setIsLoading(false);
       setMessage(error);
+      e.currentTarget.reset();
+      setInputValue('');
       return;
     }
 
@@ -73,37 +75,46 @@ export default function Newsletter() {
     return data;
   };
 
+  const handleButtonClick = () => {
+    if (!isActive) {
+      setIsActive(true);
+    }
+  };
+
   return (
     <div className={styles.newsletter}>
-      {/* Initially show Newsletter button */}
-      {!isActive ? (
-        <button
-          onClick={() => setIsActive(true)}
-          className={styles.activateButton}
-        >
-          Newsletter
-        </button>
-      ) : message ? (
+      <form
+        id="newsletter-form"
+        onSubmit={subscribeUser}
+        className={styles.form}
+      >
+        <div className={styles.inputWrapper}>
+          <input
+            ref={inputRef}
+            name="email"
+            type="email"
+            placeholder="Enter your email"
+            className={styles.input}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            required
+            disabled={isLoading}
+            data-active={isActive}
+          />
+        </div>
+      </form>
+      {message ? (
         <p className={styles.message}>{message}</p>
       ) : (
-        <form onSubmit={subscribeUser} className={styles.form}>
-          <div className={styles.inputWrapper}>
-            <input
-              ref={inputRef}
-              name="email"
-              type="email"
-              placeholder="Enter your email"
-              className={styles.input}
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              required
-              disabled={isLoading}
-            />
-          </div>
-          <button type="submit" className={styles.button} disabled={isLoading}>
-            {isLoading ? 'Submitting' : 'Submit'}
-          </button>
-        </form>
+        <button
+          onClick={handleButtonClick}
+          type={isActive ? 'submit' : 'button'}
+          form={isActive ? 'newsletter-form' : undefined}
+          className={styles.button}
+          disabled={isLoading}
+        >
+          {!isActive ? 'Newsletter' : isLoading ? 'Submitting' : 'Submit'}
+        </button>
       )}
     </div>
   );
