@@ -66,7 +66,7 @@ export default function TheSlider({
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
               priority
-              quality={90}
+              quality={60}
               className={styles.image}
               style={{ objectFit: 'cover' }}
             />
