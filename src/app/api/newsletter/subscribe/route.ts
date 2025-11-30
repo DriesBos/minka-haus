@@ -42,6 +42,7 @@ export async function POST(request: NextRequest) {
     const data = await mailchimp.lists.addListMember(audienceId, {
       email_address: email,
       status: 'subscribed',
+      tags: ['MinkaHaus'],
     });
 
     return NextResponse.json({ data });
