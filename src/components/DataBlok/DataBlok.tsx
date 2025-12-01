@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './DataBlok.module.sass';
-import { useThemeStore } from '@/store/useThemeStore';
+import { useTheme } from '@/hooks/useTheme';
 import { useEffect, useState } from 'react';
 
 interface DataBlokProps {
@@ -13,7 +13,7 @@ interface DataBlokProps {
 
 export default function DataBlok(props: DataBlokProps) {
   const { label, value, loading = false, active = false } = props;
-  const theme = useThemeStore((state) => state.theme);
+  const theme = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

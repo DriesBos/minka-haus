@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './TheSlider.module.sass';
-import { useThemeStore } from '@/store/useThemeStore';
+import { useTheme } from '@/hooks/useTheme';
 import { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -24,7 +24,7 @@ export default function TheSlider({
   landscape_image,
   onEnter,
 }: TheSliderProps) {
-  const theme = useThemeStore((state) => state.theme);
+  const theme = useTheme();
   const [mounted, setMounted] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);

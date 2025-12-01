@@ -10,7 +10,7 @@ import WeatherBlok from '@/components/DataBlok/WeatherBlok';
 import SoundPlayer from '@/components/SoundPlayer/SoundPlayer';
 import TheHeader from '@/components/TheHeader/TheHeader';
 import TheSlider from '@/components/TheSlider/TheSlider';
-import { useThemeStore } from '@/store/useThemeStore';
+import { useTheme } from '@/hooks/useTheme';
 import { useEnteredStore } from '@/store/useEnteredStore';
 import TheFooter from '@/components/TheFooter/TheFooter';
 
@@ -36,14 +36,14 @@ interface PageHomeProps {
 }
 
 export default function PageHome({ blok }: PageHomeProps) {
-  const isProduction = process.env.NODE_ENV === 'development';
+  const isProduction = process.env.NODE_ENV === 'production';
   // Production env always activates intro page
   const hasEntered = useEnteredStore((state) => state.hasEntered);
   const setHasEntered = useEnteredStore((state) => state.setHasEntered);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const middleBlokRef = React.useRef<HTMLDivElement>(null);
   const [soundPlaying, setSoundPlaying] = React.useState(true);
-  const theme = useThemeStore((state) => state.theme);
+  const theme = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -152,7 +152,7 @@ export default function PageHome({ blok }: PageHomeProps) {
     <div
       className={styles.pageHome}
       data-entered={hasEntered}
-      data-theme={mounted ? theme : 'light'}
+      data-theme={theme}
       ref={containerRef}
     >
       <div className={styles.topScrollWrapper}>
@@ -160,7 +160,7 @@ export default function PageHome({ blok }: PageHomeProps) {
           ref={middleBlokRef}
           className={`${styles.middleBlokAnimation} initSequence`}
           data-active={hasEntered}
-          data-theme={mounted ? theme : 'light'}
+          data-theme={theme}
         />
         <TheHeader
           active={hasEntered}
@@ -191,7 +191,7 @@ export default function PageHome({ blok }: PageHomeProps) {
           onActive={setSoundPlaying}
         />
       </div>
-      <TheFooter theme={mounted ? theme : 'light'} active={hasEntered} />
+      <TheFooter theme={theme} active={hasEntered} />
     </div>
   );
 }

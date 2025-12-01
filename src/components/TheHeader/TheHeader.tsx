@@ -7,7 +7,7 @@ import { useGSAP } from '@gsap/react';
 import { TextPlugin } from 'gsap/TextPlugin';
 import IconCircle from '../icons/IconCircle';
 import IconPlay from '../icons/IconPlay';
-import { useThemeStore } from '@/store/useThemeStore';
+import { useThemeActions } from '@/hooks/useTheme';
 import IconPause from '../icons/IconPause';
 
 // Register GSAP plugins
@@ -27,7 +27,7 @@ export default function TheHeader({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const typingTextRef = React.useRef<HTMLParagraphElement>(null);
   const [isJapanese, setIsJapanese] = React.useState(false);
-  const toggleTheme = useThemeStore((state) => state.toggleTheme);
+  const { toggleTheme } = useThemeActions();
 
   const fullText =
     'Minkahaus is a renovation project on mountain and forest land north of Kyoto. Building a space for research, cultural exchange and stays that explore mingei, Japanese craft.';

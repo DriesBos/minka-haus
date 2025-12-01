@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useThemeStore } from '@/store/useThemeStore';
+import { useTheme } from '@/hooks/useTheme';
 import { useEnteredStore } from '@/store/useEnteredStore';
 
 export default function ThemeColorSwitcher() {
-  const theme = useThemeStore((state) => state.theme);
+  const theme = useTheme();
   const hasEntered = useEnteredStore((state) => state.hasEntered);
   const [delayedEntered, setDelayedEntered] = useState(false);
 

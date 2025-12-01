@@ -3,23 +3,19 @@ import { create } from 'zustand';
 type Theme = 'light' | 'dark';
 
 interface ThemeStore {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
+  userTheme: Theme | null; // null means "use system theme"
+  setUserTheme: (theme: Theme | null) => void;
   toggleTheme: () => void;
 }
 
-// Initialize with system preference if available, otherwise default to light
-const getInitialTheme = (): Theme => {
-  if (typeof window !== 'undefined') {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    return mediaQuery.matches ? 'dark' : 'light';
-  }
-  return 'light';
-};
-
-export const useThemeStore = create<ThemeStore>((set) => ({
-  theme: getInitialTheme(),
-  setTheme: (theme) => set({ theme }),
-  toggleTheme: () =>
-    set((state) => ({ theme: state.theme === 'light' ? 'dark' : 'light' })),
+export const useThemeStore = create<ThemeStore>((set, get) => ({
+  userTheme: null, // Default to system theme
+  setUserTheme: (theme) => set({ userTheme: theme }),
+  toggleTheme: () => {
+    const current = get().userTheme;
+    // If user has set a theme, toggle it
+    // If null (system), we need the current system theme to toggle from
+    // This will be handled in the component
+    set({ userTheme: current === 'light' ? 'dark' : 'light' });
+  },
 }));
