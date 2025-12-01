@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useThemeStore } from '@/store/useThemeStore';
+import { useTheme } from '@/hooks/useTheme';
 
 export default function FaviconSwitcher() {
-  const theme = useThemeStore((state) => state.theme);
+  const theme = useTheme();
 
   useEffect(() => {
     // Find all favicon links
