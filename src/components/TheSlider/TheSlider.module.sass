@@ -2,7 +2,6 @@
 
 .theSlider
   position: absolute
-  left: 50%
   bottom: 12.375vmin
   max-width: 100%
   width: 24.75vmin
@@ -29,6 +28,7 @@
   cursor: pointer
   padding: 1rem 2rem
   transition: opacity var(--transition-exit-text), transform var(--transition-exit-text)
+  user-select: none
   &[data-active="true"]
     opacity: 0 !important
 
