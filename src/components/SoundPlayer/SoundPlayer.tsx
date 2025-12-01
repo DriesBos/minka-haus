@@ -46,8 +46,22 @@ export default function SoundPlayer({
     if (active) {
       // Start at volume 0 and play immediately
       audio.volume = 0;
-      audio.play();
-      setIsPlaying(true);
+
+      // Wrap play() in try-catch to handle autoplay restrictions
+      const playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch((error) => {
+            // Autoplay was prevented - this is expected behavior
+            // User will need to interact with the page first
+            console.log('Autoplay prevented:', error.message);
+            setIsPlaying(false);
+          });
+      }
 
       // Fade in over 12 seconds
       const fadeDuration = 12000;
