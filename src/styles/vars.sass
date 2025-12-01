@@ -24,6 +24,13 @@ $break-desktop: 1370px
   --theme-dark-type: #D1D2D3
   --theme-dark-type-secondary: #9B9B9B
 
+  // Active theme colors (default to light)
+  --theme-bg: var(--theme-light-bg)
+  --theme-bg-page: var(--theme-light-bg-page)
+  --theme-bg-slider: var(--theme-light-bg-slider)
+  --theme-type: var(--theme-light-type)
+  --theme-type-secondary: var(--theme-light-type-secondary)
+
   // Spacing
   --spacing-sides: 11px
   --spacing-quarter: 0.25rem
@@ -48,3 +55,11 @@ $break-desktop: 1370px
   --transition-entered-image: 4s ease-out 2s
   --transition-entered-data: 3s ease-out 1.66s
   --transition-theme: 0.33s ease-out
+
+// Dark theme overrides (applied via html[data-theme="dark"])
+html[data-theme="dark"]
+  --theme-bg: var(--theme-dark-bg)
+  --theme-bg-page: var(--theme-dark-bg-page)
+  --theme-bg-slider: var(--theme-dark-bg-slider)
+  --theme-type: var(--theme-dark-type)
+  --theme-type-secondary: var(--theme-dark-type-secondary)

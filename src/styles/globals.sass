@@ -10,12 +10,8 @@ body
   // IE and Edge legacy
   -ms-overflow-style: none
   transition: background-color var(--transition-theme), color var(--transition-theme)
-  &[data-theme="light"]
-    color: var(--theme-light-type)
-    background-color: var(--theme-light-bg-page)
-  &[data-theme="dark"]
-    color: var(--theme-dark-type)
-    background-color: var(--theme-dark-bg-page)
+  color: var(--theme-type)
+  background-color: var(--theme-bg-page)
 
 main
   padding-top: env(safe-area-inset-top)

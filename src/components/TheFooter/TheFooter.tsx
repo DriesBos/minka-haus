@@ -13,10 +13,9 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface TheFooterProps {
   active?: boolean;
-  theme?: 'light' | 'dark';
 }
 
-export default function TheFooter({ active, theme }: TheFooterProps) {
+export default function TheFooter({ active }: TheFooterProps) {
   const containerRef = React.useRef<HTMLElement>(null);
 
   // Animate link items when active and footer scrolls into view
@@ -53,12 +52,7 @@ export default function TheFooter({ active, theme }: TheFooterProps) {
   );
 
   return (
-    <footer
-      ref={containerRef}
-      className={styles.footer}
-      data-active={active}
-      data-theme={theme}
-    >
+    <footer ref={containerRef} className={styles.footer} data-active={active}>
       <div className={styles.column}>
         <div className={`${styles.linkItem} footerSequence`}>
           <a

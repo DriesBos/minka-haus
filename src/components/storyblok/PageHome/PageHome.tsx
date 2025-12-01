@@ -10,7 +10,6 @@ import WeatherBlok from '@/components/DataBlok/WeatherBlok';
 import SoundPlayer from '@/components/SoundPlayer/SoundPlayer';
 import TheHeader from '@/components/TheHeader/TheHeader';
 import TheSlider from '@/components/TheSlider/TheSlider';
-import { useTheme } from '@/hooks/useTheme';
 import { useEnteredStore } from '@/store/useEnteredStore';
 import TheFooter from '@/components/TheFooter/TheFooter';
 
@@ -43,7 +42,6 @@ export default function PageHome({ blok }: PageHomeProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const middleBlokRef = React.useRef<HTMLDivElement>(null);
   const [soundPlaying, setSoundPlaying] = React.useState(true);
-  const theme = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -52,7 +50,7 @@ export default function PageHome({ blok }: PageHomeProps) {
     if (isProduction) {
       setHasEntered(false);
     } else {
-      setHasEntered(true);
+      setHasEntered(false);
     }
   }, [isProduction, setHasEntered]);
 
@@ -152,7 +150,6 @@ export default function PageHome({ blok }: PageHomeProps) {
     <div
       className={styles.pageHome}
       data-entered={hasEntered}
-      data-theme={theme}
       ref={containerRef}
     >
       <div className={styles.topScrollWrapper}>
@@ -160,7 +157,6 @@ export default function PageHome({ blok }: PageHomeProps) {
           ref={middleBlokRef}
           className={`${styles.middleBlokAnimation} initSequence`}
           data-active={hasEntered}
-          data-theme={theme}
         />
         <TheHeader
           active={hasEntered}
@@ -191,7 +187,7 @@ export default function PageHome({ blok }: PageHomeProps) {
           onActive={setSoundPlaying}
         />
       </div>
-      <TheFooter theme={theme} active={hasEntered} />
+      <TheFooter active={hasEntered} />
     </div>
   );
 }

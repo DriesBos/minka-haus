@@ -3,10 +3,7 @@
   width: 100%
   display: flex
   flex-direction: column
-  &[data-theme="dark"]
-    background-color: var(--theme-dark-bg)
-  &[data-theme="light"]
-    background-color: var(--theme-light-bg)
+  background-color: var(--theme-bg)
 
 .topScrollWrapper
   position: relative
@@ -22,14 +19,11 @@
   width: 49.5vmin
   height: 66vmin
   transition: background-color var(--transition-theme)
+  background-color: var(--theme-bg-page)
   @media screen and (max-width: 850px) 
     bottom: 12.5vw
     width: 75vw
     height: 66vh
-  &[data-theme="dark"]
-    background-color: var(--theme-dark-bg-page)
-  &[data-theme="light"]
-    background-color: var(--theme-light-bg-page)
 
 .theSliderWrapper
   position: relative

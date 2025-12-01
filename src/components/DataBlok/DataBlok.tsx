@@ -1,8 +1,6 @@
 'use client';
 
 import styles from './DataBlok.module.sass';
-import { useTheme } from '@/hooks/useTheme';
-import { useEffect, useState } from 'react';
 
 interface DataBlokProps {
   label: string;
@@ -13,12 +11,6 @@ interface DataBlokProps {
 
 export default function DataBlok(props: DataBlokProps) {
   const { label, value, loading = false, active = false } = props;
-  const theme = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Check if loading prop is explicitly passed (for dynamic data sources)
   const isDynamic = 'loading' in props;
@@ -29,7 +21,6 @@ export default function DataBlok(props: DataBlokProps) {
       data-loading={loading}
       data-active={active}
       data-dynamic={isDynamic}
-      data-theme={mounted ? theme : 'light'}
     >
       <div className={`${styles.icon} icon`}></div>
       <div className={styles.content}>

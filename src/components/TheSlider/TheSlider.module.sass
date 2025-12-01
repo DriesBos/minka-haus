@@ -6,15 +6,12 @@
   max-width: 100%
   width: 24.75vmin
   height: 33vmin
-  transition: background-color var(--transition-theme)
+  background-color: var(--theme-bg-slider)
+  // transition: background-color var(--transition-theme)
   @media screen and (max-width: 850px) 
     bottom: 25vw
     width: 50vw
     height: 33vh
-  &[data-theme="dark"]
-    background-color: var(--theme-dark-bg-slider)
-  &[data-theme="light"]
-    background-color: var(--theme-light-bg-slider)
 
 .enterBtn
   position: absolute

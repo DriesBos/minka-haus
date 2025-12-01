@@ -11,8 +11,8 @@ export default function ThemeProvider({
   const theme = useTheme();
 
   useEffect(() => {
-    // Update the body data-theme attribute when theme changes
-    document.body.setAttribute('data-theme', theme);
+    // Update the html data-theme attribute when theme changes
+    document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
   return <>{children}</>;

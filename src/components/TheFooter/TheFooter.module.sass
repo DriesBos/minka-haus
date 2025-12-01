@@ -5,12 +5,10 @@
   flex-direction: row
   justify-content: space-between
   opacity: 0
+  background-color: var(--theme-bg-page)
+  transition: background-color var(--transition-theme)
   @media screen and (max-width: 850px) 
     flex-direction: column
-  &[data-theme="dark"]
-    background-color: var(--theme-dark-bg-page)
-  &[data-theme="light"]
-    background-color: var(--theme-light-bg-page)
   &[data-active="true"]
     opacity: 1
 
