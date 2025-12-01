@@ -4,7 +4,6 @@
   position: absolute
   left: 50%
   bottom: 12.375vmin
-  transform: translateX(-50%) !important
   max-width: 100%
   width: 24.75vmin
   height: 33vmin
@@ -21,17 +20,17 @@
 .enterBtn
   position: absolute
   bottom: 10%
-  left: 50%
-  transform: translate(-50%, -50%)
+  left: 0
+  right: 0
+  margin: 0 auto
+  width: fit-content
   color: currentColor
   text-transform: uppercase
   cursor: pointer
   padding: 1rem 2rem
-  opacity: 1
   transition: opacity var(--transition-exit-text), transform var(--transition-exit-text)
   &[data-active="true"]
     opacity: 0 !important
-    transform: translate(-50%, calc(-50% + 0.5rem))
 
 .imageLandscape
   opacity: 0

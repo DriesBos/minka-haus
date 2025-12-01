@@ -36,7 +36,7 @@ interface PageHomeProps {
 }
 
 export default function PageHome({ blok }: PageHomeProps) {
-  const isProduction = process.env.NODE_ENV === 'production';
+  const isProduction = process.env.NODE_ENV === 'development';
   // Production env always activates intro page
   const hasEntered = useEnteredStore((state) => state.hasEntered);
   const setHasEntered = useEnteredStore((state) => state.setHasEntered);
@@ -57,30 +57,25 @@ export default function PageHome({ blok }: PageHomeProps) {
   }, [isProduction, setHasEntered]);
 
   // Initial fade-in animation for elements with 'initSequence' class
+  // Wait for mounted to ensure hydration is complete before animating
   useGSAP(
     () => {
-      if (containerRef.current) {
+      if (mounted && containerRef.current) {
         const initElements =
           containerRef.current.querySelectorAll('.initSequence');
 
-        // Set initial state (hidden)
-        gsap.set(initElements, {
-          opacity: 0,
-          scale: 0.9,
-        });
-
-        // Fade in sequentially with stagger
+        // Fade in sequentially with stagger (elements start hidden via CSS)
         gsap.to(initElements, {
           opacity: 1,
           scale: 1,
           duration: 0.66,
           stagger: 0.165,
           ease: 'power2.out',
-          delay: 0.165,
+          delay: 0.33,
         });
       }
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [mounted] }
   );
 
   // Prevent scrolling until hasEntered is true, then enable after 1 second
