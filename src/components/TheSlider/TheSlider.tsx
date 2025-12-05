@@ -5,6 +5,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
+import { useTheme } from '@/hooks/useTheme';
 
 // Register GSAP plugin
 gsap.registerPlugin(useGSAP);
@@ -15,16 +16,22 @@ interface TheSliderProps {
     filename: string;
     alt?: string;
   };
+  craft_image?: {
+    filename: string;
+    alt?: string;
+  };
   onEnter?: () => void;
 }
 
 export default function TheSlider({
   active = false,
   landscape_image,
+  craft_image,
   onEnter,
 }: TheSliderProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const theme = useTheme();
 
   // Animate TheSlider container when active becomes true
   useGSAP(
@@ -51,10 +58,32 @@ export default function TheSlider({
         data-active={active}
       >
         {landscape_image && (
-          <div className={styles.imageLandscape} data-active={active}>
+          <div
+            className={styles.imageLandscape}
+            data-active={active}
+            data-theme={theme}
+          >
             <Image
               src={landscape_image.filename}
               alt={landscape_image.alt || 'Minkahaus landscape image'}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+              priority
+              quality={60}
+              className={styles.image}
+              style={{ objectFit: 'cover' }}
+            />
+          </div>
+        )}
+        {craft_image && (
+          <div
+            className={styles.imageCraft}
+            data-active={active}
+            data-theme={theme}
+          >
+            <Image
+              src={craft_image.filename}
+              alt={craft_image.alt || 'Minkahaus craft image'}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
               priority
