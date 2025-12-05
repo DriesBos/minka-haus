@@ -140,6 +140,7 @@ export default function PageHome({ blok }: PageHomeProps) {
           stagger: 0.33,
           ease: 'power2.out',
           delay: 1,
+          color: 'var(--theme-dark-type)',
         });
       }
     },
