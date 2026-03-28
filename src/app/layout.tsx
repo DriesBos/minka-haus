@@ -10,8 +10,6 @@ import ThemeProvider from '@/providers/ThemeProvider';
 import FaviconSwitcher from '@/components/FaviconSwitcher';
 import ThemeColorSwitcher from '@/components/ThemeColorSwitcher';
 import ScrollToTop from '@/components/ScrollToTop';
-import type { Viewport } from 'next';
-import GrainyGradient from '@/components/GrainyGradient/GrainyGradient';
 
 const maru = localFont({
   src: [
@@ -60,17 +58,6 @@ export const metadata: Metadata = {
   title: 'Minka Haus',
   description:
     'Minkahaus is a renovation project on mountain and forest land north of Kyoto. Building a space for research, cultural exchange and stays that explore mingei, Japanese craft.',
-  appleWebApp: {
-    title: 'Minka Haus',
-    statusBarStyle: 'black-translucent',
-  },
-};
-
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 };
 
 export default function RootLayout({
@@ -92,13 +79,19 @@ export default function RootLayout({
             `,
           }}
         />
-        {/* prevent AI indexing - together with robots txt */}
-        <meta name="robots" content="noai, noimageai" />
-        {/* Viewport fit for notch displays */}
+        {/* Core crawl and install metadata */}
+        {/* Explicit web app metadata for mobile browsers */}
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
         />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+        <meta name="apple-mobile-web-app-title" content="Minka Haus" />
+        <meta name="HandheldFriendly" content="true" />
         {/* SVG favicon for modern browsers */}
         <link
           rel="icon"
@@ -144,14 +137,7 @@ export default function RootLayout({
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/favicon-light-96x96.png"
-          media="(prefers-color-scheme: light)"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/favicon-dark-96x96.png"
-          media="(prefers-color-scheme: dark)"
+          href="/apple-touch-icon.png"
         />
       </head>
       <body
