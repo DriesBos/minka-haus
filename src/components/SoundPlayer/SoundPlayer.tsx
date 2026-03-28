@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from 'react';
 import styles from './SoundPlayer.module.sass';
 
-const fadeDuration = 6000;
+const fadeDuration = 3000;
 const fadeSteps = 120;
 
 interface SoundPlayerProps {

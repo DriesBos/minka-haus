@@ -45,7 +45,7 @@ export default function PageHome({ blok }: PageHomeProps) {
   const setHasEntered = useEnteredStore((state) => state.setHasEntered);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const middleBlokRef = React.useRef<HTMLDivElement>(null);
-  const [soundPlaying, setSoundPlaying] = React.useState(false);
+  const [soundPlaying, setSoundPlaying] = React.useState(true);
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
