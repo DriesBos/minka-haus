@@ -37,13 +37,29 @@ export default function TheSlider({
   const sliderRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [shouldRenderVideo, setShouldRenderVideo] = useState(active);
+  const [videoVisible, setVideoVisible] = useState(false);
   const showVideo = true;
   // const theme = useTheme();
 
   useEffect(() => {
     if (active) {
       setShouldRenderVideo(true);
+      let firstFrame = 0;
+      let secondFrame = 0;
+
+      firstFrame = window.requestAnimationFrame(() => {
+        secondFrame = window.requestAnimationFrame(() => {
+          setVideoVisible(true);
+        });
+      });
+
+      return () => {
+        window.cancelAnimationFrame(firstFrame);
+        window.cancelAnimationFrame(secondFrame);
+      };
     }
+
+    setVideoVisible(false);
   }, [active]);
 
   // Animate TheSlider container when active becomes true
@@ -71,7 +87,7 @@ export default function TheSlider({
         data-active={active}
       >
         {showVideo && shouldRenderVideo && (
-          <div className={styles.videoContainer} data-active={active}>
+          <div className={styles.videoContainer} data-active={videoVisible}>
             <VideoPlayer active={active} autoplay={active} preload="metadata" />
           </div>
         )}
