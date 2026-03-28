@@ -1,3 +1,8 @@
+@use 'sass:math'
+
+@function randomDelay()
+  @return #{1 + math.div(math.random(1000), 1000)}s
+
 // Hide scrollbars globally across all browsers
 html
   // Firefox
@@ -44,7 +49,7 @@ img
     top: 15%
     left: 65%
     .icon
-      animation-delay: random(1000) / 1000 + 1 + s
+      animation-delay: randomDelay()
     @media screen and (max-width: 850px) 
       top: 15%
       left: 15%
@@ -52,12 +57,12 @@ img
     top: 42%
     right: 10%
     .icon
-      animation-delay: random(1000) / 1000 + 1 + s
+      animation-delay: randomDelay()
     @media screen and (max-width: 850px) 
       top: 50%
       right: 20%
     .icon
-      animation-delay: random(1000) / 1000 + 1 + s
+      animation-delay: randomDelay()
   &:nth-child(4) // HUMIDITY
     top: 30%
     right: 3%
@@ -65,7 +70,7 @@ img
       top: 60%
       right: 5%
     .icon
-      animation-delay: random(1000) / 1000 + 1 + s
+      animation-delay: randomDelay()
   &:nth-child(5) // CONDITIONS
     top: 80%
     left: 60%
@@ -73,7 +78,7 @@ img
       top: 24%
       left: 42%
     .icon
-      animation-delay: random(1000) / 1000 + 1 + s
+      animation-delay: randomDelay()
   &:nth-child(6) // TIME
     top: 65%
     left: 20%
@@ -81,9 +86,9 @@ img
       top: 85%
       left: 10%
     .icon
-      animation-delay: random(1000) / 1000 + 1 + s
+      animation-delay: randomDelay()
   &:nth-child(7) // TIME
     top: 60%
     right: 24%
     .icon
-      animation-delay: random(1000) / 1000 + 1 + s
+      animation-delay: randomDelay()
