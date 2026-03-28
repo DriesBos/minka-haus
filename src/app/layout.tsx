@@ -54,9 +54,9 @@ const soehne = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Minka Haus',
+  title: 'MinkaHaus',
   description:
-    'Minkahaus is a renovation project on mountain and forest land north of Kyoto. Building a space for research, cultural exchange and stays that explore mingei, Japanese craft.',
+    'MinkaHaus is a renovation project on mountain and forest land north of Kyoto. Building a space for research, cultural exchange and stays that explore mingei, Japanese craft.',
 };
 
 const faviconVersion =
@@ -100,7 +100,7 @@ export default function RootLayout({
           name="apple-mobile-web-app-status-bar-style"
           content="black-translucent"
         />
-        <meta name="apple-mobile-web-app-title" content="Minka Haus" />
+        <meta name="apple-mobile-web-app-title" content="MinkaHaus" />
         <meta name="HandheldFriendly" content="true" />
         {/* Light fallback for browsers that still probe /favicon.ico */}
         <link rel="shortcut icon" href={`/favicon.ico?v=${faviconVersion}`} />

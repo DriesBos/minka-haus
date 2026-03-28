@@ -3,10 +3,10 @@ import type { MetadataRoute } from 'next';
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: '/',
-    name: 'Minka Haus',
-    short_name: 'Minka Haus',
+    name: 'MinkaHaus',
+    short_name: 'MinkaHaus',
     description:
-      'Minkahaus is a renovation project on mountain and forest land north of Kyoto. Building a space for research, cultural exchange and stays that explore mingei, Japanese craft.',
+      'MinkaHaus is a renovation project on mountain and forest land north of Kyoto. Building a space for research, cultural exchange and stays that explore mingei, Japanese craft.',
     start_url: '/',
     scope: '/',
     display: 'standalone',
