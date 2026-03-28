@@ -3,6 +3,9 @@
 import { useRef, useState, useEffect } from 'react';
 import styles from './SoundPlayer.module.sass';
 
+const fadeDuration = 6000;
+const fadeSteps = 120;
+
 interface SoundPlayerProps {
   audioSrc: string;
   active?: boolean;
@@ -15,10 +18,52 @@ export default function SoundPlayer({
   onActive,
 }: SoundPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const fadeIntervalRef = useRef<number | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(0.7);
+  const [windowIsActive, setWindowIsActive] = useState(true);
+
+  const clearFadeInterval = () => {
+    if (fadeIntervalRef.current !== null) {
+      window.clearInterval(fadeIntervalRef.current);
+      fadeIntervalRef.current = null;
+    }
+  };
+
+  const fadeVolume = (
+    audio: HTMLAudioElement,
+    targetVolume: number,
+    onComplete?: () => void
+  ) => {
+    clearFadeInterval();
+
+    const startVolume = audio.volume;
+    const volumeDelta = targetVolume - startVolume;
+
+    if (Math.abs(volumeDelta) < 0.001) {
+      audio.volume = targetVolume;
+      onComplete?.();
+      return;
+    }
+
+    const stepDuration = fadeDuration / fadeSteps;
+    let currentStep = 0;
+
+    fadeIntervalRef.current = window.setInterval(() => {
+      currentStep += 1;
+
+      const progress = Math.min(currentStep / fadeSteps, 1);
+      audio.volume = startVolume + volumeDelta * progress;
+
+      if (progress >= 1) {
+        audio.volume = targetVolume;
+        clearFadeInterval();
+        onComplete?.();
+      }
+    }, stepDuration);
+  };
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -26,76 +71,101 @@ export default function SoundPlayer({
 
     const updateTime = () => setCurrentTime(audio.currentTime);
     const updateDuration = () => setDuration(audio.duration);
+    const handleEnded = () => {
+      setIsPlaying(false);
+      onActive?.(false);
+    };
 
     audio.addEventListener('timeupdate', updateTime);
     audio.addEventListener('loadedmetadata', updateDuration);
-    audio.addEventListener('ended', () => setIsPlaying(false));
+    audio.addEventListener('ended', handleEnded);
 
     return () => {
+      clearFadeInterval();
       audio.removeEventListener('timeupdate', updateTime);
       audio.removeEventListener('loadedmetadata', updateDuration);
-      audio.removeEventListener('ended', () => setIsPlaying(false));
+      audio.removeEventListener('ended', handleEnded);
+    };
+  }, [onActive]);
+
+  useEffect(() => {
+    const updateWindowActivity = () => {
+      setWindowIsActive(!document.hidden && document.hasFocus());
+    };
+
+    updateWindowActivity();
+
+    window.addEventListener('focus', updateWindowActivity);
+    window.addEventListener('blur', updateWindowActivity);
+    document.addEventListener('visibilitychange', updateWindowActivity);
+
+    return () => {
+      window.removeEventListener('focus', updateWindowActivity);
+      window.removeEventListener('blur', updateWindowActivity);
+      document.removeEventListener('visibilitychange', updateWindowActivity);
     };
   }, []);
 
-  // Handle active prop to control playback with fade-in
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
     if (active) {
-      // Start at volume 0 and play immediately
-      audio.volume = 0;
+      const targetVolume = windowIsActive ? volume : 0;
+      const startPlayback = () => {
+        setIsPlaying(true);
+        fadeVolume(audio, targetVolume);
+      };
 
-      // Wrap play() in try-catch to handle autoplay restrictions
-      const playPromise = audio.play();
+      if (audio.paused) {
+        audio.volume = 0;
 
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-          })
-          .catch((error) => {
-            // Autoplay was prevented - this is expected behavior
-            // User will need to interact with the page first
-            console.log('Autoplay prevented:', error.message);
-            setIsPlaying(false);
-          });
-      }
+        const playPromise = audio.play();
 
-      // Fade in over 12 seconds
-      const fadeDuration = 12000;
-      const steps = 240; // 240 steps for smooth fade
-      const volumeIncrement = 1 / steps;
-      const stepDuration = fadeDuration / steps;
-      let currentStep = 0;
-
-      const fadeInterval = setInterval(() => {
-        currentStep++;
-        const newVolume = Math.min(currentStep * volumeIncrement, 1);
-        audio.volume = newVolume;
-        setVolume(newVolume);
-
-        if (currentStep >= steps) {
-          clearInterval(fadeInterval);
+        if (playPromise !== undefined) {
+          playPromise
+            .then(startPlayback)
+            .catch((error) => {
+              console.log('Autoplay prevented:', error.message);
+              setIsPlaying(false);
+              onActive?.(false);
+            });
+        } else {
+          startPlayback();
         }
-      }, stepDuration);
-
-      return () => clearInterval(fadeInterval);
+      } else {
+        startPlayback();
+      }
     } else {
+      clearFadeInterval();
       audio.pause();
+      audio.volume = 0;
       setIsPlaying(false);
     }
-  }, [active]);
+  }, [active, volume, windowIsActive]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio) return;
 
     if (isPlaying) {
+      clearFadeInterval();
       audio.pause();
+      audio.volume = 0;
+      onActive?.(false);
     } else {
-      audio.play();
+      audio.volume = 0;
+      audio
+        .play()
+        .then(() => {
+          fadeVolume(audio, windowIsActive ? volume : 0);
+        })
+        .catch((error) => {
+          console.log('Autoplay prevented:', error.message);
+          setIsPlaying(false);
+          onActive?.(false);
+        });
+      onActive?.(true);
     }
     setIsPlaying(!isPlaying);
   };
@@ -114,8 +184,11 @@ export default function SoundPlayer({
     if (!audio) return;
 
     const vol = parseFloat(e.target.value);
-    audio.volume = vol;
     setVolume(vol);
+
+    if (active && windowIsActive) {
+      fadeVolume(audio, vol);
+    }
   };
 
   return (
