@@ -39,24 +39,19 @@ interface PageHomeProps {
 }
 
 export default function PageHome({ blok }: PageHomeProps) {
-  const isProduction = process.env.NODE_ENV === 'production';
-  // Production env always activates intro page
+  // Set to `true` or `false` to force a mode manually. Leave as `null` to follow NODE_ENV.
+  const developMode = false;
   const hasEntered = useEnteredStore((state) => state.hasEntered);
   const setHasEntered = useEnteredStore((state) => state.setHasEntered);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const middleBlokRef = React.useRef<HTMLDivElement>(null);
-  const [soundPlaying, setSoundPlaying] = React.useState(true);
+  const [soundPlaying, setSoundPlaying] = React.useState(!developMode);
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
     setMounted(true);
-    // Initialize hasEntered based on production env
-    if (isProduction) {
-      setHasEntered(false);
-    } else {
-      setHasEntered(false);
-    }
-  }, [isProduction, setHasEntered]);
+    setHasEntered(developMode);
+  }, [developMode, setHasEntered]);
 
   // Initial fade-in animation for elements with 'initSequence' class
   // Wait for mounted to ensure hydration is complete before animating
@@ -65,6 +60,15 @@ export default function PageHome({ blok }: PageHomeProps) {
       if (mounted && containerRef.current) {
         const initElements =
           containerRef.current.querySelectorAll('.initSequence');
+
+        if (developMode) {
+          gsap.set(initElements, {
+            opacity: 1,
+            scale: 1,
+          });
+
+          return;
+        }
 
         // Fade in sequentially with stagger (elements start hidden via CSS)
         gsap.to(initElements, {
@@ -77,7 +81,7 @@ export default function PageHome({ blok }: PageHomeProps) {
         });
       }
     },
-    { scope: containerRef, dependencies: [mounted] }
+    { scope: containerRef, dependencies: [developMode, mounted] }
   );
 
   // Prevent scrolling until hasEntered is true, then enable after 1 second
@@ -162,6 +166,7 @@ export default function PageHome({ blok }: PageHomeProps) {
           ref={middleBlokRef}
           className={`${styles.middleBlokAnimation} initSequence`}
           data-active={hasEntered}
+          data-developmode={developMode}
         />
         <TheHeader
           active={hasEntered}

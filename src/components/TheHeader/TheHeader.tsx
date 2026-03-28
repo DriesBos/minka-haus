@@ -9,6 +9,7 @@ import IconCircle from '../icons/IconCircle';
 import IconPlay from '../icons/IconPlay';
 import { useThemeActions } from '@/hooks/useTheme';
 import IconPause from '../icons/IconPause';
+import GrainyGradient from '../GrainyGradient/GrainyGradient';
 
 // Register GSAP plugins
 gsap.registerPlugin(useGSAP, TextPlugin);
@@ -133,6 +134,7 @@ export default function TheHeader({
           <IconCircle className={styles.icon} />
         </div>
       </div>
+      {/* <GrainyGradient /> */}
     </header>
   );
 }

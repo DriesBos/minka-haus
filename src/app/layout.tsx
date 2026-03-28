@@ -11,6 +11,7 @@ import FaviconSwitcher from '@/components/FaviconSwitcher';
 import ThemeColorSwitcher from '@/components/ThemeColorSwitcher';
 import ScrollToTop from '@/components/ScrollToTop';
 import type { Viewport } from 'next';
+import GrainyGradient from '@/components/GrainyGradient/GrainyGradient';
 
 const maru = localFont({
   src: [

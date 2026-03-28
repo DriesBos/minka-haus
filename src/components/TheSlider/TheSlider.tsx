@@ -4,8 +4,10 @@ import styles from './TheSlider.module.sass';
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import Image from 'next/image';
-import { useTheme } from '@/hooks/useTheme';
+import VideoPlayer from '../VideoPlayer/VideoPlayer';
+// import Image from 'next/image';
+// import { useTheme } from '@/hooks/useTheme';
+import GrainyGradient from '../GrainyGradient/GrainyGradient';
 
 // Register GSAP plugin
 gsap.registerPlugin(useGSAP);
@@ -31,7 +33,8 @@ export default function TheSlider({
 }: TheSliderProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const theme = useTheme();
+  const showVideo = true;
+  // const theme = useTheme();
 
   // Animate TheSlider container when active becomes true
   useGSAP(
@@ -57,7 +60,12 @@ export default function TheSlider({
         className={`${styles.theSlider} theSlider initSequence`}
         data-active={active}
       >
-        {landscape_image && (
+        {showVideo && (
+          <div className={styles.videoContainer} data-active={active}>
+            <VideoPlayer />
+          </div>
+        )}
+         {/* {landscape_image && (
           <div
             className={styles.imageLandscape}
             data-active={active}
@@ -92,15 +100,17 @@ export default function TheSlider({
               style={{ objectFit: 'cover' }}
             />
           </div>
-        )}
-        <div
+        )} */}
+      <div
           className={`${styles.enterBtn} initSequence`}
           onClick={onEnter}
           data-active={active}
         >
           Enter
         </div>
+         {/* <GrainyGradient className={styles.grainyGradient}/> */}
       </div>
+      {/* <GrainyGradient /> */}
     </div>
   );
 }

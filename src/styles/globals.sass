@@ -2,8 +2,11 @@
 html
   // Firefox
   scrollbar-width: none
+  overscroll-behavior: none
   
 body
+  position: relative
+  overscroll-behavior: none
   // Webkit browsers (Chrome, Safari, Edge)
   &::-webkit-scrollbar
     display: none
@@ -29,6 +32,9 @@ img
   left: 0
   right: 0
   margin: 0 auto
+  &[data-developmode="true"] 
+    opacity: 1
+    scale: 1
 
 .dataBlok
   &:nth-child(1)
