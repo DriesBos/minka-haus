@@ -4,7 +4,6 @@ import '@/styles/reset.css';
 import '@/styles/vars.sass';
 import '@/styles/typography.sass';
 import '@/styles/globals.sass';
-import StoryblokProvider from '@/providers/StoryblokProvider';
 import BackgroundStoreProvider from '@/providers/BackgroundStoreProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
 import FaviconSwitcher from '@/components/FaviconSwitcher';
@@ -161,9 +160,7 @@ export default function RootLayout({
           <FaviconSwitcher />
           <ThemeColorSwitcher />
           <BackgroundStoreProvider>
-            <StoryblokProvider>
-              <main>{children}</main>
-            </StoryblokProvider>
+            <main>{children}</main>
           </BackgroundStoreProvider>
         </ThemeProvider>
       </body>

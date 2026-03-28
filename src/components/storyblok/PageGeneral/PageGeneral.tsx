@@ -1,4 +1,4 @@
-import { StoryblokComponent } from '@storyblok/react';
+import { StoryblokServerComponent } from '@storyblok/react/rsc';
 
 interface StoryblokBlok {
   _uid: string;
@@ -18,7 +18,7 @@ export default function Page({ blok }: PageProps) {
     <main>
       <h1>PAGE GENERAL</h1>
       {blok.body?.map((nestedBlok: StoryblokBlok) => (
-        <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+        <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
       ))}
     </main>
   );

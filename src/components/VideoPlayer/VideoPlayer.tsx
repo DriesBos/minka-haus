@@ -75,7 +75,16 @@ export default function VideoPlayer({
   useEffect(() => {
     const videoElement = videoRef.current;
 
-    if (!videoElement || !autoplay || !active) {
+    if (!videoElement) {
+      return;
+    }
+
+    if (!active) {
+      videoElement.pause();
+      return;
+    }
+
+    if (!autoplay) {
       return;
     }
 
@@ -97,13 +106,13 @@ export default function VideoPlayer({
       ref={videoRef}
       playbackId={playbackId}
       streamType="on-demand"
-      autoPlay={autoplay}
+      autoPlay={autoplay && active}
       muted={muted}
       loop={loop}
       playsInline
       controls={false}
       poster={resolvedPoster}
-      preload="auto"
+      preload={active ? 'metadata' : 'none'}
       style={{
         display: 'block',
         width: '100%',

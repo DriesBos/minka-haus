@@ -1,13 +1,16 @@
 'use client';
 
 import styles from './TheSlider.module.sass';
-import { useRef } from 'react';
+import dynamic from 'next/dynamic';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import VideoPlayer from '../VideoPlayer/VideoPlayer';
 // import Image from 'next/image';
 // import { useTheme } from '@/hooks/useTheme';
-import GrainyGradient from '../GrainyGradient/GrainyGradient';
+
+const VideoPlayer = dynamic(() => import('../VideoPlayer/VideoPlayer'), {
+  ssr: false,
+});
 
 // Register GSAP plugin
 gsap.registerPlugin(useGSAP);
@@ -33,8 +36,15 @@ export default function TheSlider({
 }: TheSliderProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [shouldRenderVideo, setShouldRenderVideo] = useState(active);
   const showVideo = true;
   // const theme = useTheme();
+
+  useEffect(() => {
+    if (active) {
+      setShouldRenderVideo(true);
+    }
+  }, [active]);
 
   // Animate TheSlider container when active becomes true
   useGSAP(
@@ -60,9 +70,9 @@ export default function TheSlider({
         className={`${styles.theSlider} theSlider initSequence`}
         data-active={active}
       >
-        {showVideo && (
+        {showVideo && shouldRenderVideo && (
           <div className={styles.videoContainer} data-active={active}>
-            <VideoPlayer active={active} />
+            <VideoPlayer active={active} autoplay={active} preload="metadata" />
           </div>
         )}
          {/* {landscape_image && (

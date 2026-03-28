@@ -1,5 +1,6 @@
+import '@/lib/storyblok';
 import { fetchStory } from '@/utils/fetchStory';
-import ClientStoryRenderer from '@/components/ClientStoryRenderer';
+import { StoryblokServerStory } from '@storyblok/react/rsc';
 import { notFound } from 'next/navigation';
 
 export default async function Page({ params }) {
@@ -28,7 +29,7 @@ export default async function Page({ params }) {
       notFound();
     }
 
-    return <ClientStoryRenderer story={data.story} />;
+    return <StoryblokServerStory story={data.story} />;
   } catch (error) {
     // Only log non-404 errors
     if (error.digest !== 'NEXT_HTTP_ERROR_FALLBACK;404') {
