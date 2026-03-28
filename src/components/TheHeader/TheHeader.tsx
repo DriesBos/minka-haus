@@ -20,6 +20,12 @@ interface TheHeaderProps {
   onToggleSound?: () => void;
 }
 
+interface ScrambleController {
+  setHovered: (hovered: boolean) => void;
+  start: () => void;
+  stop: () => void;
+}
+
 export default function TheHeader({
   active,
   soundPlaying = false,
@@ -27,6 +33,10 @@ export default function TheHeader({
 }: TheHeaderProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const typingTextRef = React.useRef<HTMLParagraphElement>(null);
+  const minkaTextRef = React.useRef<HTMLSpanElement>(null);
+  const hausTextRef = React.useRef<HTMLSpanElement>(null);
+  const minkaControllerRef = React.useRef<ScrambleController | null>(null);
+  const hausControllerRef = React.useRef<ScrambleController | null>(null);
   const [isJapanese, setIsJapanese] = React.useState(false);
   const { toggleTheme } = useThemeActions();
 
@@ -38,6 +48,185 @@ export default function TheHeader({
     const userLanguage = navigator.language || navigator.languages?.[0];
     setIsJapanese(userLanguage?.toLowerCase().startsWith('ja'));
   }, []);
+
+  React.useEffect(() => {
+    const latinChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const japaneseChars = 'アイウエオカキクケコミサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワン';
+    const scrambleStepDuration = 30;
+    const scrambleIterations = 8;
+    const englishVisibleDuration = 10000;
+    const japaneseVisibleDuration = 5000;
+
+    const createScrambleLoop = (
+      element: HTMLSpanElement | null,
+      englishText: string,
+      japaneseText: string,
+      initialDelay: number
+    ): ScrambleController | null => {
+      if (!element) {
+        return null;
+      }
+
+      let timeoutId: number | null = null;
+      let intervalId: number | null = null;
+      let currentLanguage: 'english' | 'japanese' = 'english';
+      let hovered = false;
+
+      const clearTimers = () => {
+        if (timeoutId !== null) {
+          window.clearTimeout(timeoutId);
+          timeoutId = null;
+        }
+
+        if (intervalId !== null) {
+          window.clearInterval(intervalId);
+          intervalId = null;
+        }
+      };
+
+      const schedule = (callback: () => void, delay: number) => {
+        timeoutId = window.setTimeout(() => {
+          timeoutId = null;
+          callback();
+        }, delay);
+      };
+
+      const scheduleNext = (language: 'english' | 'japanese') => {
+        if (hovered) {
+          return;
+        }
+
+        const delay =
+          language === 'english'
+            ? englishVisibleDuration
+            : japaneseVisibleDuration;
+        const nextLanguage = language === 'english' ? 'japanese' : 'english';
+
+        schedule(() => {
+          scrambleTo(nextLanguage);
+        }, delay);
+      };
+
+      const scrambleTo = (targetLanguage: 'english' | 'japanese') => {
+        const targetText =
+          targetLanguage === 'japanese' ? japaneseText : englishText;
+        const chars = targetLanguage === 'japanese' ? japaneseChars : latinChars;
+
+        clearTimers();
+
+        if (currentLanguage === targetLanguage) {
+          element.textContent = targetText;
+          scheduleNext(targetLanguage);
+          return;
+        }
+
+        let iteration = 0;
+
+        intervalId = window.setInterval(() => {
+          element.textContent = targetText
+            .split('')
+            .map((char, index) => {
+              if (char === ' ') return ' ';
+              if (index < (iteration / scrambleIterations) * targetText.length) {
+                return targetText[index];
+              }
+
+              return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join('');
+
+          iteration += 1;
+
+          if (iteration > targetText.length * scrambleIterations) {
+            if (intervalId !== null) {
+              window.clearInterval(intervalId);
+              intervalId = null;
+            }
+
+            element.textContent = targetText;
+            currentLanguage = targetLanguage;
+            scheduleNext(targetLanguage);
+          }
+        }, scrambleStepDuration);
+      };
+
+      return {
+        start: () => {
+          hovered = false;
+          clearTimers();
+          currentLanguage = 'english';
+          element.textContent = englishText;
+          schedule(() => {
+            scrambleTo('japanese');
+          }, initialDelay);
+        },
+        setHovered: (nextHovered: boolean) => {
+          hovered = nextHovered;
+          clearTimers();
+
+          if (hovered) {
+            scrambleTo('japanese');
+            return;
+          }
+
+          if (currentLanguage === 'english') {
+            element.textContent = englishText;
+            scheduleNext('english');
+            return;
+          }
+
+          scrambleTo('english');
+        },
+        stop: () => {
+          hovered = false;
+          clearTimers();
+          currentLanguage = 'english';
+          element.textContent = englishText;
+        },
+      };
+    };
+
+    if (!active) {
+      minkaControllerRef.current?.stop();
+      hausControllerRef.current?.stop();
+      minkaControllerRef.current = null;
+      hausControllerRef.current = null;
+      return;
+    }
+
+    minkaControllerRef.current = createScrambleLoop(
+      minkaTextRef.current,
+      'Minka',
+      'ミンカ',
+      5000
+    );
+    hausControllerRef.current = createScrambleLoop(
+      hausTextRef.current,
+      'Haus',
+      'ハウス',
+      15000
+    );
+
+    minkaControllerRef.current?.start();
+    hausControllerRef.current?.start();
+
+    return () => {
+      minkaControllerRef.current?.stop();
+      hausControllerRef.current?.stop();
+      minkaControllerRef.current = null;
+      hausControllerRef.current = null;
+    };
+  }, [active]);
+
+  const handleLogoMouseEnter = () => {
+    minkaControllerRef.current?.setHovered(true);
+    hausControllerRef.current?.setHovered(true);
+  };
+
+  const handleLogoMouseLeave = () => {
+    minkaControllerRef.current?.setHovered(false);
+    hausControllerRef.current?.setHovered(false);
+  };
 
   // Animate Header Items sequentially when active becomes true
   useGSAP(
@@ -96,9 +285,21 @@ export default function TheHeader({
       <div
         className={`${styles.column}  ${styles.logo}`}
         data-japanese={isJapanese}
+        onMouseEnter={handleLogoMouseEnter}
+        onMouseLeave={handleLogoMouseLeave}
       >
-        <span className={`${styles.headerSequence} headerSequence`}>Minka</span>
-        <span className={`${styles.headerSequence} headerSequence`}>haus</span>
+        <span
+          ref={minkaTextRef}
+          className={`${styles.headerSequence} headerSequence`}
+        >
+          Minka
+        </span>
+        <span
+          ref={hausTextRef}
+          className={`${styles.headerSequence} headerSequence`}
+        >
+          Haus
+        </span>
       </div>
 
       <div className={`${styles.column} ${styles.description} headerSequence`}>
