@@ -94,58 +94,51 @@ export default function RootLayout({
         <meta name="HandheldFriendly" content="true" />
         {/* SVG favicon for modern browsers */}
         <link
+          id="favicon-svg"
           rel="icon"
           type="image/svg+xml"
           href="/favicon-light.svg"
-          media="(prefers-color-scheme: light)"
-        />
-        <link
-          rel="icon"
-          type="image/svg+xml"
-          href="/favicon-dark.svg"
-          media="(prefers-color-scheme: dark)"
         />
         {/* PNG favicon fallback for browsers without SVG favicon support */}
         <link
+          id="favicon-32"
           rel="icon"
           type="image/png"
           sizes="32x32"
           href="/favicon-light-32x32.png"
-          media="(prefers-color-scheme: light)"
         />
         <link
+          id="favicon-16"
           rel="icon"
           type="image/png"
           sizes="16x16"
           href="/favicon-light-16x16.png"
-          media="(prefers-color-scheme: light)"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-dark-32x32.png"
-          media="(prefers-color-scheme: dark)"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-dark-16x16.png"
-          media="(prefers-color-scheme: dark)"
         />
         {/* ICO fallback for older browsers */}
         <link
+          id="favicon-ico"
           rel="icon"
           type="image/x-icon"
           href="/favicon-light.ico"
-          media="(prefers-color-scheme: light)"
         />
-        <link
-          rel="icon"
-          type="image/x-icon"
-          href="/favicon-dark.ico"
-          media="(prefers-color-scheme: dark)"
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+                const prefix = theme === 'dark' ? 'favicon-dark' : 'favicon-light';
+                const svgIcon = document.getElementById('favicon-svg');
+                const icon32 = document.getElementById('favicon-32');
+                const icon16 = document.getElementById('favicon-16');
+                const icoIcon = document.getElementById('favicon-ico');
+
+                if (svgIcon) svgIcon.setAttribute('href', '/' + prefix + '.svg');
+                if (icon32) icon32.setAttribute('href', '/' + prefix + '-32x32.png');
+                if (icon16) icon16.setAttribute('href', '/' + prefix + '-16x16.png');
+                if (icoIcon) icoIcon.setAttribute('href', '/' + prefix + '.ico');
+              })();
+            `,
+          }}
         />
         {/* Apple touch icon */}
         <link

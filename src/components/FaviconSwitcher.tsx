@@ -7,40 +7,27 @@ export default function FaviconSwitcher() {
   const theme = useTheme();
 
   useEffect(() => {
-    // Remove only theme-switched favicon links. Keep touch/app icons intact.
-    const existingFavicons = document.querySelectorAll(
-      "link[rel='icon'], link[rel='shortcut icon']"
-    );
-
-    existingFavicons.forEach((link) => link.remove());
-
     const prefix = theme === 'dark' ? 'favicon-dark' : 'favicon-light';
+    const svgFavicon = document.getElementById('favicon-svg');
+    const pngFavicon = document.getElementById('favicon-32');
+    const smallPngFavicon = document.getElementById('favicon-16');
+    const icoFavicon = document.getElementById('favicon-ico');
 
-    const svgFavicon = document.createElement('link');
-    svgFavicon.rel = 'icon';
-    svgFavicon.type = 'image/svg+xml';
-    svgFavicon.href = `/${prefix}.svg`;
-    document.head.appendChild(svgFavicon);
+    if (svgFavicon) {
+      svgFavicon.setAttribute('href', `/${prefix}.svg`);
+    }
 
-    const pngFavicon = document.createElement('link');
-    pngFavicon.rel = 'icon';
-    pngFavicon.type = 'image/png';
-    pngFavicon.sizes = '32x32';
-    pngFavicon.href = `/${prefix}-32x32.png`;
-    document.head.appendChild(pngFavicon);
+    if (pngFavicon) {
+      pngFavicon.setAttribute('href', `/${prefix}-32x32.png`);
+    }
 
-    const smallPngFavicon = document.createElement('link');
-    smallPngFavicon.rel = 'icon';
-    smallPngFavicon.type = 'image/png';
-    smallPngFavicon.sizes = '16x16';
-    smallPngFavicon.href = `/${prefix}-16x16.png`;
-    document.head.appendChild(smallPngFavicon);
+    if (smallPngFavicon) {
+      smallPngFavicon.setAttribute('href', `/${prefix}-16x16.png`);
+    }
 
-    const icoFavicon = document.createElement('link');
-    icoFavicon.rel = 'icon';
-    icoFavicon.type = 'image/x-icon';
-    icoFavicon.href = `/${prefix}.ico`;
-    document.head.appendChild(icoFavicon);
+    if (icoFavicon) {
+      icoFavicon.setAttribute('href', `/${prefix}.ico`);
+    }
   }, [theme]);
 
   return null;
