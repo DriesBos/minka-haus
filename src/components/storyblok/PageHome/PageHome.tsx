@@ -187,6 +187,11 @@ export default function PageHome({ blok }: PageHomeProps) {
               value="Kita-ku, Kyoto"
               active={hasEntered}
             />
+            <DataBlok
+              label="Distance"
+              value="Imperial Palace, 20min"
+              active={false}
+            />
             <WeatherBlok active={hasEntered} />
             <LocalTimeBlok active={hasEntered} />
           </div>
