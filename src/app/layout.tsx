@@ -105,19 +105,33 @@ export default function RootLayout({
           href="/favicon-dark.svg"
           media="(prefers-color-scheme: dark)"
         />
-        {/* PNG favicon for better compatibility */}
+        {/* PNG favicon fallback for browsers without SVG favicon support */}
         <link
           rel="icon"
           type="image/png"
-          sizes="96x96"
-          href="/favicon-light-96x96.png"
+          sizes="32x32"
+          href="/favicon-light-32x32.png"
           media="(prefers-color-scheme: light)"
         />
         <link
           rel="icon"
           type="image/png"
-          sizes="96x96"
-          href="/favicon-dark-96x96.png"
+          sizes="16x16"
+          href="/favicon-light-16x16.png"
+          media="(prefers-color-scheme: light)"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-dark-32x32.png"
+          media="(prefers-color-scheme: dark)"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-dark-16x16.png"
           media="(prefers-color-scheme: dark)"
         />
         {/* ICO fallback for older browsers */}

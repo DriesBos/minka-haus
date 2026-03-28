@@ -25,9 +25,16 @@ export default function FaviconSwitcher() {
     const pngFavicon = document.createElement('link');
     pngFavicon.rel = 'icon';
     pngFavicon.type = 'image/png';
-    pngFavicon.sizes = '96x96';
-    pngFavicon.href = `/${prefix}-96x96.png`;
+    pngFavicon.sizes = '32x32';
+    pngFavicon.href = `/${prefix}-32x32.png`;
     document.head.appendChild(pngFavicon);
+
+    const smallPngFavicon = document.createElement('link');
+    smallPngFavicon.rel = 'icon';
+    smallPngFavicon.type = 'image/png';
+    smallPngFavicon.sizes = '16x16';
+    smallPngFavicon.href = `/${prefix}-16x16.png`;
+    document.head.appendChild(smallPngFavicon);
 
     const icoFavicon = document.createElement('link');
     icoFavicon.rel = 'icon';
