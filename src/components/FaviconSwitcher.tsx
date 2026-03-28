@@ -8,26 +8,63 @@ export default function FaviconSwitcher() {
 
   useEffect(() => {
     const prefix = theme === 'dark' ? 'favicon-dark' : 'favicon-light';
-    const svgFavicon = document.getElementById('favicon-svg');
-    const pngFavicon = document.getElementById('favicon-32');
-    const smallPngFavicon = document.getElementById('favicon-16');
-    const icoFavicon = document.getElementById('favicon-ico');
+    const version =
+      document.documentElement.getAttribute('data-favicon-version');
+    const withVersion = (path: string) =>
+      version ? `${path}?v=${version}` : path;
+    const upsertLink = (
+      id: string,
+      rel: string,
+      href: string,
+      type: string,
+      sizes?: string
+    ) => {
+      let link = document.getElementById(id) as HTMLLinkElement | null;
 
-    if (svgFavicon) {
-      svgFavicon.setAttribute('href', `/${prefix}.svg`);
-    }
+      if (!link) {
+        link = document.createElement('link');
+        link.id = id;
+        document.head.appendChild(link);
+      }
 
-    if (pngFavicon) {
-      pngFavicon.setAttribute('href', `/${prefix}-32x32.png`);
-    }
+      link.rel = rel;
+      link.type = type;
+      link.href = withVersion(href);
+      link.removeAttribute('media');
 
-    if (smallPngFavicon) {
-      smallPngFavicon.setAttribute('href', `/${prefix}-16x16.png`);
-    }
+      if (sizes) {
+        link.setAttribute('sizes', sizes);
+      } else {
+        link.removeAttribute('sizes');
+      }
+    };
 
-    if (icoFavicon) {
-      icoFavicon.setAttribute('href', `/${prefix}.ico`);
-    }
+    upsertLink(
+      'favicon-override-svg',
+      'icon',
+      `/${prefix}.svg`,
+      'image/svg+xml'
+    );
+    upsertLink(
+      'favicon-override-32',
+      'icon',
+      `/${prefix}-32x32.png`,
+      'image/png',
+      '32x32'
+    );
+    upsertLink(
+      'favicon-override-16',
+      'icon',
+      `/${prefix}-16x16.png`,
+      'image/png',
+      '16x16'
+    );
+    upsertLink(
+      'favicon-override-ico',
+      'icon',
+      `/${prefix}.ico`,
+      'image/x-icon'
+    );
   }, [theme]);
 
   return null;

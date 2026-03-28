@@ -60,13 +60,24 @@ export const metadata: Metadata = {
     'Minkahaus is a renovation project on mountain and forest land north of Kyoto. Building a space for research, cultural exchange and stays that explore mingei, Japanese craft.',
 };
 
+const faviconVersion =
+  process.env.NODE_ENV === 'development'
+    ? Date.now().toString()
+    : process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 8) ??
+      process.env.npm_package_version ??
+      '1';
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      data-favicon-version={faviconVersion}
+    >
       <head>
         {/* Blocking script to set theme before paint - prevents flash */}
         <script
@@ -92,53 +103,48 @@ export default function RootLayout({
         />
         <meta name="apple-mobile-web-app-title" content="Minka Haus" />
         <meta name="HandheldFriendly" content="true" />
-        {/* SVG favicon for modern browsers */}
+        {/* Light fallback for browsers that still probe /favicon.ico */}
+        <link rel="shortcut icon" href={`/favicon.ico?v=${faviconVersion}`} />
+        {/* Theme-aware favicons for browsers that support prefers-color-scheme */}
         <link
-          id="favicon-svg"
           rel="icon"
           type="image/svg+xml"
-          href="/favicon-light.svg"
+          media="(prefers-color-scheme: light)"
+          href={`/favicon-light.svg?v=${faviconVersion}`}
         />
-        {/* PNG favicon fallback for browsers without SVG favicon support */}
         <link
-          id="favicon-32"
+          rel="icon"
+          type="image/svg+xml"
+          media="(prefers-color-scheme: dark)"
+          href={`/favicon-dark.svg?v=${faviconVersion}`}
+        />
+        <link
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href="/favicon-light-32x32.png"
+          media="(prefers-color-scheme: light)"
+          href={`/favicon-light-32x32.png?v=${faviconVersion}`}
         />
         <link
-          id="favicon-16"
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          media="(prefers-color-scheme: dark)"
+          href={`/favicon-dark-32x32.png?v=${faviconVersion}`}
+        />
+        <link
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href="/favicon-light-16x16.png"
+          media="(prefers-color-scheme: light)"
+          href={`/favicon-light-16x16.png?v=${faviconVersion}`}
         />
-        {/* ICO fallback for older browsers */}
         <link
-          id="favicon-ico"
           rel="icon"
-          type="image/x-icon"
-          href="/favicon-light.ico"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-                const prefix = theme === 'dark' ? 'favicon-dark' : 'favicon-light';
-                const svgIcon = document.getElementById('favicon-svg');
-                const icon32 = document.getElementById('favicon-32');
-                const icon16 = document.getElementById('favicon-16');
-                const icoIcon = document.getElementById('favicon-ico');
-
-                if (svgIcon) svgIcon.setAttribute('href', '/' + prefix + '.svg');
-                if (icon32) icon32.setAttribute('href', '/' + prefix + '-32x32.png');
-                if (icon16) icon16.setAttribute('href', '/' + prefix + '-16x16.png');
-                if (icoIcon) icoIcon.setAttribute('href', '/' + prefix + '.ico');
-              })();
-            `,
-          }}
+          type="image/png"
+          sizes="16x16"
+          media="(prefers-color-scheme: dark)"
+          href={`/favicon-dark-16x16.png?v=${faviconVersion}`}
         />
         {/* Apple touch icon */}
         <link

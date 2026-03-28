@@ -62,7 +62,7 @@ export default function TheSlider({
       >
         {showVideo && (
           <div className={styles.videoContainer} data-active={active}>
-            <VideoPlayer />
+            <VideoPlayer active={active} />
           </div>
         )}
          {/* {landscape_image && (
