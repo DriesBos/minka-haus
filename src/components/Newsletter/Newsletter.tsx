@@ -4,16 +4,25 @@ import { FormEvent, useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { TextPlugin } from 'gsap/TextPlugin';
+import { useIsJapaneseLanguage } from '@/hooks/useIsJapaneseLanguage';
 import styles from './Newsletter.module.sass';
 
 gsap.registerPlugin(useGSAP, TextPlugin);
 
-export default function Newsletter() {
+interface NewsletterProps {
+  label?: string;
+}
+
+export default function Newsletter({
+  label = 'Newsletter',
+}: NewsletterProps) {
+  const isJapanese = useIsJapaneseLanguage();
+  const resolvedLabel = isJapanese ? 'ニュースレター' : label;
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [isActive, setIsActive] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const [buttonText, setButtonText] = useState('Newsletter');
+  const [buttonText, setButtonText] = useState(resolvedLabel);
   const inputRef = useRef<HTMLInputElement>(null);
   const buttonTextRef = useRef<HTMLSpanElement>(null);
   const messageRef = useRef<HTMLParagraphElement>(null);
@@ -99,13 +108,13 @@ export default function Newsletter() {
   // Update button text based on state
   useEffect(() => {
     if (!isActive && !isLoading) {
-      setButtonText('Newsletter');
+      setButtonText(resolvedLabel);
     } else if (isLoading) {
       setButtonText('Submitting..');
     } else {
       setButtonText('Submit');
     }
-  }, [isActive, isLoading]);
+  }, [isActive, isLoading, resolvedLabel]);
 
   // Focus input when active becomes true
   useEffect(() => {

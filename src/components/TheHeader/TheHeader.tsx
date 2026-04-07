@@ -8,8 +8,8 @@ import { TextPlugin } from 'gsap/TextPlugin';
 import IconCircle from '../icons/IconCircle';
 import IconPlay from '../icons/IconPlay';
 import { useThemeActions } from '@/hooks/useTheme';
+import { useIsJapaneseLanguage } from '@/hooks/useIsJapaneseLanguage';
 import IconPause from '../icons/IconPause';
-import GrainyGradient from '../GrainyGradient/GrainyGradient';
 
 // Register GSAP plugins
 gsap.registerPlugin(useGSAP, TextPlugin);
@@ -37,17 +37,11 @@ export default function TheHeader({
   const hausTextRef = React.useRef<HTMLSpanElement>(null);
   const minkaControllerRef = React.useRef<ScrambleController | null>(null);
   const hausControllerRef = React.useRef<ScrambleController | null>(null);
-  const [isJapanese, setIsJapanese] = React.useState(false);
+  const isJapanese = useIsJapaneseLanguage();
   const { toggleTheme } = useThemeActions();
 
   const fullText =
     'MinkaHaus is a renovation project on mountain and forest land north of Kyoto. Building a space for research, cultural exchange and stays that explore mingei, Japanese craft.';
-
-  // Detect user language on mount
-  React.useEffect(() => {
-    const userLanguage = navigator.language || navigator.languages?.[0];
-    setIsJapanese(userLanguage?.toLowerCase().startsWith('ja'));
-  }, []);
 
   React.useEffect(() => {
     const latinChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';

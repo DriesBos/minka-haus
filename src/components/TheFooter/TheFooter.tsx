@@ -48,7 +48,7 @@ export default function TheFooter({ active }: TheFooterProps) {
         });
       }
     },
-    { scope: containerRef, dependencies: [active] }
+    { scope: containerRef, dependencies: [active] },
   );
 
   return (
@@ -76,8 +76,10 @@ export default function TheFooter({ active }: TheFooterProps) {
       </div>
       <div className={styles.column}>
         <div className={`${styles.dataItem} footerSequence`}>
-          <div className={`${styles.icon} icon`}></div>
-          <span>Livedata: active</span>
+          <div className={`${styles.blink} ${styles.icon} icon`}></div>
+          <span>
+            Live data: <span className={styles.blink}>active</span>
+          </span>
         </div>
       </div>
     </footer>
