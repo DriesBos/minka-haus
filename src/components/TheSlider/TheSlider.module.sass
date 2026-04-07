@@ -2,6 +2,8 @@
 
 .theSlider
   position: absolute
+  overflow: hidden
+  isolation: isolate
   bottom: 12.375vmin
   max-width: 100%
   width: 24.75vmin
@@ -12,8 +14,12 @@
     width: 50vw
     height: 33vh
 
+.sliderGrain
+  z-index: calc(var(--index-slider) + 1)
+
 .enterBtn
   position: absolute
+  z-index: calc(var(--index-slider) + 2)
   bottom: 10%
   left: 0
   right: 0

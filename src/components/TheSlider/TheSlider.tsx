@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import GrainyGradient from '@/components/GrainyGradient/GrainyGradient';
 // import Image from 'next/image';
 // import { useTheme } from '@/hooks/useTheme';
 
@@ -30,8 +31,6 @@ interface TheSliderProps {
 
 export default function TheSlider({
   active = false,
-  landscape_image,
-  craft_image,
   onEnter,
 }: TheSliderProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -86,6 +85,7 @@ export default function TheSlider({
         className={`${styles.theSlider} theSlider initSequence`}
         data-active={active}
       >
+        <GrainyGradient className={styles.sliderGrain} />
         {showVideo && shouldRenderVideo && (
           <div className={styles.videoContainer} data-active={videoVisible}>
             <VideoPlayer active={active} autoplay={active} preload="metadata" />
@@ -134,9 +134,7 @@ export default function TheSlider({
         >
           Enter
         </div>
-         {/* <GrainyGradient className={styles.grainyGradient}/> */}
       </div>
-      {/* <GrainyGradient /> */}
     </div>
   );
 }

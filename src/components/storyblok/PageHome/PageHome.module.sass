@@ -1,9 +1,16 @@
 .pageHome
   position: relative
+  isolation: isolate
   width: 100%
   display: flex
   flex-direction: column
   background-color: var(--theme-bg)
+  > *:not(.pageHomeGrain)
+    position: relative
+    z-index: var(--index-base)
+
+.pageHomeGrain
+  z-index: 0
 
 .topScrollWrapper
   position: relative
@@ -18,12 +25,16 @@
   bottom: 6.1875vmin
   width: 49.5vmin
   height: 66vmin
+  overflow: hidden
   transition: background-color var(--transition-theme)
   background-color: var(--theme-bg-page)
   @media screen and (max-width: 850px) 
     bottom: 12.5vw
     width: 75vw
     height: 66vh
+
+.middleBlokGrain
+  z-index: 0
 
 .theSliderWrapper
   position: relative
@@ -45,4 +56,3 @@
     opacity: 1
   &[data-active="false"]
     opacity: 0
-

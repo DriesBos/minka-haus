@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { TextPlugin } from 'gsap/TextPlugin';
 import IconCircle from '../icons/IconCircle';
+import IconHouseLogo from '../icons/IconHouseLogo';
 import IconPlay from '../icons/IconPlay';
 import { useThemeActions } from '@/hooks/useTheme';
 import { useIsJapaneseLanguage } from '@/hooks/useIsJapaneseLanguage';
@@ -45,7 +46,8 @@ export default function TheHeader({
 
   React.useEffect(() => {
     const latinChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const japaneseChars = 'アイウエオカキクケコミサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワン';
+    const japaneseChars =
+      'アイウエオカキクケコミサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワン';
     const scrambleStepDuration = 30;
     const scrambleIterations = 8;
     const englishVisibleDuration = 10000;
@@ -55,7 +57,7 @@ export default function TheHeader({
       element: HTMLSpanElement | null,
       englishText: string,
       japaneseText: string,
-      initialDelay: number
+      initialDelay: number,
     ): ScrambleController | null => {
       if (!element) {
         return null;
@@ -104,7 +106,8 @@ export default function TheHeader({
       const scrambleTo = (targetLanguage: 'english' | 'japanese') => {
         const targetText =
           targetLanguage === 'japanese' ? japaneseText : englishText;
-        const chars = targetLanguage === 'japanese' ? japaneseChars : latinChars;
+        const chars =
+          targetLanguage === 'japanese' ? japaneseChars : latinChars;
 
         clearTimers();
 
@@ -121,7 +124,10 @@ export default function TheHeader({
             .split('')
             .map((char, index) => {
               if (char === ' ') return ' ';
-              if (index < (iteration / scrambleIterations) * targetText.length) {
+              if (
+                index <
+                (iteration / scrambleIterations) * targetText.length
+              ) {
                 return targetText[index];
               }
 
@@ -192,13 +198,13 @@ export default function TheHeader({
       minkaTextRef.current,
       'Minka',
       'ミンカ',
-      5000
+      5000,
     );
     hausControllerRef.current = createScrambleLoop(
       hausTextRef.current,
       'Haus',
       'ハウス',
-      15000
+      15000,
     );
 
     minkaControllerRef.current?.start();
@@ -246,7 +252,7 @@ export default function TheHeader({
         });
       }
     },
-    { scope: containerRef, dependencies: [active] }
+    { scope: containerRef, dependencies: [active] },
   );
 
   // Typing animation for the bottom text
@@ -267,7 +273,7 @@ export default function TheHeader({
         });
       }
     },
-    { scope: containerRef, dependencies: [active] }
+    { scope: containerRef, dependencies: [active] },
   );
 
   return (
@@ -276,6 +282,9 @@ export default function TheHeader({
       data-active={active}
       ref={containerRef}
     >
+      {/* <div className={`${styles.mark} ${styles.headerSequence} headerSequence`}>
+        <IconHouseLogo className={styles.markIcon} />
+      </div> */}
       <div
         className={`${styles.column}  ${styles.logo}`}
         data-japanese={isJapanese}

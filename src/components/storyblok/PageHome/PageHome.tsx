@@ -12,6 +12,7 @@ import TheHeader from '@/components/TheHeader/TheHeader';
 import TheSlider from '@/components/TheSlider/TheSlider';
 import { useEnteredStore } from '@/store/useEnteredStore';
 import TheFooter from '@/components/TheFooter/TheFooter';
+import GrainyGradient from '@/components/GrainyGradient/GrainyGradient';
 
 // Register GSAP plugin
 gsap.registerPlugin(useGSAP);
@@ -161,13 +162,16 @@ export default function PageHome({ blok }: PageHomeProps) {
       data-entered={hasEntered}
       ref={containerRef}
     >
+      <GrainyGradient className={styles.pageHomeGrain} />
       <div className={styles.topScrollWrapper}>
         <div
           ref={middleBlokRef}
           className={`${styles.middleBlokAnimation} initSequence`}
           data-active={hasEntered}
           data-developmode={developMode}
-        />
+        >
+          <GrainyGradient className={styles.middleBlokGrain} />
+        </div>
         <TheHeader
           active={hasEntered}
           soundPlaying={soundPlaying}
