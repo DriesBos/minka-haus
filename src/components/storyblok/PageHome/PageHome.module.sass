@@ -4,13 +4,16 @@
   width: 100%
   display: flex
   flex-direction: column
-  background-color: var(--theme-bg)
-  > *:not(.pageHomeGrain)
+  // background-color: var(--theme-bg)
+  > *:not(.pageHomePaintDots):not(.pageHomeGrain)
     position: relative
-    z-index: var(--index-base)
+    z-index: calc(var(--index-base) + 1)
+
+.pageHomePaintDots
+  z-index: 1
 
 .pageHomeGrain
-  z-index: 0
+  z-index: 2
 
 .topScrollWrapper
   position: relative

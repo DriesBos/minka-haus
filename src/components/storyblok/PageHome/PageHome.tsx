@@ -10,6 +10,7 @@ import WeatherBlok from '@/components/DataBlok/WeatherBlok';
 import SoundPlayer from '@/components/SoundPlayer/SoundPlayer';
 import TheHeader from '@/components/TheHeader/TheHeader';
 import TheSlider from '@/components/TheSlider/TheSlider';
+import HomePagePaintDots from '@/components/HomePagePaintDots/HomePagePaintDots';
 import { useEnteredStore } from '@/store/useEnteredStore';
 import TheFooter from '@/components/TheFooter/TheFooter';
 import GrainyGradient from '@/components/GrainyGradient/GrainyGradient';
@@ -162,6 +163,7 @@ export default function PageHome({ blok }: PageHomeProps) {
       data-entered={hasEntered}
       ref={containerRef}
     >
+      <HomePagePaintDots className={styles.pageHomePaintDots} />
       <GrainyGradient className={styles.pageHomeGrain} />
       <div className={styles.topScrollWrapper}>
         <div
